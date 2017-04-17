@@ -22,8 +22,9 @@ body {
 hr {
   border-color: #F05F40;
   border-width: 3px;
-  max-width: 50px;
+  /*max-width: 50px;*/
 }
+
 hr.light {
   border-color: white;
 }
@@ -61,7 +62,13 @@ p {
   color: rgba(255, 255, 255, 0.7);
 }
 section {
-  padding: 100px 0;
+    padding-top: 70px;
+    padding-bottom: 10px;
+
+}
+
+#mainBlock {
+
 }
 aside {
   padding: 50px 0;
@@ -222,6 +229,11 @@ header .header-content .header-content-inner p {
 }
 .section-heading {
   margin-top: 0;
+  display:inline;
+  margin-left:5px;
+}
+#resultList {
+    float:right;
 }
 .service-box {
   max-width: 400px;
