@@ -1,0 +1,418 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'circular-std-book';
+    src: url('assets/fonts/circular-std-book.otf'); /* Legacy iOS */
+}
+@font-face {
+    font-family: 'circular-std-medium';
+    src: url('assets/fonts/circular-std-medium.ttf'); /* Legacy iOS */
+}
+@font-face {
+    font-family: 'circular-std-bold';
+    src: url('assets/fonts/circular-std-bold.otf'); /* Legacy iOS */
+}
+@font-face {
+    font-family: 'whitneyHTF-light';
+    src: url('assets/fonts/WhitneyHTF-Light.ttf'); /* Legacy iOS */
+}
+@font-face {
+    font-family: 'whitneyHTF-book';
+    src: url('assets/fonts/WhitneyHTF-Book.otf'); /* Legacy iOS */
+}
+@font-face {
+    font-family: 'whitneyHTF-medium';
+    src: url('assets/fonts/WhitneyHTF-Medium.ttf'); /* Legacy iOS */
+}
+@font-face {
+    font-family: 'whitneyHTF-semibold';
+    src: url('assets/fonts/WhitneyHTF-SemiBold.otf'); /* Legacy iOS */
+}
+@font-face {
+    font-family: 'whitneyHTF-bold';
+    src: url('assets/fonts/WhitneyHTF-Bold.otf'); /* Legacy iOS */
+}
+@font-face {
+    font-family: 'whitneyHTF-black';
+    src: url('assets/fonts/WhitneyHTF-Black.otf'); /* Legacy iOS */
+}
+html {
+  padding-bottom: 75px;
+}
+body {
+    font-family: 'whitneyHTF-book';
+    max-width: 100%;
+    overflow-x: hidden;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+nav {
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1;
+    top: 0px;
+    margin-left: -65px;
+    padding-top: 7.5px;
+    padding-left: 60px;
+    padding-right: 60px;
+    background-color: #fafafa;
+    height: 80px;
+    width: 120%;
+    vertical-align: center;
+    -webkit-box-shadow: 0 8px 6px -6px #d6d6d6;
+    -moz-box-shadow: 0 8px 6px -6px #d6d6d6;
+    box-shadow: 0 8px 6px -6px #d6d6d6;
+}
+nav a {
+    padding: 5px 20px;
+    color: #000000;
+}
+a.logo.active {
+    padding-top: 7.5px;
+    color: #000000;
+    font-family: 'whitneyHTF-bold';
+}
+nav._ngcontent-c0, a.active._ngcontent-c0 {
+    color: #000000;
+    padding-left: 130px;
+}
+.h2, h2 {
+    font-family: 'whitneyHTF-book';
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 0px;
+    text-align: left;
+    color: #000000;
+    padding-left: 5px;
+    font-size: 28px;
+}
+#motto {
+    font-family: 'whitneyHTF-semibold';
+    font-size: 40px;
+    margin-left: 0px;
+    margin-top: 50px;
+    text-align: center;
+}
+div.col-lg-4 {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+    width: 1150px;
+    background-color: #ededed;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    z-index: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.col-lg-4 {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.col-lg-4 input {
+    border: none;
+    display: inline-block;
+    float: left;
+    padding: 15px;
+    font-size: 18px;
+    margin-right: 10px;
+}
+.col-lg-4 input::placeholder {
+    color: #969696;
+}
+.col-lg-4 input[name="projectSearch2"] {
+    margin-left: 15px;
+    width: 42.5%;
+    font-family: 'whitneyHTF-light';
+}
+.col-lg-4 input[name="neighSearch"] {
+    width: 22%;
+}
+.col-lg-4 input[name="dateSearch"] {
+    width: 16%;
+}
+.col-lg-4 button {
+    width: 10%;
+    margin-right: 15px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    height: 52.5px;
+    font-size: 16px;
+    font-family: 'whitneyHTF-medium';
+}
+.h1, h1 {
+    margin-top: 50px;
+    margin-left: 20px;
+    font-family: "whitneyHTF-medium";
+}
+.grid .grid-pad {
+    text-align: center;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+div.col-1-4 {
+    width: 100px;
+    text-align: center;
+/*    border-style: solid;
+    border-width: 1px;*/
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 10px;
+}
+div.col-1-4[_ngcontent-c1] {
+  width: 33.33%;
+}
+.inner {
+/*    border-color: #e0e0e0;
+    border-style: solid;
+    border-width: 1px;*/
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+    width: 95%;
+    height: 90%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.inner p {
+  font-size: 14px;
+}
+div.col-1-4 img {
+/*    display: block;
+    margin-left: auto;
+    margin-right: auto;*/
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+}
+div.progress {
+  margin-left: 10.5px;
+  margin-right: 10.5px;
+  height: 25px;
+  margin-bottom: 5px;
+}
+div.progress-bar {
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    background-color: #00B76B;
+    float: left;
+    font-size: 14px;
+    font-family: 'whitneyHTF-book';
+    width:90%;
+    padding-top: 1px;
+/*    border-style: solid;
+    border-width: 2px;
+    border-color: #000000;*/
+}
+div.col-1-4 p {
+    margin-left: 0px;
+    margin-top: 0px;
+    text-align: center;
+    padding-top: 14px;
+}
+project-detail img {
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: 20px;
+  margin-top: 40px;
+}
+project-detail h2 {
+  margin-top: 45px;
+  font-family: 'whitneyHTF-medium';
+  font-size: 48px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+project-detail #tagline {
+  font-size: 16px;
+  text-align: center;
+}
+div.dateDiv, div.locationDiv, div.timeDiv {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 250px;
+  text-align: left;
+  margin-top: 10px;
+}
+project-detail #calendarIcon, #locationIcon, #timeIcon {
+  margin-top: 0px;
+  float: left;
+  height: 40px;
+  width: 40px;
+}
+h3, .h3 {
+  font-family: 'whitneyHTF-medium';
+  font-size: 36px;
+}
+.detailsHeader {
+  margin-top: 75px;
+}
+.tagsHeader {
+  margin-top: 50px;
+}
+.tagButtons {
+  margin-left: 5px;
+}
+div.tagButtons button {
+  background-color: #000;
+  font-family: 'whitneyHTF-light';
+  font-size: 15px;
+  color: #fff;
+  padding: 12.5px;
+  margin-right: 5px;
+  border-radius: 0px;
+}
+div.tagButtons button:hover {
+  background-color: #444;
+}
+.col-md-4 button.helpButton {
+  background-color: #000;
+  font-family: 'whitneyHTF-medium';
+  font-size: 22px;
+  color: #fff;
+  padding: 15px;
+  margin-right: 5px;
+  border-radius: 0px;
+}
+.prjDesc {
+  font-size: 16px;
+  font-family: 'whitneyHTF-light';
+}
+.col-1-4 {
+    padding: 14px;
+}
+div.aboutContainer h2 {
+margin-top: 30px;
+text-align: left;
+}
+div.aboutContainer p {
+margin-top: 30px;
+margin-left: 5px;
+padding-left: 5px;
+width: 70%;
+text-align: left;
+}
+div.Playbooktitle p {
+  font-size-adjust: 20px;
+}
+div.grid.grid-pad button {
+  background-color: #fff;
+  color: #000;
+  font-family: 'whitneyHTF-book';
+  padding: 10px;
+  margin-bottom: 10px;
+  border-width: 1px;
+  border-style: solid;
+  margin-right: 1%;
+}
+div.grid.grid-pad button:hover {
+  background-color: #000;
+  color: #fff;
+}
+div.topGrid {
+  margin-left: 2%;
+}
+div.topGrid select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   padding: 10px;
+   padding-left: 15px;
+   padding-right: 5px;
+   font-family: 'whitneyHTF-medium';
+   vertical-align: center;
+}
+div.signUp button, button, div.button, button.helpButton, #helpButton {
+  background-color: #000;
+  font-family: 'whitneyHTF-light';
+  font-size: 15px;
+  color: #fff;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: 5px;
+  border: none;
+}
+.hereButton {
+  background-color: #fff;
+  color: #000;
+  font-family: 'whitneyHTF-medium';
+  border-width: 1px;
+  padding: 0px;
+  padding-right: -3px;
+}
+div.dropdown button, div.saveDiv.button.saveAndContinue p{
+  color: #fff;
+}
+#playbook {
+  font-family: 'whitneyHTF-semibold';
+  font-size: 21px;
+}
+div.progress-bars p {
+  text-align: center;
+}
+@media (min-width: 320px) {
+  #explorePrj, #createPrj, #aboutNav, #signUpNav {
+      display: none;
+  }
+  nav input[name="projectSearch"] {
+    display: none;
+  }
+  div.col-1-4[_ngcontent-c1] {
+    width: 100%;
+  }
+  nav {
+    width: 150%;
+  }
+  #searchBar, #motto {
+    display: none;
+  }
+  h1.trendingHeader {
+    margin-top: 15px;
+  }
+}
+@media (min-width: 550px) {
+  nav input[name="projectSearch"] {
+    display: inline-block;
+  }
+}
+@media (min-width: 660px) {
+  #explorePrj {
+    display: inline-block;
+  }
+}
+@media (min-width: 775px) {
+  #createPrj {
+    display: inline-block;
+  }
+}
+@media (min-width: 835px) {
+  #aboutNav {
+    display: inline-block;
+  }
+  h1.trendingHeader {
+  margin-top: 150px;
+  }
+  #motto {
+    display: block;
+  }
+  #searchBar {
+    display: block;
+    width: 85%;
+  }
+}
+@media (min-width: 950px) {
+  #signUpNav {
+    display: inline-block;
+  }
+}
+button:disabled, button[disabled], #helpButton:disabled, #helpButton[disabled] {
+  background-color: #C4C9C4;
+}

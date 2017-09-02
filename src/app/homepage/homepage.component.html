@@ -1,0 +1,55 @@
+<h2 id="motto">Search for an official</h2><br>
+<div class="col-lg-4" id="searchBar">
+  <input type="text" name="projectSearch2" id="projectSearch2" placeholder="Search official by name...">
+  <input type="text" name="neighSearch" name="neighSearch" placeholder="zipcode (optional)">
+  <input type="text" name="dateSearch" id="dateSearch" placeholder="MM/DD/YYYY">
+  <button>SEARCH</button>
+</div>
+
+<br clear="all" />
+
+<h1 class="trendingHeader">Trending</h1>
+<div class="grid grid-pad">
+  <div *ngFor="let official of officials.slice(0,5)" [routerLink]="['/detail', official.id]" class="col-1-4">
+    <div class="inner" id={{official.id}}>
+      <img src="{{official.thumbnail}}">
+      <h2>{{official.title}}</h2><br>
+      <span>{{official.name}}</span>
+        <!-- <progress-bars [isDetail]="false"  [resources]="official.resources"></progress-bars> -->
+         <p style="font-family:whitneyHTF-semibold;">{{official.date}}</p>
+    </div>
+  </div>
+</div>
+
+<br clear="all" />
+
+<h1>Needing Volunteers</h1>
+<div class="grid grid-pad">
+  <div *ngFor="let official of officials.slice(5,10)" [routerLink]="['/detail', official.id]" class="col-1-4">
+    <div class="inner" id={{official.id}}>
+      <img src="{{official.thumbnail}}">
+      <h2>{{official.title}}</h2><br>
+      <span>{{official.name}}</span>
+        <!-- <progress-bars [isDetail]="false"  [resources]="official.resources"></progress-bars> -->
+         <p style="font-family:whitneyHTF-semibold;">{{official.date}}</p>
+    </div>
+  </div>
+</div>
+
+<br clear="all" />
+
+<h1>Needing Donations</h1>
+<div class="grid grid-pad">
+  <div *ngFor="let official of officials.slice(7,9)" [routerLink]="['/detail', official.id]" class="col-1-4">
+    <div class="inner" id={{official.id}}>
+      <img src="{{official.thumbnail}}">
+      <h2>{{official.title}}</h2><br>
+      <span>{{official.name}}</span>
+        <!-- <progress-bars [isDetail]="false"  [resources]="official.resources"></progress-bars> -->
+         <p style="font-family:whitneyHTF-semibold;">{{official.date}}</p>
+    </div>
+  </div>
+</div>
+<!--<div *ngFor="let official of officials" [routerLink]="['/detail', official.id]" class="col-1-3">-->
+
+<!--</div>-->
