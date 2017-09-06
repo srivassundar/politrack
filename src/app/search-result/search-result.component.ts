@@ -5,13 +5,13 @@ import { Official } from './../official';
 import { OfficialService } from './../official.service';
 
 @Component({
-  selector: 'explore-officials',
-  templateUrl: './explore-officials.component.html',
-  styleUrls: ['./explore-officials.component.css'],
+  selector: 'search-result',
+  templateUrl: './search-result.component.html',
+  styleUrls: ['./search-result.component.css'],
   providers: [OfficialService]
 })
 
-export class ExploreOfficialComponent implements OnInit {
+export class SearchResultComponent implements OnInit {
   title = 'Explore officials around you';
   officials: Official[];
   selectedOfficial: Official;

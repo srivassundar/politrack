@@ -12,7 +12,7 @@ import { CategoryService } from './category.service';
 import { UserService } from './user.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { OfficialDetailComponent } from './official-detail/official-detail.component';
-import { ExploreOfficialComponent } from './explore-officials/explore-officials.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 import { AboutComponent } from './about/about.component';
 import { ProgressBarsComponent } from './progress-bars/progress-bars.component';
 
@@ -20,7 +20,7 @@ import { ProgressBarsComponent } from './progress-bars/progress-bars.component';
   declarations: [
     AppComponent,
     HomepageComponent,
-    ExploreOfficialComponent,
+    SearchResultComponent,
     OfficialDetailComponent,
     AboutComponent,
     ProgressBarsComponent
