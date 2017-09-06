@@ -29,43 +29,12 @@
   </div>
   <br clear="all" /><br clear="all" /><br clear="all" />
 
-<!--   <div *ngFor="let official of officials" [routerLink]="['/detail', official.id]" class="col-md-3">
-    <img src="{{official.thumbnail}}" style="width:300px;">
-    <h2>{{official.title}}</h2><br>
-    <span>{{official.name}}</span>
-    <progress-bars [isDetail]="false" [resources]="official.resources"></progress-bars>
-    <br>
-    <p style="text-align:center; font-family:'whitneyHTF-semibold';">{{official.date}}</p>
-  </div>
- -->
-
   <div *ngFor="let official of officials" [routerLink]="['/detail', official.id]" class="col-md-3">
-    <!--<div class="module official">-->
-    <!--<h4>{{official.title}}</h4>-->
-    <!--</div>-->
-    <!--<a href="default.asp">-->
     <img src="{{official.thumbnail}}" style="width:300px;">
     <h2>{{official.title}}</h2><br>
     <span>{{official.name}}</span>
-    <progress-bars [isDetail]="false" [resources]="official.resources"></progress-bars>
     <br>
     <p style="text-align:center; font-family:'whitneyHTF-semibold';">{{official.date}}</p>
-    <!--</a>-->
   </div>
 </div>
 
-
-<!--<ul class="officials">-->
-  <!--<li *ngFor="let official of officials"-->
-    <!--[class.selected]="official === selectedProject"-->
-    <!--(click)="onSelect(official)">-->
-    <!--<span class="badge">{{official.id}}</span> {{official.title}}-->
-  <!--</li>-->
-
-<!--</ul>-->
-<!--<div *ngIf="selectedProject">-->
-  <!--<h2>-->
-    <!--{{selectedProject.title | uppercase}}-->
-  <!--</h2>-->
-  <!--<button (click)="gotoDetail()">View Details</button>-->
-<!--</div>-->

@@ -1,129 +1,5 @@
 import { Official, Resource } from './../official';
 
-const piedmont_park_required_resources: Resource[] = [
-    {
-        id: 0,
-        type: "volunteer",
-        name: "Clean-up",
-        ideal_number: 20,
-        current_number: 13,
-        contributions: []
-    },
-]
-const inman_park_required_resources: Resource[] = [
-    {
-        id: 0,
-        type: "funding",
-        name: "Attandant",
-        ideal_number: 30,
-        current_number: 14,
-        contributions: []
-    }
-]
-const botanic_garden_required_resources: Resource[] = [
-    {
-        id: 0,
-        type: "volunteer",
-        name: "Attandant",
-        ideal_number: 15,
-        current_number: 14,
-        contributions: []
-    },
-    {
-        id:1,
-        type: "donation",
-        name: "Bring bowls and cups!",
-        ideal_number: 30,
-        current_number: 18,
-        contributions: []
-    }
-]
-const womens_march_required_resources: Resource[] = [
-    {
-        id: 0,
-        type: "volunteer",
-        name: "Attandant",
-        ideal_number: 100,
-        current_number: 78,
-        contributions: []
-    },
-]
-const beekeeping_required_resources: Resource[] = [
-    {
-        id: 0,
-        type: "volunteer",
-        name: "Attandant",
-        ideal_number: 100,
-        current_number: 48,
-        contributions: []
-    },
-]
-const hike_required_resources: Resource[] = [
-    {
-        id: 0,
-        type: "funding",
-        name: "Attandant",
-        ideal_number: 20,
-        current_number: 18,
-        contributions: []
-    },
-]
-const workshop_required_resources: Resource[] = [
-    {
-        id: 0,
-        type: "funding",
-        name: "Attandant",
-        ideal_number: 20,
-        current_number: 16,
-        contributions: []
-    },
-]
-const cityhall_required_resources: Resource[] = [
-    {
-        id: 0,
-        type: "funding",
-        name: "Attandant",
-        ideal_number: 20,
-        current_number: 9,
-        contributions: []
-    },
-]
-const tasteofatl_required_resources: Resource[] = [
-    {
-        id: 0,
-        type: "volunteer",
-        name: "Attandant",
-        ideal_number: 200,
-        current_number: 148,
-        contributions: []
-    },
-    {
-        id: 1,
-        type: "funding",
-        name: "Attandant",
-        ideal_number: 1000,
-        current_number: 395,
-        contributions: []
-    },
-]
-const soupkitchen_required_resources: Resource[] = [
-    {
-        id: 0,
-        type: "volunteer",
-        name: "Attandant",
-        ideal_number: 200,
-        current_number: 148,
-        contributions: []
-    },
-    {
-        id: 0,
-        type: "donation",
-        name: "Attandant",
-        ideal_number: 400,
-        current_number: 382,
-        contributions: []
-    },
-]
 
 export const OFFICIALS: Official[] = [
   {
@@ -145,7 +21,7 @@ export const OFFICIALS: Official[] = [
     address: "from Georgia's 5th district",
     thumbnail: `./../../assets/thumbnails/johnLewis.jpg`,
     resources_deadline: ``,
-    resources: inman_park_required_resources
+    resources: null
   },
   {
     id: 4,
@@ -164,7 +40,7 @@ export const OFFICIALS: Official[] = [
     address: "400 Peachtree Road, Front Entrance",
     thumbnail: `./../../assets/thumbnails/johnEdwards.jpg`,
     resources_deadline: ``,
-    resources: hike_required_resources
+    resources: null
   },
   {
     id: 5,
@@ -183,7 +59,7 @@ export const OFFICIALS: Official[] = [
     address: "400 Park Dr NE, 14th Street",
     thumbnail: `./../../assets/thumbnails/johnKline.jpg`,
     resources_deadline: ``,
-    resources: workshop_required_resources
+    resources: null
   },
   {
     id: 6,
@@ -202,7 +78,7 @@ export const OFFICIALS: Official[] = [
     address: "Atlanta History Center, 560 Peachtree Street",
     thumbnail: `./../../assets/thumbnails/cityhall.jpg`,
     resources_deadline: ``,
-    resources: cityhall_required_resources
+    resources: null
   },
   {
     id: 8,
@@ -221,7 +97,7 @@ export const OFFICIALS: Official[] = [
     address: "1560 Peachtree Street",
     thumbnail: `./../../assets/thumbnails/tasteofatl.jpg`,
     resources_deadline: ``,
-    resources: tasteofatl_required_resources
+    resources: null
   },
   {
     id: 0,
@@ -244,7 +120,7 @@ export const OFFICIALS: Official[] = [
     address: "400 Park Dr NE, 14th Street",
     thumbnail: `./../../assets/thumbnails/piedmont_park.jpg`,
     resources_deadline: ``,
-    resources: piedmont_park_required_resources
+    resources: null
   },
   {
     id: 1,
@@ -263,7 +139,7 @@ export const OFFICIALS: Official[] = [
     address: "400 Peachtree Dr NE, 18th Street",
     thumbnail: `./../../assets/thumbnails/beekeeping.jpg`,
     resources_deadline: ``,
-    resources: beekeeping_required_resources
+    resources: null
   },
   {
     id: 3,
@@ -286,7 +162,7 @@ export const OFFICIALS: Official[] = [
     address: "400 Park Dr NE, 14th Street",
     thumbnail: `./../../assets/thumbnails/botanic_garden.png`,
     resources_deadline: ``,
-    resources: botanic_garden_required_resources
+    resources: null
   },
     {
     id: 7,
@@ -306,7 +182,7 @@ export const OFFICIALS: Official[] = [
     address: "732 Joseph E Lowery Blvd NW",
     thumbnail: `./../../assets/thumbnails/soupkitchen.jpg`,
     resources_deadline: ``,
-    resources: soupkitchen_required_resources
+    resources: null
   },
     {
     id: 9,
@@ -327,7 +203,7 @@ export const OFFICIALS: Official[] = [
     address: "400 Park Dr NE, 14th Street",
     thumbnail: `./../../assets/thumbnails/womens_march.png`,
     resources_deadline: ``,
-    resources: womens_march_required_resources
+    resources: null
   },
 ];
 
