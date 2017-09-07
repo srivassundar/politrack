@@ -2,7 +2,7 @@
 
 PoliTrack Backend Service runs as a Flask server API.
 
-##### Populating the database
+### Populating the database
 The database is called propublica_officials.db and the officials table is called officials_info.
 
 Populate the table using this command:
@@ -16,14 +16,14 @@ For more information on the script, run:
     python propublica_importer.py -h
 ```
 
-##### Running the backend server
+### Running the backend server
 To run the backend flask server run:
 ```
     python app.py
 ```
 The server runs at `localhost:8082` or `http://0.0.0.0:8082/`
 
-##### Querying the backend server
+### Querying the backend server
 
 After starting the server, here is a sample API call to the officials endpoint made using cURL:
 ```
