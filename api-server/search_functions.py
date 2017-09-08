@@ -83,7 +83,28 @@ def get_officials_by_address(query):
 
 
 def get_officials_by_name(query):
-    return ['no data']
+    # Normalize query
+    query = str(query).translate(None, '.,:;?[]{}()-_+=*&%$#@!')
+    tokens = [tok.strip() for tok in query.split() if tok.strip()]
+    if len(tokens) == 0:
+        return None
+
+    select_by_name = '''
+        SELECT
+            *
+        FROM officials_info
+        WHERE
+            {like_clause}
+    '''
+    like_clause = '''
+        OR '''.join(
+            "LOWER(name) LIKE '%{tok}%'".format(tok=tok) for tok in tokens
+        )
+    cursor = get_db().cursor()
+    print(select_by_name.format(like_clause=like_clause))
+    cursor.execute(select_by_name.format(like_clause=like_clause))
+    return [dict(res) for res in cursor.fetchall()]
+    # TODO: Order by full match vs partial match
 
 
 # TODO: Use class for QueryResults
