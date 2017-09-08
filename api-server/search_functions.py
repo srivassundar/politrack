@@ -103,8 +103,15 @@ def get_officials_by_name(query):
     cursor = get_db().cursor()
     print(select_by_name.format(like_clause=like_clause))
     cursor.execute(select_by_name.format(like_clause=like_clause))
-    return [dict(res) for res in cursor.fetchall()]
-    # TODO: Order by full match vs partial match
+    results = [dict(res) for res in cursor.fetchall()]
+    partial_matches = []
+    full_matches = []
+    for res in results:
+        if str(res['name']).lower().translate(None, '.,:;?[]{}()-_+=*&%$#@!') == query:
+            full_matches.append(res)
+        else:
+            partial_matches.append(res)
+    return full_matches + partial_matches
 
 
 # TODO: Use class for QueryResults
