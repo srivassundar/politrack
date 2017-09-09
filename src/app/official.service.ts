@@ -6,6 +6,28 @@ import { OFFICIALS } from './data/officials';
 @Injectable()
 export class OfficialService {
   official_list: Official[] = OFFICIALS;
+  selected_official: Official; // used for official_delail page
+  search_keyword : string;
+
+  searchOfficials(keyword: string) : Promise<Official[]> {
+    this.official_list = [];
+    this.search_keyword = keyword;
+    console.log("Searching results for " + this.search_keyword);
+    // SEARCH HERE !!!!!
+
+    this.official_list = null;  //<replace null with Search result, type: Official[]>
+    return this.getOfficials();
+  }
+
+  // save_keyword(keyword: string) {
+  //   this.search_keyword = keyword;
+  //   console.log("Recieved search keyword: " + this.search_keyword);
+  // }
+
+  getSearchKeyword() {
+    console.log("Keyword is " + this.search_keyword);
+    return this.search_keyword;
+  }
 
   getOfficials(): Promise<Official[]> {
     return Promise.resolve(this.official_list);
