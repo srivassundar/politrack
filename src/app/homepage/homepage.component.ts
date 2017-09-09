@@ -5,25 +5,29 @@ import { OfficialService } from './../official.service';
 @Component({
   selector: 'my-homepage',
   templateUrl: './homepage.component.html',
-  styleUrls: [ './homepage.component.css' ]
+  styleUrls: [ './homepage.component.css' ],
+  providers: [OfficialService]
 })
 
 export class HomepageComponent implements OnInit {
-  loggedIn: boolean;
-  officials: Official[] = [];
+  // loggedIn: boolean;
+  // officials: Official[] = [];
+  keyword: string;
 
   constructor(private officialService: OfficialService) { }
 
   ngOnInit(): void {
-    this.getOfficials();
+    // this.getOfficials();
   }
 
-  getOfficials(): void {
-    this.officialService.getOfficials().then(officials => {
-        this.officials = officials;
-        // this.officials.forEach(function(official){
-        //   this.officialService.calculateProgress(official.id);
-        // });
-      });
+  // getOfficials(): void {
+  //   this.officialService.getOfficials().then(officials => {
+  //       this.officials = officials;
+  //     });
+  // }
+
+  onClick(): void {
+    this.officialService.save_keyword(this.keyword);
   }
+
 }

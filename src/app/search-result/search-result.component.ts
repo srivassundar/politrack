@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute, Params }   from '@angular/router';
 import { OnInit } from '@angular/core';
 import { Official } from './../official';
 import { OfficialService } from './../official.service';
@@ -12,23 +14,24 @@ import { OfficialService } from './../official.service';
 })
 
 export class SearchResultComponent implements OnInit {
-  title = 'Explore officials around you';
-  officials: Official[];
+  search_keyword: string;
+  search_result: Official[];
   selectedOfficial: Official;
 
   constructor(
     private officialService: OfficialService,
     private router: Router,
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
-    this.getOfficials();
+    this.search_keyword = this.officialService.getSearchKeyword();
+    this.search_officials();
   }
 
-  getOfficials(): void {
-    // this.officials = this.officialService.getOfficials();
-    this.officialService.getOfficials().then(officials => {
-        this.officials = officials
+  search_officials(): void {
+    this.officialService.searchOfficials().then(search_result => {
+        this.search_result = search_result;
       });
   }
 
