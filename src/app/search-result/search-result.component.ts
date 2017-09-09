@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { OnInit } from '@angular/core';
@@ -25,15 +24,20 @@ export class SearchResultComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // this.search_officials();
+    this.route.params
+      .switchMap((params: Params) => this.officialService.searchOfficials(params['keyword']))
+      .subscribe(official_list => {
+        this.search_result = official_list;
+      });
     this.search_keyword = this.officialService.getSearchKeyword();
-    this.search_officials();
   }
 
-  search_officials(): void {
-    this.officialService.searchOfficials().then(search_result => {
-        this.search_result = search_result;
-      });
-  }
+  // search_officials(): void {
+  //   this.officialService.searchOfficials().then(search_result => {
+  //       this.search_result = search_result;
+  //     });
+  // }
 
   onSelect(official: Official): void {
     this.selectedOfficial = official;

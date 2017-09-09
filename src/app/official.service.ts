@@ -9,8 +9,9 @@ export class OfficialService {
   selected_official: Official; // used for official_delail page
   search_keyword : string;
 
-  searchOfficials() : Promise<Official[]> {
+  searchOfficials(keyword: string) : Promise<Official[]> {
     this.official_list = [];
+    this.search_keyword = keyword;
     console.log("Searching results for " + this.search_keyword);
     // SEARCH HERE !!!!!
 
@@ -18,10 +19,10 @@ export class OfficialService {
     return this.getOfficials();
   }
 
-  save_keyword(keyword: string) {
-    this.search_keyword = keyword;
-    console.log("Recieved search keyword: " + this.search_keyword);
-  }
+  // save_keyword(keyword: string) {
+  //   this.search_keyword = keyword;
+  //   console.log("Recieved search keyword: " + this.search_keyword);
+  // }
 
   getSearchKeyword() {
     console.log("Keyword is " + this.search_keyword);

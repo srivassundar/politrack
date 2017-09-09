@@ -27,7 +27,7 @@ export class HomepageComponent implements OnInit {
   // }
 
   onClick(): void {
-    this.officialService.save_keyword(this.keyword);
+    // this.officialService.save_keyword(this.keyword);
   }
 
 }

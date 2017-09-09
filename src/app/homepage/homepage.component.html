@@ -3,7 +3,7 @@
   <input style="min-width: 400px" type="text" [(ngModel)]="keyword" id="projectSearch2" placeholder="Search official by name or zipcode or address...">
   <!-- <input type="text" name="neighSearch" name="neighSearch" placeholder="zipcode (optional)"> -->
   <!-- <input type="text" name="dateSearch" id="dateSearch" placeholder="MM/DD/YYYY"> -->
-  <button (click)="onClick()" [routerLink]="['/search']" >SEARCH</button>
+  <button (click)="onClick()" [routerLink]="['/search', keyword]" >SEARCH</button>
 </div>
 
 <br clear="all" />
