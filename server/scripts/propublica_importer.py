@@ -25,6 +25,13 @@ API_PARAMS = {
 }
 
 
+ALL_STATES = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI',
+              'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI',
+              'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV',
+              'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT',
+              'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
+
+
 def setup_table(conn):
     create_table = '''
         CREATE TABLE IF NOT EXISTS {tbl} (
@@ -109,6 +116,7 @@ def retrieve_state_data(state, conn):
             num_rows += cursor.rowcount
     print('Successfully retrieved %d rows for %s' % (num_rows, state))
     print()
+    return num_rows
 
 
 def main():
@@ -119,16 +127,22 @@ def main():
         if clean:
             clean_table(conn)
         setup_table(conn)
+        total_rows = 0
         for state in states:
-            retrieve_state_data(state, conn)
+            num_rows = retrieve_state_data(state, conn)
+            total_rows += num_rows
+        print('Adding %d rows to the database' % total_rows)
         conn.commit()
+    print('Done')
 
 
 def parse_args():
     parser = argparse.ArgumentParser(
         description='Import data from ProPublica API')
     parser.add_argument('-s', '--states', metavar='state',
-                        nargs='*', help='states to retrieve (two letter)')
+                        nargs='*', help='states to retrieve (two letter); '
+                                        'to retrieve all states specify no '
+                                        'states')
     parser.add_argument('-c', '--clean', action="store_true",
                         help='remove all records from table'
                              ' (specify states if you want to run script)')
@@ -139,8 +153,11 @@ def parse_args():
 
     # Only set states to default to GA if clean is not set
     states = DEFAULTS['states'] if not clean else []
-    if args.states:
-        states = args.states
+    if args.states is not None:
+        if len(args.states):
+            states = args.states
+        else:
+            states = ALL_STATES
     if any(len(state) != 2 for state in states):
         print('Each state must be a two letter state code')
     states = [state.upper() for state in states]

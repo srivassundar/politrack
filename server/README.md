@@ -7,14 +7,22 @@ The database is called propublica_officials.db and the officials table is called
 
 Populate the table using this command:
 ```
-    python propublica_importer.py -c --states GA
+    python propublica_importer.py -c --states
 ```
-Note that this cleans the database and then retrieves data for the state GA.
+Note that this cleans the database and then retrieves data for all 50 states.
+
+To clean the database and retrieves data for specific state(s), for example GA & ID:
+```
+    python propublica_importer.py -c --states GA ID
+```
+This cleans the database and then retrieves data for the state GA & ID.
 
 For more information on the script, run:
 ```
     python propublica_importer.py -h
 ```
+
+*Note: Make sure to run the script from the scripts folder to file name issues.*
 
 ### Running the backend server
 To run the backend flask server run:
