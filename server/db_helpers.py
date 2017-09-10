@@ -1,7 +1,7 @@
 import sqlite3
 from flask import g
 
-DATABASE = 'db/propublica_officials.db'
+DATABASE = 'server/db/propublica_officials.db'
 
 
 def get_db():
