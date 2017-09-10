@@ -21,6 +21,7 @@ API_PARAMS = {
     'API_KEY': 'f3qwGJui2ZkimFVYpwURI4ESpP0VEVvfNvoY4h38',
     'current_members_endpoint': 'https://api.propublica.org/congress/v1/'
                                 'members/{chamber}/{state}/current.json',
+    'img_url': 'https://theunitedstates.io/images/congress/original/{id}.jpg',
 }
 
 
@@ -44,7 +45,8 @@ def setup_table(conn):
             'next_election'     text            ,
             'api_uri'           text            ,
             'district'          integer         ,
-            'at_large'          integer
+            'at_large'          integer         ,
+            'img_url'           string
         );
     '''.format(tbl=DEFAULTS['db_table'])
 
@@ -74,13 +76,13 @@ def retrieve_state_data(state, conn):
             'id', 'state', 'name', 'first_name', 'middle_name',
             'last_name', 'role', 'gender', 'party', 'times_topics_url',
             'twitter_id', 'facebook_account', 'youtube_id', 'seniority',
-            'next_election', 'api_uri', 'district', 'at_large'
+            'next_election', 'api_uri', 'district', 'at_large', 'img_url'
         )
         VALUES (
             :id, :state, :name, :first_name, :middle_name,
             :last_name, :role, :gender, :party, :times_topics_url,
             :twitter_id, :facebook_account, :youtube_id, :seniority,
-            :next_election, :api_uri, :district, :at_large
+            :next_election, :api_uri, :district, :at_large, :img_url
         );
     '''.format(tbl=tbl)
     cursor = conn.cursor()
@@ -102,6 +104,7 @@ def retrieve_state_data(state, conn):
                 result['at_large'] = int(result['at_large'])
             result['district'] = result.get('district')
             result['at_large'] = result.get('at_large')
+            result['img_url'] = API_PARAMS['img_url'].format(id=result['id'])
             cursor.execute(insert_table, result)
             num_rows += cursor.rowcount
     print('Successfully retrieved %d rows for %s' % (num_rows, state))
