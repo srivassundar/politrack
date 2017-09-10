@@ -4,12 +4,14 @@ import os
 import os.path
 import sys
 
-from flask import Flask, make_response, jsonify, request, g
+from flask import Flask, make_response, jsonify, request, g, send_from_directory
 
 from search_functions import get_officials_for_query
 
 app = Flask(__name__)
 
+
+## Server routing & management
 
 @app.teardown_appcontext
 def close_connection(exception):
@@ -39,6 +41,23 @@ def get_officials():
         }
     )
 
+
+# Client routing & management
+
+# All client endpoints defined in app-routing.module.ts should be listed here
+# Angular will take care of appropriately rendering HTML
+@app.route('/')
+@app.route('/home')
+@app.route('/search/<keyword>')
+@app.route('/detail/<id>')
+@app.route('/about')
+def root(**kwargs):
+    return app.send_static_file('index.html')
+
+# For static resource retrieval (i.e., assets)
+@app.route('/<path:path>')
+def static_serve(path):
+    return send_from_directory('static', path)
 
 
 if __name__ == "__main__":
