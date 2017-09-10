@@ -16,7 +16,7 @@ h2 {
 nav a {
   text-decoration: none;
   margin-top: 7.5px;
-  display: inline-block;
+  /*display: inline-block;*/
   border-radius: 4px;
 }
 nav a:visited, a:link {
@@ -57,4 +57,11 @@ nav input a {
 }
 .preview {
   border: 2px solid lightgrey;border-radius: 10px;
+}
+.makenavright {
+  float: right;
+  margin-top: 10px;
+}
+.searchnav {
+  margin-top: 15px;
 }
