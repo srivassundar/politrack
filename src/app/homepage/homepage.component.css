@@ -70,3 +70,12 @@ h4 {
     min-width: 60px;
   }
 }
+
+.home-center {
+  padding-top:30vh;
+  height: 70vh;
+  background-image: url(/src/assets/thumbnails/Home1.png);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 360px 400px;
+}

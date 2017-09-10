@@ -35,6 +35,8 @@
     font-family: 'whitneyHTF-black';
     src: url('assets/fonts/WhitneyHTF-Black.otf'); /* Legacy iOS */
 }
+
+
 html {
   padding-bottom: 75px;
 }
@@ -54,20 +56,21 @@ nav {
     padding-top: 7.5px;
     padding-left: 60px;
     padding-right: 60px;
-    background-color: #fafafa;
-    height: 80px;
-    width: 120%;
+    background-color: wihte;
+    height: 110px;
+    width: 100%;
     vertical-align: center;
+    /*
     -webkit-box-shadow: 0 8px 6px -6px #d6d6d6;
     -moz-box-shadow: 0 8px 6px -6px #d6d6d6;
-    box-shadow: 0 8px 6px -6px #d6d6d6;
+    box-shadow: 0 8px 6px -6px #d6d6d6;*/
 }
 nav a {
     padding: 5px 20px;
     color: #000000;
 }
 a.logo.active {
-    padding-top: 7.5px;
+    padding-top: 1.5px;
     color: #000000;
     font-family: 'whitneyHTF-bold';
 }
@@ -114,7 +117,7 @@ div.col-lg-4 {
     border: none;
     display: inline-block;
     float: left;
-    padding: 15px;
+    padding: 5px;
     font-size: 18px;
     margin-right: 10px;
 }
@@ -123,7 +126,7 @@ div.col-lg-4 {
 }
 .col-lg-4 input[name="projectSearch2"] {
     margin-left: 15px;
-    width: 42.5%;
+    width: 75%;
     font-family: 'whitneyHTF-light';
 }
 .col-lg-4 input[name="neighSearch"] {
@@ -133,12 +136,11 @@ div.col-lg-4 {
     width: 16%;
 }
 .col-lg-4 button {
-    width: 10%;
+
     margin-right: 15px;
     background-color: #000000;
     color: #fff;
     border: none;
-    height: 52.5px;
     font-size: 16px;
     font-family: 'whitneyHTF-medium';
 }
@@ -334,7 +336,7 @@ div.signUp button, button, div.button, button.helpButton, #helpButton {
   font-family: 'whitneyHTF-light';
   font-size: 15px;
   color: #fff;
-  padding: 10px;
+  padding: 6px;
   padding-left: 15px;
   padding-right: 15px;
   margin-right: 5px;
@@ -369,7 +371,7 @@ div.progress-bars p {
     width: 100%;
   }
   nav {
-    width: 150%;
+    width: 100vw;
   }
   #searchBar, #motto {
     display: none;
@@ -405,7 +407,7 @@ div.progress-bars p {
   }
   #searchBar {
     display: block;
-    width: 85%;
+    width: 57%;
   }
 }
 @media (min-width: 950px) {
