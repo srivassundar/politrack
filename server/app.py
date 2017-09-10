@@ -4,7 +4,7 @@ import os
 import os.path
 import sys
 
-from flask import Flask, make_response, jsonify, request, g
+from flask import Flask, make_response, jsonify, request, g, send_from_directory
 
 from search_functions import get_officials_for_query
 
@@ -39,7 +39,13 @@ def get_officials():
         }
     )
 
+@app.route('/')
+def root():
+    return app.send_static_file('index.html')
 
+@app.route('/<path:path>')
+def static_serve(path):
+    return send_from_directory('static', path)
 
 if __name__ == "__main__":
     app.run(host=os.getenv('IP', '0.0.0.0'), port=8082)

@@ -5,7 +5,7 @@ node_modules
 jspm_packages
 bower_components
 aot/*
-dist/*
+server/static/*
 yarn.lock
 *.xml
 .idea/IMPRINT.iml
