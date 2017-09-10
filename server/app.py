@@ -11,6 +11,8 @@ from search_functions import get_officials_for_query
 app = Flask(__name__)
 
 
+## Server routing & management
+
 @app.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, '_database', None)
@@ -39,13 +41,24 @@ def get_officials():
         }
     )
 
+
+# Client routing & management
+
+# All client endpoints defined in app-routing.module.ts should be listed here
+# Angular will take care of appropriately rendering HTML
 @app.route('/')
-def root():
+@app.route('/home')
+@app.route('/search/<keyword>')
+@app.route('/detail/<id>')
+@app.route('/about')
+def root(**kwargs):
     return app.send_static_file('index.html')
 
+# For static resource retrieval (i.e., assets)
 @app.route('/<path:path>')
 def static_serve(path):
     return send_from_directory('static', path)
+
 
 if __name__ == "__main__":
     app.run(host=os.getenv('IP', '0.0.0.0'), port=8082)
