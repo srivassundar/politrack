@@ -70,3 +70,20 @@ h4 {
     min-width: 60px;
   }
 }
+
+.home-center {
+  padding-top:30vh;
+  height: 80vh;
+  background-image: url(/assets/thumbnails/harambe.png);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 360px 323px;
+  background-attachment: fixed;
+}
+
+.home-button {
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  width:20%;
+  background-color: #6794BD;
+}

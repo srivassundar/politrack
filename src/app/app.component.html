@@ -1,8 +1,13 @@
 <nav>
-    <a routerLink="/home" routerLinkActive="active" class="logo" id="logo">PoliTrack</a>
-    <input type="text" name="officialSearch" placeholder=" Search for an official...">
+    <a routerLink="/home" routerLinkActive="active" class="logo" id="logo">
+        <img src='/assets/thumbnails/Logo5.png' style="width:200px;height:89px;" ></a>
     <!-- <a id="explorePrj" routerLink="/explore" routerLinkActive="active">Explore Projects</a> -->
-    <a id="aboutNav" routerLink="/about" routerLinkActive="active">About</a>
-    <a id="contactNav" >Contact Us </a>
+    <div class="makenavright">
+        <a class="nav-options" id="aboutNav" routerLink="/about" routerLinkActive="active">About</a>
+        <a class="nav-options" id="contactNav">Contact Us </a>
+        <a class="nav-options">
+            <img src='/assets/thumbnails/search-icon.png' class="searchnav" style="width:44px;height:44px;" >
+        </a>
+        </div>
     </nav>
 <router-outlet></router-outlet>

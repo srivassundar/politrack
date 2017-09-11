@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:700');
+/*font-family: 'Raleway', sans-serif;*/
 /* You can add global styles to this file, and also import other style files */
 @font-face {
     font-family: 'circular-std-book';
@@ -35,6 +37,8 @@
     font-family: 'whitneyHTF-black';
     src: url('assets/fonts/WhitneyHTF-Black.otf'); /* Legacy iOS */
 }
+
+
 html {
   padding-bottom: 75px;
 }
@@ -51,13 +55,14 @@ nav {
     z-index: 1;
     top: 0px;
     margin-left: -65px;
-    padding-top: 7.5px;
+    /*padding-top: 7.5px;
     padding-left: 60px;
-    padding-right: 60px;
-    background-color: #fafafa;
-    height: 80px;
-    width: 120%;
+    padding-right: 60px;*/
+    background-color: white;
+    height: 110px;
+    width: 100%;
     vertical-align: center;
+    
     -webkit-box-shadow: 0 8px 6px -6px #d6d6d6;
     -moz-box-shadow: 0 8px 6px -6px #d6d6d6;
     box-shadow: 0 8px 6px -6px #d6d6d6;
@@ -67,7 +72,7 @@ nav a {
     color: #000000;
 }
 a.logo.active {
-    padding-top: 7.5px;
+    padding-top: 1.5px;
     color: #000000;
     font-family: 'whitneyHTF-bold';
 }
@@ -81,12 +86,12 @@ nav._ngcontent-c0, a.active._ngcontent-c0 {
     margin-right: 5px;
     margin-bottom: 0px;
     text-align: left;
-    color: #000000;
+    color: #444444;
     padding-left: 5px;
     font-size: 28px;
 }
 #motto {
-    font-family: 'whitneyHTF-semibold';
+    font-family: 'Raleway', sans-serif;
     font-size: 40px;
     margin-left: 0px;
     margin-top: 50px;
@@ -114,7 +119,7 @@ div.col-lg-4 {
     border: none;
     display: inline-block;
     float: left;
-    padding: 15px;
+    padding: 5px;
     font-size: 18px;
     margin-right: 10px;
 }
@@ -123,7 +128,9 @@ div.col-lg-4 {
 }
 .col-lg-4 input[name="projectSearch2"] {
     margin-left: 15px;
-    width: 42.5%;
+    width: 70%;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
     font-family: 'whitneyHTF-light';
 }
 .col-lg-4 input[name="neighSearch"] {
@@ -133,12 +140,11 @@ div.col-lg-4 {
     width: 16%;
 }
 .col-lg-4 button {
-    width: 10%;
+
     margin-right: 15px;
     background-color: #000000;
     color: #fff;
     border: none;
-    height: 52.5px;
     font-size: 16px;
     font-family: 'whitneyHTF-medium';
 }
@@ -330,11 +336,11 @@ div.topGrid select {
    vertical-align: center;
 }
 div.signUp button, button, div.button, button.helpButton, #helpButton {
-  background-color: #000;
+  background-color: none;
   font-family: 'whitneyHTF-light';
   font-size: 15px;
   color: #fff;
-  padding: 10px;
+  padding: 6px;
   padding-left: 15px;
   padding-right: 15px;
   margin-right: 5px;
@@ -369,7 +375,7 @@ div.progress-bars p {
     width: 100%;
   }
   nav {
-    width: 150%;
+    width: 100vw;
   }
   #searchBar, #motto {
     display: none;
@@ -405,7 +411,9 @@ div.progress-bars p {
   }
   #searchBar {
     display: block;
-    width: 85%;
+    width: 57%;
+    border-radius: 50px;
+    background-color: #F05F40;
   }
 }
 @media (min-width: 950px) {
