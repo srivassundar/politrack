@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:700');
+/*font-family: 'Raleway', sans-serif;*/
 /* You can add global styles to this file, and also import other style files */
 @font-face {
     font-family: 'circular-std-book';
@@ -53,17 +55,17 @@ nav {
     z-index: 1;
     top: 0px;
     margin-left: -65px;
-    padding-top: 7.5px;
+    /*padding-top: 7.5px;
     padding-left: 60px;
-    padding-right: 60px;
-    background-color: wihte;
+    padding-right: 60px;*/
+    background-color: white;
     height: 110px;
     width: 100%;
     vertical-align: center;
-    /*
+    
     -webkit-box-shadow: 0 8px 6px -6px #d6d6d6;
     -moz-box-shadow: 0 8px 6px -6px #d6d6d6;
-    box-shadow: 0 8px 6px -6px #d6d6d6;*/
+    box-shadow: 0 8px 6px -6px #d6d6d6;
 }
 nav a {
     padding: 5px 20px;
@@ -84,12 +86,12 @@ nav._ngcontent-c0, a.active._ngcontent-c0 {
     margin-right: 5px;
     margin-bottom: 0px;
     text-align: left;
-    color: #000000;
+    color: #444444;
     padding-left: 5px;
     font-size: 28px;
 }
 #motto {
-    font-family: 'whitneyHTF-semibold';
+    font-family: 'Raleway', sans-serif;
     font-size: 40px;
     margin-left: 0px;
     margin-top: 50px;
@@ -126,7 +128,9 @@ div.col-lg-4 {
 }
 .col-lg-4 input[name="projectSearch2"] {
     margin-left: 15px;
-    width: 75%;
+    width: 70%;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
     font-family: 'whitneyHTF-light';
 }
 .col-lg-4 input[name="neighSearch"] {
@@ -332,7 +336,7 @@ div.topGrid select {
    vertical-align: center;
 }
 div.signUp button, button, div.button, button.helpButton, #helpButton {
-  background-color: #000;
+  background-color: none;
   font-family: 'whitneyHTF-light';
   font-size: 15px;
   color: #fff;
@@ -408,6 +412,8 @@ div.progress-bars p {
   #searchBar {
     display: block;
     width: 57%;
+    border-radius: 50px;
+    background-color: #F05F40;
   }
 }
 @media (min-width: 950px) {
