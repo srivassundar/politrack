@@ -21,7 +21,15 @@ API_PARAMS = {
     'API_KEY': 'f3qwGJui2ZkimFVYpwURI4ESpP0VEVvfNvoY4h38',
     'current_members_endpoint': 'https://api.propublica.org/congress/v1/'
                                 'members/{chamber}/{state}/current.json',
+    'img_url': 'https://theunitedstates.io/images/congress/original/{id}.jpg',
 }
+
+
+ALL_STATES = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI',
+              'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI',
+              'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV',
+              'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT',
+              'VA', 'VT', 'WA', 'WI', 'WV', 'WY']
 
 
 def setup_table(conn):
@@ -44,7 +52,8 @@ def setup_table(conn):
             'next_election'     text            ,
             'api_uri'           text            ,
             'district'          integer         ,
-            'at_large'          integer
+            'at_large'          integer         ,
+            'img_url'           string
         );
     '''.format(tbl=DEFAULTS['db_table'])
 
@@ -74,13 +83,13 @@ def retrieve_state_data(state, conn):
             'id', 'state', 'name', 'first_name', 'middle_name',
             'last_name', 'role', 'gender', 'party', 'times_topics_url',
             'twitter_id', 'facebook_account', 'youtube_id', 'seniority',
-            'next_election', 'api_uri', 'district', 'at_large'
+            'next_election', 'api_uri', 'district', 'at_large', 'img_url'
         )
         VALUES (
             :id, :state, :name, :first_name, :middle_name,
             :last_name, :role, :gender, :party, :times_topics_url,
             :twitter_id, :facebook_account, :youtube_id, :seniority,
-            :next_election, :api_uri, :district, :at_large
+            :next_election, :api_uri, :district, :at_large, :img_url
         );
     '''.format(tbl=tbl)
     cursor = conn.cursor()
@@ -102,10 +111,12 @@ def retrieve_state_data(state, conn):
                 result['at_large'] = int(result['at_large'])
             result['district'] = result.get('district')
             result['at_large'] = result.get('at_large')
+            result['img_url'] = API_PARAMS['img_url'].format(id=result['id'])
             cursor.execute(insert_table, result)
             num_rows += cursor.rowcount
     print('Successfully retrieved %d rows for %s' % (num_rows, state))
     print()
+    return num_rows
 
 
 def main():
@@ -116,16 +127,22 @@ def main():
         if clean:
             clean_table(conn)
         setup_table(conn)
+        total_rows = 0
         for state in states:
-            retrieve_state_data(state, conn)
+            num_rows = retrieve_state_data(state, conn)
+            total_rows += num_rows
+        print('Adding %d rows to the database' % total_rows)
         conn.commit()
+    print('Done')
 
 
 def parse_args():
     parser = argparse.ArgumentParser(
         description='Import data from ProPublica API')
     parser.add_argument('-s', '--states', metavar='state',
-                        nargs='*', help='states to retrieve (two letter)')
+                        nargs='*', help='states to retrieve (two letter); '
+                                        'to retrieve all states specify no '
+                                        'states')
     parser.add_argument('-c', '--clean', action="store_true",
                         help='remove all records from table'
                              ' (specify states if you want to run script)')
@@ -136,8 +153,11 @@ def parse_args():
 
     # Only set states to default to GA if clean is not set
     states = DEFAULTS['states'] if not clean else []
-    if args.states:
-        states = args.states
+    if args.states is not None:
+        if len(args.states):
+            states = args.states
+        else:
+            states = ALL_STATES
     if any(len(state) != 2 for state in states):
         print('Each state must be a two letter state code')
     states = [state.upper() for state in states]

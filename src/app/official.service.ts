@@ -1,4 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpParams, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
+
 
 import { Official, Resource } from './official';
 import { OFFICIALS } from './data/officials';
@@ -9,14 +13,14 @@ export class OfficialService {
   selected_official: Official; // used for official_delail page
   search_keyword : string;
 
-  searchOfficials(keyword: string) : Promise<Official[]> {
+  searchOfficials(http: HttpClient, keyword: string) : Observable<Official[]> {
     this.official_list = [];
     this.search_keyword = keyword;
     console.log("Searching results for " + this.search_keyword);
     // SEARCH HERE !!!!!
-
-    this.official_list = null;  //<replace null with Search result, type: Official[]>
-    return this.getOfficials();
+    
+    return http.get('/api/v0/officials', { params: new HttpParams().set('query', keyword) } )
+      .map(data => data["officials"]);
   }
 
   // save_keyword(keyword: string) {

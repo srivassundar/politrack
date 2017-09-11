@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params }   from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { OnInit } from '@angular/core';
+
 import { Official } from './../official';
 import { OfficialService } from './../official.service';
 
@@ -21,15 +23,18 @@ export class SearchResultComponent implements OnInit {
     private officialService: OfficialService,
     private router: Router,
     private route: ActivatedRoute,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
-    // this.search_officials();
-    this.route.params
-      .switchMap((params: Params) => this.officialService.searchOfficials(params['keyword']))
-      .subscribe(official_list => {
-        this.search_result = official_list;
-      });
+    this.route.params.subscribe(
+      params => this.officialService.searchOfficials(this.http, params['keyword'])
+        .subscribe(official_list => {
+          console.log('in search result compt');
+          console.log(official_list);
+          this.search_result = official_list;
+        })
+    );
     this.search_keyword = this.officialService.getSearchKeyword();
   }
 
