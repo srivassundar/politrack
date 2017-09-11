@@ -30,9 +30,10 @@
   <br clear="all" /><br clear="all" /><br clear="all" />
 
   <div *ngFor="let official of search_result" [routerLink]="['/detail', official.id]" class="col-md-3">
-    <img src="{{official.img_url}}" style="width:200px;">
-    <h2>{{official.role}}</h2><br>
-    <span>{{official.name}}</span>
+    <img src="{{official.img_url}}" style="width:200px; height:250px;">
+    <h2>{{official.name}}</h2>
+    <h4>({{official.party}} - {{official.state}})</h4>
+    <p>{{official.role}}</p><br>
     <br>
     <p style="text-align:center; font-family:'whitneyHTF-semibold';">{{official.date}}</p>
   </div>
