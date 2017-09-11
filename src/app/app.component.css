@@ -15,9 +15,13 @@ h2 {
 }
 nav a {
   text-decoration: none;
-  margin-top: 7.5px;
-  /*display: inline-block;*/
+  /*margin-top: 7.5px;*/
+  display: inline-block;
   border-radius: 4px;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: orangered;
+  font-weight:700;
 }
 nav a:visited, a:link {
   color: #000000;
@@ -27,6 +31,7 @@ nav a:hover {
 }
 nav .logo {
   color: #000000;
+  padding-top: 5px;
   font-size: 22px;
   font-family: "whitneyHTF-semibold";
 }
@@ -60,8 +65,14 @@ nav input a {
 }
 .makenavright {
   float: right;
-  margin-top: 10px;
+  height: 100%;
 }
 .searchnav {
-  margin-top: 15px;
+  position: relative;
+  top: 15%;
+}
+.nav-options {
+  position: relative;
+  top: 38%;
+  transform: translateY(-50%);
 }

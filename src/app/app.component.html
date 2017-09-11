@@ -1,11 +1,13 @@
 <nav>
     <a routerLink="/home" routerLinkActive="active" class="logo" id="logo">
-        <img src='/src/assets/thumbnails/Logo3.png' style="width:200px;height:89px;" ></a>
+        <img src='/src/assets/thumbnails/Logo5.png' style="width:200px;height:89px;" ></a>
     <!-- <a id="explorePrj" routerLink="/explore" routerLinkActive="active">Explore Projects</a> -->
     <div class="makenavright">
-        <a id="aboutNav" routerLink="/about" routerLinkActive="active">About</a>
-        <a id="contactNav">Contact Us </a>
-        <input type="text" class="searchnav" name="officialSearch" placeholder=" Search for an official...">
-    </div>
+        <a class="nav-options" id="aboutNav" routerLink="/about" routerLinkActive="active">About</a>
+        <a class="nav-options" id="contactNav">Contact Us </a>
+        <a class="nav-options">
+            <img src='/src/assets/thumbnails/search-icon.png' class="searchnav" style="width:44px;height:44px;" >
+        </a>
+        </div>
     </nav>
 <router-outlet></router-outlet>
