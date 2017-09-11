@@ -57,3 +57,18 @@ button {
 button:hover {
   background-color: #cfd8dc;
 }
+
+h2 {
+  width: 82%;
+  text-align:center;
+}
+
+h4 {
+  width: 80%;
+  text-align:center;
+}
+
+p {
+  width: 80%;
+  text-align:center;
+}
