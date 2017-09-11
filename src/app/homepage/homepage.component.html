@@ -2,11 +2,11 @@
 <div class="home-center">
 <div class="col-lg-4" id="searchBar">
   <div>
-    <input type="text" name="projectSearch2" id="projectSearch2" placeholder="Search official by name...">
+    <input type="text" [(ngModel)]="keyword" name="projectSearch2" id="projectSearch2" placeholder="Search official by name or address (zip code)...">
     <!--<input type="text" name="neighSearch" name="neighSearch" placeholder="zipcode (optional)">-->
     <!-- <input type="text" name="dateSearch" id="dateSearch" placeholder="MM/DD/YYYY"> -->
   </div>
-  <button class="home-button" [routerLink]="['/search']" >SEARCH</button>
+  <button class="home-button" [routerLink]="['/search', keyword]" >SEARCH</button>
 </div>
 </div>
 <br clear="all" />
