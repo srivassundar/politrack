@@ -16,24 +16,34 @@ h2 {
 nav a {
   text-decoration: none;
   /*margin-top: 7.5px;*/
-  display: inline-block;
-  border-radius: 4px;
+  display: block;
+  /*border-radius: 4px;*/
   font-size: 20px;
+  text-align: center;
   text-transform: uppercase;
   color: orangered;
   font-weight:700;
 }
+
+  .responsive-nav {
+    display: none;
+  }
+
 nav a:visited, a:link {
   color: #000000;
 }
 nav a:hover {
   color: #333;
 }
-nav .logo {
-  color: #000000;
-  padding-top: 5px;
-  font-size: 22px;
-  font-family: "whitneyHTF-semibold";
+@media (min-width: 590px) {
+  nav .logo {
+    color: #000000;
+    padding-top: 5px;
+    font-size: 22px;
+    font-family: "whitneyHTF-semibold";
+    float: left;
+    display: inline-block;
+  }
 }
 nav input {
   border-style: solid;
@@ -67,6 +77,20 @@ nav input a {
   float: right;
   height: 100%;
 }
+
+@media (max-width: 590px) {
+  .makenavright{
+    display: none;
+  }
+  /*logo doesn't center why? */
+  nav .logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
+
 .searchnav {
   position: relative;
   top: 15%;
@@ -76,3 +100,36 @@ nav input a {
   top: 38%;
   transform: translateY(-50%);
 }
+
+@media (max-width: 590px) {
+  .show-menu {
+        display: block !important;
+        float: none;
+        text-align: center !important;
+  }
+
+}
+
+/*Style 'show menu' label button and hide it by default*/
+.show-menu {
+    text-align: center;
+    padding: 10px 0;
+    display: none;
+}
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
+}
+
+
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
+    display: block !important;
+}
+
+@media (min-width: 590px) {
+  input[type=checkbox]:checked ~ #menu{
+    display: none !important;
+}
+}
+
