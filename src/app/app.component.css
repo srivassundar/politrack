@@ -126,10 +126,12 @@ input[type=checkbox]{
 /*Show menu when invisible checkbox is checked*/
 input[type=checkbox]:checked ~ #menu{
     display: block !important;
+    z-index: 20;
+    background-color: #fff;
 }
 
 /*Hide menu when width is over 590px */
-@media (min-width: 590px) {
+@media (min-width: 621px) {
   input[type=checkbox]:checked ~ #menu{
     display: none !important;
 }

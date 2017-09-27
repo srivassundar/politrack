@@ -392,6 +392,7 @@ div.progress-bars p {
   }
   div.col-1-4[_ngcontent-c1] {
     width: 100%;
+    float: right;
   }
   nav {
     width: 100vw;
