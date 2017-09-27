@@ -48,7 +48,13 @@ body {
     overflow-x: hidden;
     /*margin-left: 60px;
     margin-right: 60px;*/
+    background-image: url(/assets/thumbnails/American.png);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 370px 287px;
+    background-attachment: fixed;
 }
+
 
 
 nav {
@@ -130,12 +136,22 @@ div.col-lg-4 {
     color: #969696;
 }
 .col-lg-4 input[name="projectSearch2"] {
-    margin-left: 15px;
-    width: 70%;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
+    width: 76%;
+    border-radius: 2px;
     font-family: 'whitneyHTF-light';
+    padding: 10px;
 }
+@media (max-width: 621px) {
+  .col-lg-4 input[name="projectSearch2"] {
+      width: 90%;
+      border-radius: 2px;
+      font-family: 'whitneyHTF-light';
+      padding: 10px;
+      font-size: 14px;
+      float: none;
+  }
+}
+
 .col-lg-4 input[name="neighSearch"] {
     width: 22%;
 }
@@ -367,7 +383,7 @@ div.dropdown button, div.saveDiv.button.saveAndContinue p{
 div.progress-bars p {
   text-align: center;
 }
-@media (max-width: 590px) {
+@media (max-width: 621px) {
   #explorePrj, #createPrj, #aboutNav, #signUpNav {
       display: none;
   }
@@ -380,29 +396,36 @@ div.progress-bars p {
   nav {
     width: 100vw;
   }
-  #searchBar, #motto {
-    display: none;
+  #motto {
+    width: 100vw;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  #searchBar {
+    width: 100vw;
+    background-color: #e2e2e2;
+    padding: 20px;
   }
   h1.trendingHeader {
     margin-top: 15px;
   }
 }
-@media (min-width: 600px) {
+@media (min-width: 615px) {
   nav input[name="projectSearch"] {
     display: inline-block;
   }
 }
-@media (min-width: 600px) {
+@media (min-width: 615px) {
   #explorePrj {
     display: inline-block;
   }
 }
-@media (min-width: 600px) {
+@media (min-width: 615px) {
   #createPrj {
     display: inline-block;
   }
 }
-@media (min-width: 600px) {
+@media (min-width: 620px) {
   #aboutNav {
     display: inline-block;
   }
@@ -414,9 +437,10 @@ div.progress-bars p {
   }
   #searchBar {
     display: block;
-    width: 57%;
-    border-radius: 50px;
-    background-color: #F05F40;
+    width: 80vw;
+    border-radius: 2px;
+    background-color: #e2e2e2;
+    padding: 10px;
   }
 }
 /*

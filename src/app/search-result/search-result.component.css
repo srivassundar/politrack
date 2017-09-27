@@ -57,3 +57,16 @@ button {
 button:hover {
   background-color: #cfd8dc;
 }
+
+.left-sidebar {
+  float: left;
+  width: 20%;
+}
+.search-results-list {
+  float: right;
+  width:80%;
+}
+
+.official-lists {
+  height: 333px;
+}

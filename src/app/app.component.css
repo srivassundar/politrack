@@ -35,7 +35,7 @@ nav a:visited, a:link {
 nav a:hover {
   color: #333;
 }
-@media (min-width: 590px) {
+@media (min-width: 615px) {
   nav .logo {
     color: #000000;
     padding-top: 5px;
@@ -78,7 +78,7 @@ nav input a {
   height: 100%;
 }
 
-@media (max-width: 590px) {
+@media (max-width: 621px) {
   .makenavright{
     display: none;
   }
@@ -87,7 +87,7 @@ nav input a {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    float: left;
   }
 }
 
@@ -101,11 +101,12 @@ nav input a {
   transform: translateY(-50%);
 }
 
-@media (max-width: 590px) {
+@media (max-width: 621px) {
   .show-menu {
         display: block !important;
         float: none;
-        text-align: center !important;
+        float: right;
+        margin-right: 20px;
   }
 
 }
@@ -127,6 +128,7 @@ input[type=checkbox]:checked ~ #menu{
     display: block !important;
 }
 
+/*Hide menu when width is over 590px */
 @media (min-width: 590px) {
   input[type=checkbox]:checked ~ #menu{
     display: none !important;
