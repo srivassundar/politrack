@@ -1,48 +1,93 @@
-<div *ngIf="official">
+<!--div *ngIf="official"-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <img style="max-width: 200px" src="./../../assets/thumbnails/johnLewis.jpg">
+      <table class="table">
+        <tr>
+          <th colspan="2" style="text-align:center;background:lavender">Personal details</th>
+        </tr>
+        <tr>
+          <th scope="row">Born</th>
+          <td><span class="nickname">John Robert Lewis</span><br>
+            <span style="display:none">(<span class="bday">1940-02-21</span>)</span> February 21, 1940 <span class="noprint ForceAgeToShow">(age&nbsp;77)</span><br>
+            <a href="/wiki/Troy,_Alabama" title="Troy, Alabama">Troy</a>, <a href="/wiki/Alabama" title="Alabama">Alabama</a>,
+            <a href="/wiki/United_States" title="United States">U.S.</a></td>
+        </tr>
+        <tr>
+          <th scope="row">Political party</th>
+          <td><a href="/wiki/Democratic_Party_(United_States)" title="Democratic Party (United States)">Democratic</a></td>
+        </tr>
+        <tr>
+          <th scope="row">Spouse(s)</th>
+          <td>Lillian Miles <small>(1968–2012)</small></td>
+        </tr>
+        <tr>
+          <th scope="row">Children</th>
+          <td>1</td>
+        </tr>
+        <tr>
+          <th scope="row">Education</th>
+          <td><span class="nowrap"><a href="/wiki/American_Baptist_College" title="American Baptist College">American Baptist College</a> <small>(<a href="/wiki/Bachelor_of_Arts" title="Bachelor of Arts">BA</a>)</small></span><br>
+            <a href="/wiki/Fisk_University" title="Fisk University">Fisk University</a> <small>(<a href="/wiki/Bachelor_of_Arts" title="Bachelor of Arts">BA</a>)</small></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-7">
+      <h2>John Lewis</h2>
+      <br>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-7">
-        <img style="max-width: 500px" src="{{official.thumbnail}}">
-      </div>
-      <div class="col-md-5">
-        <h2>{{official.name}}</h2>
-        <!--<p id="tagline"> | Created by {{official.userName}}</p><br>-->
-        <div class="dateDiv">
-          <img style="max-width: 50px" id="calendarIcon" src="./../../assets/icons/calendar.png">
-          <span>{{official.date}}</span> <br />
-          <span>{{official.timeOfEvent}}</span>
-        </div><br>
-        <div class="locationDiv">
-          <img style="max-width: 50px" id="locationIcon" src="./../../assets/icons/pin2.png">
-          <span>{{official.locationName}}</span><br />
-          <span>{{official.address}}</span>
-        </div><br>
-        <div class="timeDiv">
-          <img style="max-width: 50px" id="timeIcon" src="./../../assets/icons/clock.png">
-          <span>{{official.timeLeft}} days left to sign up</span>
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#bio" aria-controls="bio" role="tab" data-toggle="tab">Biography</a>
+        </li>
+        <li role="presentation">
+          <a href="#voted" aria-controls="voted" role="tab" data-toggle="tab">Voted on Bills</a>
+        </li>
+        <li role="presentation">
+          <a href="#finance" aria-controls="finance" role="tab" data-toggle="tab">Finances</a>
+        </li>
+        <li role="presentation">
+          <a href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="bio">
+          <p>Biography</p>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="voted">
+          
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th class="span-3">Date</th>
+                <th class="span-3">Bill No.</th>
+                <th class="span-8">Bill Title</th>
+                <th class="span-8">Outcome</th>
+                <th class="span-3">Vote</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="finance">
+          <p>Fiances stuff</p>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="news">
+          <a href="/wiki">News Feed</a>
         </div>
       </div>
-    </div>
 
-    <h3 class="detailsHeader">Biography</h3>
-    <span class="prjDesc">{{official.description}}</span>
-    <!--   <div>
-      <label>Comment: </label>
-      <input [(ngModel)]="official.title" placeholder="Enter comment" />
-    </div> -->
-    <h3 class="tagsHeader">Tags</h3>
-    <div class="tagButtons">
-    <button>{{official.tag.split(",")[0]}}</button>
-    <button>{{official.tag.split(",")[1]}}</button>
+
+
     </div>
-    <!--<span id="tags"></span>-->
-    <!--<script>-->
-      <!--var tagList = official.tag.split(",");-->
-      <!--for(i = 0; i < tagList.length; i++) {-->
-        <!--<button>tagList[i]</button>;-->
-      <!---->
-    <!--</script>-->
   </div>
-  <!-- <button (click)="goBack()">Back</button> -->
 </div>
