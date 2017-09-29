@@ -29,7 +29,7 @@
   </div>
   <br clear="all" /><br clear="all" /><br clear="all" />
 
-  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.id]" class="col-md-3">
+  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-md-3">
     <img src="{{official.img_url}}" style="width:200px; height:250px;">
     <h2>{{official.name}}</h2>
     <h4>({{official.party}} - {{official.state}})</h4>

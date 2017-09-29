@@ -1,41 +1,47 @@
+<h1>Showing results for: {{official.name}}</h1>
 <div *ngIf="official">
 
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        <img style="max-width: 500px" src="{{official.thumbnail}}">
+        <img style="max-width: 500px" src="{{official.img_url}}">
       </div>
       <div class="col-md-5">
         <h2>{{official.name}}</h2>
+        
         <!--<p id="tagline"> | Created by {{official.userName}}</p><br>-->
         <div class="dateDiv">
-          <img style="max-width: 50px" id="calendarIcon" src="./../../assets/icons/calendar.png">
-          <span>{{official.date}}</span> <br />
-          <span>{{official.timeOfEvent}}</span>
+          <span>{{official.party}}</span> <br />
+          <span>{{official.role}}</span>
         </div><br>
         <div class="locationDiv">
-          <img style="max-width: 50px" id="locationIcon" src="./../../assets/icons/pin2.png">
-          <span>{{official.locationName}}</span><br />
-          <span>{{official.address}}</span>
+          <!--<img style="max-width: 50px" id="locationIcon" src="./../../assets/icons/pin2.png">-->
+          <span>{{official.state}}-{{official.district}}</span><br />
         </div><br>
         <div class="timeDiv">
-          <img style="max-width: 50px" id="timeIcon" src="./../../assets/icons/clock.png">
-          <span>{{official.timeLeft}} days left to sign up</span>
+          <!--<img style="max-width: 50px" id="timeIcon" src="./../../assets/icons/clock.png">-->
+          <a href = "{{facebook_path}}/{{official?.facebook_id}}"Facebook Page</a>
+          <a href = "{{twitter_path}}/{{official?.twitter_id}}">Twitter Page</a>
+          <div ng-switch="!!official.youtube_id">
+          <a href="{{youtube_path}}/{{official.youtube_id}}" ng-switch-when="true">Youtube Page</a>
+          <!--<span ng-switch-when="false">No Yo</span>-->
+          <!--</div>-->
+          <!--<span>{{official.district}}</span>-->
         </div>
       </div>
     </div>
 
-    <h3 class="detailsHeader">Biography</h3>
-    <span class="prjDesc">{{official.description}}</span>
+    <!--<h3 class="detailsHeader">Biography</h3>-->
+    <!--<span class="prjDesc">{{official.description}}</span>-->
     <!--   <div>
       <label>Comment: </label>
       <input [(ngModel)]="official.title" placeholder="Enter comment" />
     </div> -->
-    <h3 class="tagsHeader">Tags</h3>
-    <div class="tagButtons">
-    <button>{{official.tag.split(",")[0]}}</button>
-    <button>{{official.tag.split(",")[1]}}</button>
-    </div>
+    <!--<h3 class="tagsHeader">Tags</h3>-->
+    <!--<div class="tagButtons">-->
+    <!--<button>{{official.tag.split(",")[0]}}</button>-->
+    <!--<button>{{official.tag.split(",")[1]}}</button>-->
+    <!--</div>-->
     <!--<span id="tags"></span>-->
     <!--<script>-->
       <!--var tagList = official.tag.split(",");-->

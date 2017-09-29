@@ -18,7 +18,20 @@ export class OfficialService {
     this.search_keyword = keyword;
     console.log("Searching results for " + this.search_keyword);
     // SEARCH HERE !!!!!
-    
+    // this.official_list = (http.get('/api/v0/officials', { params: new HttpParams().set('query', keyword) } )
+    //   .map(data => data["officials"])).subscribe((official_list) => {
+    //   this.official_list = official_list;
+    // });
+    // this.official_list = http.get('/api/v0/officials', { params: new HttpParams().set('query', keyword) } )
+    //   .map((response: Response) => {
+    //       return response.json();
+    //   }).subscribe(officials => {
+    //   this.official_list = officials;
+    // });
+    http.get('/api/v0/officials', { params: new HttpParams().set('query', keyword) } ).subscribe(data => {
+      this.official_list.push(data["officials"]);
+    });
+    console.log(this.official_list);
     return http.get('/api/v0/officials', { params: new HttpParams().set('query', keyword) } )
       .map(data => data["officials"]);
   }
@@ -37,16 +50,16 @@ export class OfficialService {
     return Promise.resolve(this.official_list);
   }
 
-  getOfficial(id: number): Promise<Official> {
+  getOfficial(name: string): Promise<Official> {
     return this.getOfficials()
-               .then(officials => this.official_list.find(official => official.id === id));
+               .then(officials => this.official_list.find(official => official.name === name));
   }
 
-  getOfficialByCategory(categryID: number): Promise<Official> {
-    var self = this;
-    return this.getOfficials()
-               .then(officials => self.official_list.find(official => official.category === categryID));
-  }
+  // getOfficialByCategory(categryID: number): Promise<Official> {
+  //   var self = this;
+  //   return this.getOfficials()
+  //             .then(officials => self.official_list.find(official => official.category === categryID));
+  // }
 
   getListLength() : number {
     return this.official_list.length;
