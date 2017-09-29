@@ -20,6 +20,7 @@
   <button>Nearby</button>
   <br clear="all" /><br clear="all" /><br clear="all" /> -->
 
+  <div class="left-sidebar">
   <select placeholder="Sort by">
     <option value="sortBy">Sort by</option>
     <option value="firstname">First Name</option>
@@ -27,15 +28,16 @@
     <option value="year">Year Elected</option>
   </select>
   </div>
-  <br clear="all" /><br clear="all" /><br clear="all" />
-
-  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.id]" class="col-md-3">
-    <img src="{{official.img_url}}" style="width:200px; height:250px;">
+  </div>
+  <div class="search-results-list">
+  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.id]" class="col-md-3 official-lists">
+    <img src="{{official.img_url}}" style="width:150px; height:200px;">
     <h2>{{official.name}}</h2>
     <h4>({{official.party}} - {{official.state}})</h4>
     <p>{{official.role}}</p><br>
     <br>
     <p style="text-align:center; font-family:'whitneyHTF-semibold';">{{official.date}}</p>
+  </div>
   </div>
 </div>
 
