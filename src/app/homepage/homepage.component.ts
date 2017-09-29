@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Official } from './../official';
 import { OfficialService } from './../official.service';
 import { Router } from '@angular/router';
@@ -22,7 +22,12 @@ export class HomepageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // this.keyword = "";
+  }
+
+  onValueChanged() {
+    if (this.keyword && this.keyword.length > 0) {
+      this.invalid = false;
+    }
   }
 
   onClick(): void {
@@ -38,7 +43,6 @@ export class HomepageComponent implements OnInit {
       this.router.navigate(['/search', this.keyword]);
     } else {
       this.invalid = true;
-      console.log("set invalid");
     }
   }
 

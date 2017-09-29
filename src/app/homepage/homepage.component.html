@@ -1,9 +1,8 @@
 <h2 id="motto">PoliTrack your rep today</h2><br>
 <div class="home-center">
-<div class="col-lg-4" id="searchBar">
-  <div>
+  <div class="col-lg-4" id="searchBar">
     <form #search="ngForm">
-      <input (keyup.enter)="onEnter()" type="text" [(ngModel)]="keyword" name="officialSearch" id="officialSearch" placeholder="Search official by name or address (zip code)..."
+      <input (keyup.enter)="onEnter()" type="text" [(ngModel)]="keyword" (ngModelChange)="onValueChanged()" name="officialSearch" id="officialSearch" placeholder="Search official by name or address (zip code)..."
       required>
       <div *ngIf="(invalid)" >
         <div class="alert alert-danger">
