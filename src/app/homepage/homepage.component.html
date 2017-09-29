@@ -4,13 +4,13 @@
     <form #search="ngForm">
       <input (keyup.enter)="onEnter()" type="text" [(ngModel)]="keyword" (ngModelChange)="onValueChanged()" name="officialSearch" id="officialSearch" placeholder="Search official by name or address (zip code)..."
       required>
-      <div *ngIf="(invalid)" >
-        <div class="alert alert-danger">
-          Please enter a keyword
-        </div>
-      </div>
       <button class="home-button" (click)="onClick()" >SEARCH</button>  
     </form>
+    <div *ngIf="(invalid)" >
+      <div class="alert alert-danger">
+        Please enter a keyword
+      </div>
+    </div>
   </div>
 </div>
 <br clear="all" />
