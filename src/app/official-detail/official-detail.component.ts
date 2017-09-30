@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { Location }                 from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { NgClass, NgStyle}           from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 
@@ -25,28 +26,44 @@ export class OfficialDetailComponent implements OnInit {
     type: true,
     description: ""
   };
+  search_result: Official[];
+  facebook_path: string = "https://facebook.com"
+  twitter_path: string = "https://twitter.com";
+  youtube_path: string = "https://youtube.com";
 
   constructor(
     private officialService: OfficialService,
     private categoryService: CategoryService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
     var self = this;
     if (this.input_official == undefined) {
-      this.route.params
-        .switchMap((params: Params) => this.officialService.getOfficial(+params['id']))
-        .subscribe(official => {
-          self.official = official;
-          self.category = this.categoryService.getCategory(this.official.category);
-        });
+      this.route.params.subscribe(
+        params => this.officialService.searchOfficials(this.http, params['name'])
+          .subscribe(official_list => {
+            this.search_result = official_list;
+            this.official = official_list.find(official => official.name === params['name']);
+          })
+      );
+      console.log(this.official);
+        // .subscribe(official => {
+        //   self.official = official;
+        //   console.log(this.official);
+          // self.category = this.categoryService.getCategory(this.official.category);
+        // });
+      // this.route.params
+      //     .switchMap((params: Params) => 
+      //     self.official = params['official_list'][params['name']]);
+      console.log(this.search_result);
     } else {
       this.official = this.input_official;
+      console.log(this.official);
       this.input_official = null;
-      // console.log(this.official);
-      this.category = this.categoryService.getCategory(this.official.category);
+      // this.category = this.categoryService.getCategory(this.official.category);
     }
   }
 

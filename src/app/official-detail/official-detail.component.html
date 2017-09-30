@@ -1,73 +1,78 @@
-<!--div *ngIf="official"-->
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <img style="max-width: 200px" src="./../../assets/thumbnails/johnLewis.jpg">
-      <table class="table">
+<div *ngIf="official">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <img style="max-width: 200px" src="{{official.img_url}}" ">
+      <table class="table ">
         <tr>
-          <th colspan="2" style="text-align:center;background:lavender">Personal details</th>
+          <th colspan="2 " style="text-align:center;background:lavender ">Member of the <span style="display: inline-block;
+          "><a href="/wiki/United_States_House_of_Representatives ">{{official.role}}</a></span><br>          
+              from <a href="/wiki/Georgia_(U.S._state) ">{{official.state}}</a>'s <a href="/wiki/Georgia%27s_5th_congressional_district ">{{official.district}}</a>
+          </th>
         </tr>
         <tr>
-          <th scope="row">Born</th>
-          <td><span class="nickname">John Robert Lewis</span><br>
-            <span style="display:none">(<span class="bday">1940-02-21</span>)</span> February 21, 1940 <span class="noprint ForceAgeToShow">(age&nbsp;77)</span><br>
-            <a href="/wiki/Troy,_Alabama" title="Troy, Alabama">Troy</a>, <a href="/wiki/Alabama" title="Alabama">Alabama</a>,
-            <a href="/wiki/United_States" title="United States">U.S.</a></td>
+          <th colspan="2 " style="text-align:center;background:lavender ">Personal details</th>
         </tr>
         <tr>
-          <th scope="row">Political party</th>
-          <td><a href="/wiki/Democratic_Party_(United_States)" title="Democratic Party (United States)">Democratic</a></td>
+          <th scope="row ">Name</th>
+          <td><span class="nickname ">{{official.name}}</span><br>
         </tr>
         <tr>
-          <th scope="row">Spouse(s)</th>
-          <td>Lillian Miles <small>(1968–2012)</small></td>
+          <th scope="row ">Political party</th>
+          <td><a href="/wiki/Democratic_Party_(United_States) ">{{official.party}}</a></td>
         </tr>
         <tr>
-          <th scope="row">Children</th>
-          <td>1</td>
+          <th scope="row ">Spouse(s)</th>
+          <td></td>
         </tr>
         <tr>
-          <th scope="row">Education</th>
-          <td><span class="nowrap"><a href="/wiki/American_Baptist_College" title="American Baptist College">American Baptist College</a> <small>(<a href="/wiki/Bachelor_of_Arts" title="Bachelor of Arts">BA</a>)</small></span><br>
-            <a href="/wiki/Fisk_University" title="Fisk University">Fisk University</a> <small>(<a href="/wiki/Bachelor_of_Arts" title="Bachelor of Arts">BA</a>)</small></td>
+          <th scope="row ">Children</th>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row ">Education</th>
+          <td><span class="nowrap "><a href="/wiki/American_Baptist_College " title="American Baptist College
+          ">American Baptist College</a> <small>(<a href="/wiki/Bachelor_of_Arts " title="Bachelor of Arts ">BA</a>)</small></span><br>
+            <a href="/wiki/Fisk_University " title="Fisk University ">Fisk University</a> <small>(<a href="/wiki/Bachelor_of_Arts
+          " title="Bachelor of Arts ">BA</a>)</small></td>
         </tr>
       </table>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-7 ">
       <h2>John Lewis</h2>
       <br>
 
       <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
-          <a href="#bio" aria-controls="bio" role="tab" data-toggle="tab">Biography</a>
+      <ul class="nav nav-tabs " role="tablist ">
+        <li role="presentation " class="active ">
+          <a href="#bio " aria-controls="bio " role="tab " data-toggle="tab ">Biography</a>
         </li>
-        <li role="presentation">
-          <a href="#voted" aria-controls="voted" role="tab" data-toggle="tab">Voted on Bills</a>
+        <li role="presentation ">
+          <a href="#voted " aria-controls="voted " role="tab " data-toggle="tab ">Voted on Bills</a>
         </li>
-        <li role="presentation">
-          <a href="#finance" aria-controls="finance" role="tab" data-toggle="tab">Finances</a>
+        <li role="presentation ">
+          <a href="#finance " aria-controls="finance " role="tab " data-toggle="tab ">Finances</a>
         </li>
-        <li role="presentation">
-          <a href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a>
+        <li role="presentation ">
+          <a href="#social " aria-controls="social " role="tab " data-toggle="tab ">Social Media</a>
         </li>
       </ul>
 
       <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="bio">
+      <div class="tab-content ">
+        <div role="tabpanel " class="tab-pane active " id="bio ">
           <p>Biography</p>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="voted">
+        <div role="tabpanel " class="tab-pane fade " id="voted ">
           
-          <table class="table table-striped">
+          <table class="table table-striped ">
             <thead>
               <tr>
-                <th class="span-3">Date</th>
-                <th class="span-3">Bill No.</th>
-                <th class="span-8">Bill Title</th>
-                <th class="span-8">Outcome</th>
-                <th class="span-3">Vote</th>
+                <th class="span-3 ">Date</th>
+                <th class="span-3 ">Bill No.</th>
+                <th class="span-8 ">Bill Title</th>
+                <th class="span-8 ">Outcome</th>
+                <th class="span-3 ">Vote</th>
               </tr>
             </thead>
             <tbody>
@@ -78,16 +83,18 @@
           </table>
           
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="finance">
+        <div role="tabpanel " class="tab-pane fade " id="finance ">
           <p>Fiances stuff</p>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="news">
-          <a href="/wiki">News Feed</a>
+        <div role="tabpanel " class="tab-pane fade " id="social ">
+          <a href = "{{facebook_path}}/{{official?.facebook_id}} "Facebook Page</a>
+          <a href = "{{twitter_path}}/{{official?.twitter_id}} ">Twitter Page</a>
+          <div ng-switch="!!official.youtube_id ">
+            <a href="{{youtube_path}}/{{official.youtube_id}} " ng-switch-when="true ">Youtube Page</a>
+          </div>
         </div>
       </div>
-
-
-
     </div>
   </div>
+</div>
 </div>
