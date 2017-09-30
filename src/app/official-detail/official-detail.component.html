@@ -3,98 +3,101 @@
     <div class="row">
       <div class="col-md-4">
         <img style="max-width: 200px" src="{{official.img_url}}">
-      <table class="table ">
-        <tr>
-          <th colspan="2 " style="text-align:center;background:lavender ">Member of the <span style="display: inline-block;
-          "><a href="/wiki/United_States_House_of_Representatives ">{{official.role}}</a></span><br>          
-              from <a href="/wiki/Georgia_(U.S._state) ">{{official.state}}</a>'s <a href="/wiki/Georgia%27s_5th_congressional_district ">{{official.district}} District</a>
-          </th>
-        </tr>
-        <tr>
-          <th colspan="2 " style="text-align:center;background:lavender ">Personal details</th>
-        </tr>
-        <tr>
-          <th scope="row ">Name</th>
-          <td><span class="nickname ">{{official.name}}</span><br>
-        </tr>
-        <tr>
-          <th scope="row ">Political party</th>
-          <td><a href="/wiki/Democratic_Party_(United_States) ">{{official.party}}</a></td>
-        </tr>
-        <tr>
-          <th scope="row ">Spouse(s)</th>
-          <td></td>
-        </tr>
-        <tr>
-          <th scope="row ">Children</th>
-          <td></td>
-        </tr>
-        <tr>
-          <th scope="row ">Education</th>
-          <td><span class="nowrap "><a href="/wiki/American_Baptist_College " title="American Baptist College
-          ">American Baptist College</a> <small>(<a href="/wiki/Bachelor_of_Arts " title="Bachelor of Arts ">BA</a>)</small></span><br>
-            <a href="/wiki/Fisk_University " title="Fisk University ">Fisk University</a> <small>(<a href="/wiki/Bachelor_of_Arts
-          " title="Bachelor of Arts ">BA</a>)</small></td>
-        </tr>
-      </table>
-    </div>
-    <div class="col-md-7 ">
-      <h2>John Lewis</h2>
-      <br>
+        <table class="table ">
+          <tr>
+            <th colspan="2" style="text-align:center;background:lavender"><span style="display: inline-block;">
+              <a href="/wiki/United_States_House_of_Representatives">{{official.role}}</a></span><br>          
+                from <a href="/wiki/Georgia_(U.S._state)">{{official.state}}</a>'s <a href="/wiki/Georgia%27s_5th_congressional_district">{{official.district}} District</a>
+            </th>
+          </tr>
+          <tr>
+            <th colspan="2" style="text-align:center;background:lavender">Personal details</th>
+          </tr>
+          <tr>
+            <th scope="row">Name</th>
+            <td><span class="nickname">{{official.name}}</span><br>
+          </tr>
+          <tr>
+            <th scope="row">Political party</th>
+            <td><a href="/wiki/Democratic_Party_(United_States)">{{official.party}}</a></td>
+          </tr>
+          <tr>
+            <th scope="row">Spouse(s)</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Children</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Education</th>
+            <td><!--span class="nowrap"><a href="/wiki/American_Baptist_College" title="American Baptist College">American Baptist College</a> <small>(<a href="/wiki/Bachelor_of_Arts " title="Bachelor of Arts ">BA</a>)</small></span><br>
+              <a href="/wiki/Fisk_University " title="Fisk University ">Fisk University</a> <small>(<a href="/wiki/Bachelor_of_Arts
+            " title="Bachelor of Arts ">BA</a>)</small-->
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-7">
+        <h2>{{official.name}}</h2>
+        <br>
 
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs " role="tablist ">
-        <li role="presentation " class="active ">
-          <a href="#bio " aria-controls="bio " role="tab " data-toggle="tab ">Biography</a>
-        </li>
-        <li role="presentation ">
-          <a href="#voted " aria-controls="voted " role="tab " data-toggle="tab ">Voted on Bills</a>
-        </li>
-        <li role="presentation ">
-          <a href="#finance " aria-controls="finance " role="tab " data-toggle="tab ">Finances</a>
-        </li>
-        <li role="presentation ">
-          <a href="#social " aria-controls="social " role="tab " data-toggle="tab ">Social Media</a>
-        </li>
-      </ul>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#bio" aria-controls="bio" role="tab" data-toggle="tab">Biography</a>
+          </li>
+          <li role="presentation">
+            <a href="#voted" aria-controls="voted" role="tab" data-toggle="tab">Voted on Bills</a>
+          </li>
+          <li role="presentation">
+            <a href="#finance" aria-controls="finance" role="tab" data-toggle="tab">Finances</a>
+          </li>
+          <li role="presentation">
+            <a href="#social" aria-controls="social" role="tab" data-toggle="tab">Social Media</a>
+          </li>
+        </ul>
 
-      <!-- Tab panes -->
-      <div class="tab-content ">
-        <div role="tabpanel " class="tab-pane active " id="bio ">
-          <p>Biography</p>
-        </div>
-        <div role="tabpanel " class="tab-pane fade " id="voted ">
-          
-          <table class="table table-striped ">
-            <thead>
-              <tr>
-                <th class="span-3 ">Date</th>
-                <th class="span-3 ">Bill No.</th>
-                <th class="span-8 ">Bill Title</th>
-                <th class="span-8 ">Outcome</th>
-                <th class="span-3 ">Vote</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          
-        </div>
-        <div role="tabpanel " class="tab-pane fade " id="finance ">
-          <p>Fiances stuff</p>
-        </div>
-        <div role="tabpanel " class="tab-pane fade " id="social ">
-          <a href = "{{facebook_path}}/{{official?.facebook_id}} ">Facebook Page</a>
-          <a href = "{{twitter_path}}/{{official?.twitter_id}} ">Twitter Page</a>
-          <div ng-switch="!!official.youtube_id ">
-            <a href="{{youtube_path}}/{{official.youtube_id}} " ng-switch-when="true ">Youtube Page</a>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="bio">
+            <p>Biography</p>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="voted">
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="span-3">Date</th>
+                  <th class="span-3">Bill No.</th>
+                  <th class="span-8">Bill Title</th>
+                  <th class="span-8">Outcome</th>
+                  <th class="span-3">Vote</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="finance">
+            <p>Fiances stuff</p>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="social">
+            <h3>Facebook</h3>
+            <p>{{official.name}}'s <a href="{{facebook_path}}/{{official?.facebook_id}}">Facebook Page</a></p>
+            <br>
+            <h3>Twitter</h3>
+            <p>{{official.name}}'s <a href = "{{twitter_path}}/{{official?.twitter_id}}">Twitter Page</a></p>
+            <br>
+            <h3>Youtube</h3>
+            <p>{{official.name}}'s <a href="{{youtube_path}}/{{official.youtube_id}}">Youtube Page</a></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
