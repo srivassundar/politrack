@@ -1,48 +1,134 @@
 <div *ngIf="official">
-
   <div class="container">
     <div class="row">
-      <div class="col-md-7">
-        <img style="max-width: 500px" src="{{official.thumbnail}}">
+      <div class="col-md-4">
+        <img style="max-width: 200px" src="{{official.img_url}}">
+        <table class="table ">
+          <tr>
+            <th colspan="2" style="text-align:center;background:lavender"><span style="display: inline-block;">
+              <div *ngIf="official.role=='Representative'">
+              <a href="https://en.wikipedia.org/wiki/United_States_House_of_Representatives">{{official.role}}</a>  
+              </div>
+              <div *ngIf="official.role.includes('Senator')">
+              <a href="https://en.wikipedia.org/wiki/United_States_Senate">{{official.role}}</a>  
+              </div>
+              </span><br>
+              <div *ngIf="official.role=='Representative'">
+                from {{official.state}} District {{official.district}}
+              </div>
+              <div *ngIf="official.role.includes('Senator')">
+                from {{official.state}}
+              </div>
+            </th>
+          </tr>
+          <tr>
+            <th colspan="2" style="text-align:center;background:lavender">Personal details</th>
+          </tr>
+          <tr>
+            <th scope="row">Name</th>
+            <td><span class="nickname">{{official.name}}</span><br>
+          </tr>
+          <tr>
+            <th scope="row">Political party</th>
+            <td>
+              <div *ngIf="official.party=='D'">
+              <a href="https://en.wikipedia.org/wiki/Democratic_Party_(United_States)">{{official.party}}</a>
+              </div>
+              <div *ngIf="official.party=='R'">
+              <a href="https://en.wikipedia.org/wiki/Republican_Party_(United_States)">{{official.party}}</a>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Serving Since</th>
+            <td>{{detail_result.office.termStart}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Spouse(s)</th>
+            <td>{{detail_result.candidate.spouse}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Children</th>
+            <td>{{detail_result.candidate.children}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Education</th>
+            <td><div *ngIf="detail_result.candidate.education.institution.length==undefined"><p>{{detail_result.candidate.education.institution.fullText}}</p></div>
+              <div *ngIf="detail_result.candidate.education.institution.length"><p *ngFor="let institution of detail_result.candidate.education.institution">{{institution.fullText}}</p></div></td>
+          </tr>
+        </table>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-7">
         <h2>{{official.name}}</h2>
-        <!--<p id="tagline"> | Created by {{official.userName}}</p><br>-->
-        <div class="dateDiv">
-          <img style="max-width: 50px" id="calendarIcon" src="./../../assets/icons/calendar.png">
-          <span>{{official.date}}</span> <br />
-          <span>{{official.timeOfEvent}}</span>
-        </div><br>
-        <div class="locationDiv">
-          <img style="max-width: 50px" id="locationIcon" src="./../../assets/icons/pin2.png">
-          <span>{{official.locationName}}</span><br />
-          <span>{{official.address}}</span>
-        </div><br>
-        <div class="timeDiv">
-          <img style="max-width: 50px" id="timeIcon" src="./../../assets/icons/clock.png">
-          <span>{{official.timeLeft}} days left to sign up</span>
+        <br>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#bio" aria-controls="bio" role="tab" data-toggle="tab">Biography</a>
+          </li>
+          <li role="presentation">
+            <a href="#voted" aria-controls="voted" role="tab" data-toggle="tab">Voted on Bills</a>
+          </li>
+          <li role="presentation">
+            <a href="#finance" aria-controls="finance" role="tab" data-toggle="tab">Finances</a>
+          </li>
+          <li role="presentation">
+            <a href="#social" aria-controls="social" role="tab" data-toggle="tab">Social Media</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="bio">
+            <br>
+            <p>Preferred Name: {{detail_result.candidate.preferredName}}</p>
+            <p>Birthdate: {{detail_result.candidate.birthDate}}</p>  
+            <p>Birthplace: {{detail_result.candidate.birthPlace}}</p> 
+            <p>Hometown: {{detail_result.candidate.homeCity}}, {{detail_result.candidate.homeState}}</p> 
+            <p>Religion: {{detail_result.candidate.religion}}</p>  
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="voted">
+            
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th class="span-3">Date</th>
+                  <th class="span-3">Bill No.</th>
+                  <th class="span-8">Bill Title</th>
+                  <th class="span-8">Outcome</th>
+                  <th class="span-3">Vote</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="finance">
+            <p>Fiances stuff</p>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="social">
+            <div *ngIf="official.facebook_account!=undefined">
+            <h5>Facebook</h5>
+            <p>{{official.name}}'s <a href="{{facebook_path}}/{{official?.facebook_account}}">Facebook Page</a></p>
+            <br>
+            </div>
+            <div *ngIf="official.twitter_id!=undefined">
+            <h5>Twitter</h5>
+            <p>{{official.name}}'s <a href = "{{twitter_path}}/{{official?.twitter_id}}">Twitter Page</a></p>
+            <br>
+            </div>
+            <div *ngIf="official.youtube_id!=undefined">
+            <h5>Youtube</h5>
+            <p>{{official.name}}'s <a href="{{youtube_path}}/{{official?.youtube_id}}">Youtube Page</a></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <h3 class="detailsHeader">Biography</h3>
-    <span class="prjDesc">{{official.description}}</span>
-    <!--   <div>
-      <label>Comment: </label>
-      <input [(ngModel)]="official.title" placeholder="Enter comment" />
-    </div> -->
-    <h3 class="tagsHeader">Tags</h3>
-    <div class="tagButtons">
-    <button>{{official.tag.split(",")[0]}}</button>
-    <button>{{official.tag.split(",")[1]}}</button>
-    </div>
-    <!--<span id="tags"></span>-->
-    <!--<script>-->
-      <!--var tagList = official.tag.split(",");-->
-      <!--for(i = 0; i < tagList.length; i++) {-->
-        <!--<button>tagList[i]</button>;-->
-      <!---->
-    <!--</script>-->
   </div>
-  <!-- <button (click)="goBack()">Back</button> -->
 </div>
