@@ -84,7 +84,8 @@ def get_officials_by_address(query):
 
 def get_officials_by_name(query):
     # Normalize query
-    query = str(query).translate(None, '.,:;?[]{}()-_+=*&%$#@!')
+    rm_punct_trans = str.maketrans('', '', '.,:;?[]{}()-_+=*&%$#@!')
+    query = str(query).translate(rm_punct_trans)
     tokens = [tok.strip() for tok in query.split() if tok.strip()]
     if len(tokens) == 0:
         return None
@@ -101,13 +102,13 @@ def get_officials_by_name(query):
             "LOWER(name) LIKE '%{tok}%'".format(tok=tok) for tok in tokens
         )
     cursor = get_db().cursor()
-    print(select_by_name.format(like_clause=like_clause))
+    # print(select_by_name.format(like_clause=like_clause))
     cursor.execute(select_by_name.format(like_clause=like_clause))
     results = [dict(res) for res in cursor.fetchall()]
     partial_matches = []
     full_matches = []
     for res in results:
-        if str(res['name']).lower().translate(None, '.,:;?[]{}()-_+=*&%$#@!') == query:
+        if str(res['name']).lower().translate(rm_punct_trans) == query:
             full_matches.append(res)
         else:
             partial_matches.append(res)
