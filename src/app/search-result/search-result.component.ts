@@ -45,17 +45,17 @@ export class SearchResultComponent implements OnInit {
   //     });
   // }
 
-  onSelect(official: Official): void {
-    this.selectedOfficial = official;
-    console.log(this.selectedOfficial);
-    this.gotoDetail();
-  }
+  // onSelect(official: Official): void {
+  //   this.selectedOfficial = official;
+  //   console.log(this.selectedOfficial);
+  //   this.gotoDetail();
+  // }
 
-  gotoDetail(): void {
-    console.log(this.selectedOfficial.name);
-    this.router.navigate(['/detail',
-    this.selectedOfficial.name])
-  }
+  // gotoDetail(): void {
+  //   console.log(this.selectedOfficial.name);
+  //   this.router.navigate(['/detail',
+  //   this.selectedOfficial.name])
+  // }
 
 }
 
