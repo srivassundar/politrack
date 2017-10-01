@@ -28,7 +28,7 @@ export class OfficialDetailComponent implements OnInit {
   };
   search_result: Official[];
   detail_result: OfficialDetail[];
-  facebook_path: string = "https://facebook.com"
+  facebook_path: string = "https://facebook.com";
   twitter_path: string = "https://twitter.com";
   youtube_path: string = "https://youtube.com";
 
