@@ -1,25 +1,18 @@
-import json
-import urllib2
-import urllib
+import requests
 
 API_KEY = 'f2ff4cb23fe3500a9a7f789b06c55ad5'
 
 
 def _apicall(func, params):
-    params = dict([(k, v) for (k, v) in params.iteritems() if v])
-    url = 'http://api.votesmart.org/%s?o=JSON&key=%s&%s' % (func,
-                                                            API_KEY, urllib.urlencode(params))
-    try:
-        response = urllib2.urlopen(url).read()
-        obj = json.loads(response)
-        if 'error' in obj:
-            raise Exception(obj['error']['errorMessage'])
-        else:
-            return obj
-    except urllib2.HTTPError, e:
-        raise Exception(e)
-    except ValueError, e:
-        raise Exception('Invalid Response')
+    params = { k: v for k, v in params.items() if v }
+    params['o'] = 'JSON'
+    params['key'] = API_KEY
+    url = 'http://api.votesmart.org/%s' % func
+    resp = requests.get(url, params=params)
+    resp = resp.json()
+    if 'error' in resp:
+        raise Exception(resp['error'])
+    return resp
 
 
 def fetch_details(candidateId):
