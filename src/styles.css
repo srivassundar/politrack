@@ -70,7 +70,7 @@ nav {
     height: 110px;
     width: 100%;
     vertical-align: center;
-    
+
     -webkit-box-shadow: 0 8px 6px -6px #d6d6d6;
     -moz-box-shadow: 0 8px 6px -6px #d6d6d6;
     box-shadow: 0 8px 6px -6px #d6d6d6;
@@ -88,7 +88,7 @@ a.logo.active {
 nav._ngcontent-c0, a.active._ngcontent-c0 {
     color: #000000;
     padding-left: 130px;
-} 
+}
 .h2, h2 {
     font-family: 'whitneyHTF-book';
     margin-left: 5px;
@@ -135,14 +135,14 @@ div.col-lg-4 {
 .col-lg-4 input::placeholder {
     color: #969696;
 }
-.col-lg-4 input[name="projectSearch2"] {
+.col-lg-4 input[name="officialSearch"] {
     width: 76%;
     border-radius: 2px;
     font-family: 'whitneyHTF-light';
     padding: 10px;
 }
 @media (max-width: 621px) {
-  .col-lg-4 input[name="projectSearch2"] {
+  .col-lg-4 input[name="officialSearch"] {
       width: 90%;
       border-radius: 2px;
       font-family: 'whitneyHTF-light';
