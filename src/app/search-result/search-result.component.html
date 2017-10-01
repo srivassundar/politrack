@@ -28,9 +28,10 @@
     <option value="year">Year Elected</option>
   </select>
   </div>
+
   </div>
   <div class="search-results-list">
-  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.id]" class="col-md-3 official-lists">
+  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-md-3 official-lists">
     <img src="{{official.img_url}}" style="width:150px; height:200px;">
     <h2>{{official.name}}</h2>
     <h4>({{official.party}} - {{official.state}})</h4>
