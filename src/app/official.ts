@@ -58,3 +58,8 @@ export class Resource {
   current_number: number;
   contributions: Contribution[];
 }
+
+export class OfficialDetail {
+  bio: string;
+  office: string;
+}

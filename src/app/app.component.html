@@ -2,12 +2,25 @@
     <a routerLink="/home" routerLinkActive="active" class="logo" id="logo">
         <img src='/assets/thumbnails/Logo5.png' style="width:200px;height:89px;" ></a>
     <!-- <a id="explorePrj" routerLink="/explore" routerLinkActive="active">Explore Projects</a> -->
+    <label for="show-menu" class="show-menu">
+        <img src='/assets/thumbnails/nav-icon-black.png' style="width:44px;height:44px;">
+    </label>
+    <input type="checkbox" id="show-menu" role="button">
+    <div class="responsive-nav" id="menu">
+        <a routerLink="/about" routerLinkActive="active">About</a>
+        <a>Contact Us </a>
+        <a>
+            <img src='/assets/thumbnails/search-icon.png' class="searchnav" style="width:30px;height:25px;" >
+        </a>
+    </div>
     <div class="makenavright">
-        <a class="nav-options" id="aboutNav" routerLink="/about" routerLinkActive="active">About</a>
-        <a class="nav-options" id="contactNav">Contact Us </a>
-        <a class="nav-options">
+        <a class="nav-options" id="explorePrj" routerLink="/about" routerLinkActive="active">About</a>
+        <a class="nav-options" id="createPrj">Contact Us </a>
+        <a class="nav-options" id="aboutNav">
             <img src='/assets/thumbnails/search-icon.png' class="searchnav" style="width:44px;height:44px;" >
         </a>
-        </div>
+    </div>
     </nav>
+
+
 <router-outlet></router-outlet>

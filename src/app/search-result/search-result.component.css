@@ -58,6 +58,20 @@ button:hover {
   background-color: #cfd8dc;
 }
 
+.left-sidebar {
+  float: left;
+  width: 20%;
+}
+.search-results-list {
+  float: right;
+  width:80%;
+}
+
+.official-lists {
+  height: 333px;
+  background-color: white;
+}
+
 h2 {
   width: 82%;
   text-align:center;

@@ -4,12 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map'
 
 
-import { Official, Resource } from './official';
+import { Official, OfficialDetail } from './official';
 import { OFFICIALS } from './data/officials';
 
 @Injectable()
 export class OfficialService {
   official_list: Official[] = OFFICIALS;
+  detail_list: OfficialDetail[];
   selected_official: Official; // used for official_delail page
   search_keyword : string;
 
@@ -34,6 +35,30 @@ export class OfficialService {
     console.log(this.official_list);
     return http.get('/api/v0/officials', { params: new HttpParams().set('query', keyword) } )
       .map(data => data["officials"]);
+  }
+  
+  detailSearchOfficials(http: HttpClient, keyword: string) : Observable<OfficialDetail[]> {
+    this.detail_list = [];
+    this.search_keyword = keyword;
+    console.log("Searching results for " + this.search_keyword);
+    // SEARCH HERE !!!!!
+    // this.official_list = (http.get('/api/v0/officials', { params: new HttpParams().set('query', keyword) } )
+    //   .map(data => data["officials"])).subscribe((official_list) => {
+    //   this.official_list = official_list;
+    // });
+    // this.official_list = http.get('/api/v0/officials', { params: new HttpParams().set('query', keyword) } )
+    //   .map((response: Response) => {
+    //       return response.json();
+    //   }).subscribe(officials => {
+    //   this.official_list = officials;
+    // });
+    http.get('/api/v0/details', { params: new HttpParams().set('id', keyword) } ).subscribe(data => {
+      this.detail_list.push(data["bio"]);
+      this.detail_list.push(data["office"]);
+    });
+    console.log(this.detail_list);
+    return http.get('/api/v0/details', { params: new HttpParams().set('id', keyword) } )
+      .map(data => data["bio"]);
   }
 
   // save_keyword(keyword: string) {

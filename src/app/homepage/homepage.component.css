@@ -72,9 +72,9 @@ h4 {
 }
 
 .home-center {
-  padding-top:30vh;
+  /*padding-top:30vh;
   height: 80vh;
-  background-image: url(/assets/thumbnails/harambe.png);
+  background-image: url(/assets/thumbnails/harambe.png);*/
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 360px 323px;
@@ -82,8 +82,19 @@ h4 {
 }
 
 .home-button {
-  border-bottom-right-radius: 50px;
-  border-top-right-radius: 50px;
+  border-radius: 2px;
   width:20%;
-  background-color: #6794BD;
+  background-color: #383838;
+  font-family: 'whitneyHTF-light';
+  font-size: 18px;
+  padding: 10px;
+  margin: 0;
+}
+
+@media (max-width: 621px) {
+  .home-button {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 10px;
+  }
 }
