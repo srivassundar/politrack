@@ -84,9 +84,13 @@ h4 {
 .home-button {
   border-radius: 2px;
   width:20%;
-  background-color: #383838;
+  background-color: #5073bf;
   font-family: 'whitneyHTF-light';
   font-size: 18px;
+  color: black;
+  font-weight: 900;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
   padding: 10px;
   margin: 0;
 }

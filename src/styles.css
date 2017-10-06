@@ -103,7 +103,7 @@ nav._ngcontent-c0, a.active._ngcontent-c0 {
     font-family: 'Raleway', sans-serif;
     font-size: 40px;
     margin-left: 0px;
-    margin-top: 50px;
+    margin-top: 120px;
     text-align: center;
 }
 div.col-lg-4 {
@@ -137,7 +137,8 @@ div.col-lg-4 {
 }
 .col-lg-4 input[name="officialSearch"] {
     width: 76%;
-    border-radius: 2px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
     font-family: 'whitneyHTF-light';
     padding: 10px;
 }
@@ -314,8 +315,9 @@ div.tagButtons button:hover {
     padding: 14px;
 }
 div.aboutContainer h2 {
-margin-top: 30px;
-text-align: left;
+  margin-top: 30px;
+  text-align: left;
+  background-color: white;
 }
 div.aboutContainer p {
 margin-top: 30px;
@@ -404,7 +406,7 @@ div.progress-bars p {
   }
   #searchBar {
     width: 100vw;
-    background-color: #e2e2e2;
+    background-color: #E68686;
     padding: 20px;
   }
   h1.trendingHeader {
@@ -439,9 +441,10 @@ div.progress-bars p {
   #searchBar {
     display: block;
     width: 80vw;
-    border-radius: 2px;
-    background-color: #e2e2e2;
+    border-radius: 10px;
+    background-color: #E68686;
     padding: 10px;
+    margin-top: 30px;
   }
 }
 /*
@@ -453,3 +456,5 @@ div.progress-bars p {
 button:disabled, button[disabled], #helpButton:disabled, #helpButton[disabled] {
   background-color: #C4C9C4;
 }
+
+
