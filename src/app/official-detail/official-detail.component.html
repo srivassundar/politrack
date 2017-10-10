@@ -1,64 +1,84 @@
-<div *ngIf="official">
+<div *ngIf="official" style="background: white !important">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <img style="max-width: 200px" src="{{official.img_url}}">
-        <table class="table ">
-          <tr>
-            <th colspan="2" style="text-align:center;background:lavender"><span style="display: inline-block;">
-              <div *ngIf="official.role=='Representative'">
-              <a href="https://en.wikipedia.org/wiki/United_States_House_of_Representatives">{{official.role}}</a>  
-              </div>
-              <div *ngIf="official.role.includes('Senator')">
-              <a href="https://en.wikipedia.org/wiki/United_States_Senate">{{official.role}}</a>  
-              </div>
-              </span><br>
-              <div *ngIf="official.role=='Representative'">
-                from {{official.state}} District {{official.district}}
-              </div>
-              <div *ngIf="official.role.includes('Senator')">
-                from {{official.state}}
-              </div>
-            </th>
-          </tr>
-          <tr>
-            <th colspan="2" style="text-align:center;background:lavender">Personal details</th>
-          </tr>
-          <tr>
-            <th scope="row">Name</th>
-            <td><span class="nickname">{{official.name}}</span><br>
-          </tr>
-          <tr>
-            <th scope="row">Political party</th>
-            <td>
-              <div *ngIf="official.party=='D'">
-              <a href="https://en.wikipedia.org/wiki/Democratic_Party_(United_States)">{{official.party}}</a>
-              </div>
-              <div *ngIf="official.party=='R'">
-              <a href="https://en.wikipedia.org/wiki/Republican_Party_(United_States)">{{official.party}}</a>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Serving Since</th>
-            <td>{{detail_result.office.termStart}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Spouse(s)</th>
-            <td>{{detail_result.candidate.spouse}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Children</th>
-            <td>{{detail_result.candidate.children}}</td>
-          </tr>
-          <tr>
-            <th scope="row">Education</th>
-            <td><div *ngIf="detail_result.candidate.education.institution.length==undefined"><p>{{detail_result.candidate.education.institution.fullText}}</p></div>
-              <div *ngIf="detail_result.candidate.education.institution.length"><p *ngFor="let institution of detail_result.candidate.education.institution">{{institution.fullText}}</p></div></td>
-          </tr>
-        </table>
+        <div class="text-center">
+          <img id="person" class="img-circle img-thumbnail" src="{{official.img_url}}">
+          <table class="table">
+            <tr>
+              <th colspan="2" style="text-align:center;background:lavender"><span style="display: inline-block;">
+                <div *ngIf="official.role=='Representative'">
+                <a href="https://en.wikipedia.org/wiki/United_States_House_of_Representatives">{{official.role}}</a>  
+                </div>
+                <div *ngIf="official.role.includes('Senator')">
+                <a href="https://en.wikipedia.org/wiki/United_States_Senate">{{official.role}}</a>  
+                </div>
+                </span><br>
+                <div *ngIf="official.role=='Representative'">
+                  from {{official.state}} District {{official.district}}
+                </div>
+                <div *ngIf="official.role.includes('Senator')">
+                  from {{official.state}}
+                </div>
+              </th>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align:center;border-bottom:none">
+                <div style="width:100%; margin:0; padding:0; background-color: lavender">
+                  <b>
+                    <a href="https://en.wikipedia.org/wiki/Incumbent" title="Incumbent">Incumbent</a>
+                  </b>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" style="text-align:center;border-bottom:none">
+              <span class="nowrap">
+                <b>Assumed office</b>
+              </span>
+              <br>{{displayDate(detail_result.office.termStart)}}</td>
+            </tr>
+            <tr>
+              <th colspan="2" style="text-align:center;background:lavender">Personal details</th>
+            </tr>
+            <tr>
+              <th scope="row">Born</th>
+              <td>
+                {{official.name}}
+                <br>
+                {{displayDate(detail_result.candidate.birthDate)}} <span class="noprint ForceAgeToShow">(age&nbsp;{{getAge(detail_result.candidate.birthDate)}})</span>
+                <br>
+                {{detail_result.candidate.birthPlace}}, U.S.
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Political party</th>
+              <td>
+                <div *ngIf="official.party=='D'">
+                <a href="https://en.wikipedia.org/wiki/Democratic_Party_(United_States)">Democratic</a>
+                </div>
+                <div *ngIf="official.party=='R'">
+                <a href="https://en.wikipedia.org/wiki/Republican_Party_(United_States)">Republican</a>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Spouse(s)</th>
+              <td>{{detail_result.candidate.spouse}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Children</th>
+              <td>{{detail_result.candidate.children}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Education</th>
+              <td><div *ngIf="detail_result.candidate.education.institution.length==undefined"><p>{{detail_result.candidate.education.institution.fullText}}</p></div>
+                <div *ngIf="detail_result.candidate.education.institution.length"><p *ngFor="let institution of detail_result.candidate.education.institution">{{institution.fullText}}</p></div></td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-8">
         <h2>{{official.name}}</h2>
         <br>
 
@@ -76,22 +96,40 @@
           <li role="presentation">
             <a href="#social" aria-controls="social" role="tab" data-toggle="tab">Social Media</a>
           </li>
+          <li role="presentation">
+            <a href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a>
+          </li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane active" id="bio">
             <br>
-            <p>Preferred Name: {{detail_result.candidate.preferredName}}</p>
+            <!--p>Preferred Name: {{detail_result.candidate.preferredName}}</p>
             <p>Birthdate: {{detail_result.candidate.birthDate}}</p>  
             <p>Birthplace: {{detail_result.candidate.birthPlace}}</p> 
             <p>Hometown: {{detail_result.candidate.homeCity}}, {{detail_result.candidate.homeState}}</p> 
-            <p>Religion: {{detail_result.candidate.religion}}</p>  
+            <p>Religion: {{detail_result.candidate.religion}}</p-->  
+            <p class="biggerFont">John Robert Lewis (born February 21, 1940) is an American politician and civil rights leader. He is the U.S. Representative
+              for Georgia's 5th congressional district, serving since 1987, and is the dean of the Georgia congressional delegation.
+              His district includes three quarters of Atlanta.
+            </p>
+            <p class="biggerFont">
+              Lewis, who as chairman of the Student Nonviolent Coordinating Committee (SNCC) was one of the "Big Six" leaders of groups
+              who organized the 1963 March on Washington, played many key roles in the Civil Rights Movement and its actions to end legalized
+              racial segregation in the United States. A member of the Democratic Party, Lewis is a member of the Democratic leadership
+              of the U.S. House of Representatives and has served as a Chief Deputy Whip since 1991 and Senior Chief Deputy Whip since
+              2003.
+            </p>
+            <p class="biggerFont">
+              Lewis has been awarded many honorary degrees and is the recipient of numerous awards from eminent national and international
+              institutions, including the highest civil ian honor, the Presidential Medal of Freedom. John Lewis is an amazing person
+              who fought for rights.</p>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="voted">
             
             <table class="table table-striped">
-              <thead>
+              <tbody>
                 <tr>
                   <th class="span-3">Date</th>
                   <th class="span-3">Bill No.</th>
@@ -99,17 +137,296 @@
                   <th class="span-8">Outcome</th>
                   <th class="span-3">Vote</th>
                 </tr>
-              </thead>
-              <tbody>
+                
+                <tr class="odd">
+                  <td>March 30, 2017</td>
+                  <td>
+                    <a href="/bill/22673/58905/26820/epa-science-advisory-board-reform-act-of-2017">HR 1431</a>
+                  </td>
+                  <td>
+                    <a href="/bill/22673/58905/26820/epa-science-advisory-board-reform-act-of-2017">EPA Science Advisory Board Reform Act of 2017</a>
+                  </td>
+                  <td>Bill Passed - House
+                    <br>(229 - 193)</td>
+                  <td>Nay</td>
+                </tr>
+                
+                
                 <tr>
-                  <td></td>
+                  <td>March 29, 2017</td>
+                  <td>
+                    <a href="/bill/22631/58793/26820/honest-and-open-new-epa-science-treatment-act-of-2017">HR 1430</a>
+                  </td>
+                  <td>
+                    <a href="/bill/22631/58793/26820/honest-and-open-new-epa-science-treatment-act-of-2017">Honest and Open New EPA Science Treatment Act of 2017</a>
+                  </td>
+                  <td>Bill Passed - House
+                    <br>(228 - 194)</td>
+                  <td>Nay</td>
+                </tr>
+                
+                
+                <tr class="odd">
+                  <td>March 28, 2017</td>
+                  <td>
+                    <a href="/bill/22622/58786/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-federal-communications-commission-relating-to-protecting-the-privacy-of-customers-of-broadband-and-other-telecommunications-services">S J Res 34</a>
+                  </td>
+                  <td>
+                    <a href="/bill/22622/58786/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-federal-communications-commission-relating-to-protecting-the-privacy-of-customers-of-broadband-and-other-telecommunications-services">Providing for congressional disapproval of the rule submitted by the Federal Communications Commission relating to Protecting
+                      the Privacy of Customers of Broadband and other Telecommunications Services</a>
+                  </td>
+                  <td>Joint Resolution Passed - House
+                    <br>(215 - 205)</td>
+                  <td>Nay</td>
+                </tr>
+                
+                
+                <tr>
+                  <td>March 16, 2017</td>
+                  <td>
+                    <a href="/bill/22611/58745/26820/veterans-2nd-amendment-protection-act">HR 1181</a>
+                  </td>
+                  <td>
+                    <a href="/bill/22611/58745/26820/veterans-2nd-amendment-protection-act">Veterans 2nd Amendment Protection Act</a>
+                  </td>
+                  <td>Bill Passed - House
+                    <br>(240 - 175)</td>
+                  <td>Nay</td>
+                </tr>
+                
+                
+                <tr class="odd">
+                  <td>March 16, 2017</td>
+                  <td>
+                    <a href="/bill/22612/58747/26820/va-accountability-first-act-of-2017">HR 1259</a>
+                  </td>
+                  <td>
+                    <a href="/bill/22612/58747/26820/va-accountability-first-act-of-2017">VA Accountability First Act of 2017</a>
+                  </td>
+                  <td>Bill Passed - House
+                    <br>(237 - 178)</td>
+                  <td>Nay</td>
+                </tr>
+                
+                
+                <tr>
+                  <td>March 10, 2017</td>
+                  <td>
+                    <a href="/bill/22607/58736/26820/lawsuit-abuse-reduction-act-of-2017">HR 720</a>
+                  </td>
+                  <td>
+                    <a href="/bill/22607/58736/26820/lawsuit-abuse-reduction-act-of-2017">Lawsuit Abuse Reduction Act of 2017</a>
+                  </td>
+                  <td>Bill Passed - House
+                    <br>(230 - 188)</td>
+                  <td>Nay</td>
+                </tr>
+                
+                
+                <tr class="odd">
+                  <td>March 9, 2017</td>
+                  <td>
+                    <a href="/bill/22608/58739/26820/fairness-in-class-action-litigation-and-furthering-asbestos-claim-transparency-act-of-2017">HR 985</a>
+                  </td>
+                  <td>
+                    <a href="/bill/22608/58739/26820/fairness-in-class-action-litigation-and-furthering-asbestos-claim-transparency-act-of-2017">Fairness in Class Action Litigation and Furthering Asbestos Claim Transparency Act of 2017</a>
+                  </td>
+                  <td>Bill Passed - House
+                    <br>(220 - 201)</td>
+                  <td>Nay</td>
+                </tr>
+                
+                
+                <tr>
+                  <td>March 1, 2017</td>
+                  <td>
+                    <a href="/bill/22587/58693/26820/searching-for-and-cutting-regulations-that-are-unnecessarily-burdensome-act">HR 998</a>
+                  </td>
+                  <td>
+                    <a href="/bill/22587/58693/26820/searching-for-and-cutting-regulations-that-are-unnecessarily-burdensome-act">Searching for and Cutting Regulations that are Unnecessarily Burdensome Act</a>
+                  </td>
+                  <td>Bill Passed - House
+                    <br>(240 - 185)</td>
+                  <td>Nay</td>
+                </tr>
+                
+                
+                <tr class="odd">
+                  <td>Feb. 16, 2017</td>
+                  <td>
+                    <a href="/bill/22637/58809/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-secretary-of-health-and-human-services-relating-to-compliance-with-title-x-requirements-by-project-recipients-in-selecting-subrecipients">H J Res 43</a>
+                  </td>
+                  <td>
+                    <a href="/bill/22637/58809/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-secretary-of-health-and-human-services-relating-to-compliance-with-title-x-requirements-by-project-recipients-in-selecting-subrecipients">Providing for Congressional Disapproval of the Rule Submitted by the Secretary of Health and Human Services Relating
+                      to Compliance with Title X Requirements by Project Recipients in Selecting Subrecipients</a>
+                  </td>
+                  <td>Joint Resolution Passed - House
+                    <br>(230 - 188)</td>
+                  <td>Nay</td>
                 </tr>
               </tbody>
             </table>
             
           </div>
           <div role="tabpanel" class="tab-pane fade" id="finance">
-            <p>Fiances stuff</p>
+            <img style="padding-left: 60px;" src="../../assets/thumbnails/finances.png" />
+            <table class="table">
+              <thead style="background-color:#C9C9C9">
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <th>Vendor/Recipient</th>
+                  <th>Total</th>
+                  <th>No. of Payments</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background-color: rgb(224, 230, 236);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Democratic+Congressional+Campaign+Cmte">Democratic Congressional Campaign Cmte</a>
+                  </td>
+                  <td class="number">$270,000</td>
+                  <td class="number">11</td>
+                </tr>
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Fiorello+Consulting">Fiorello Consulting</a>
+                  </td>
+                  <td class="number">$66,000</td>
+                  <td class="number">22</td>
+                </tr>
+                <tr style="background-color: rgb(224, 230, 236);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Live+Nation+Worldwide">Live Nation Worldwide</a>
+                  </td>
+                  <td class="number">$49,633</td>
+                  <td class="number">1</td>
+                </tr>
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Green%2C+Kenneth">Green, Kenneth</a>
+                  </td>
+                  <td class="number">$49,621</td>
+                  <td class="number">6</td>
+                </tr>
+                <tr style="background-color: rgb(224, 230, 236);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Winpisinger+%26+Assoc">Winpisinger &amp; Assoc</a>
+                  </td>
+                  <td class="number">$39,095</td>
+                  <td class="number">24</td>
+                </tr>
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Delta+Air+Lines">Delta Air Lines</a>
+                  </td>
+                  <td class="number">$29,658</td>
+                  <td class="number">52</td>
+                </tr>
+                <tr style="background-color: rgb(224, 230, 236);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Collins%2C+Michael">Collins, Michael</a>
+                  </td>
+                  <td class="number">$27,932</td>
+                  <td class="number">6</td>
+                </tr>
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Tabernacle">Tabernacle</a>
+                  </td>
+                  <td class="number">$24,796</td>
+                  <td class="number">5</td>
+                </tr>
+                <tr style="background-color: rgb(224, 230, 236);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Ngp+Van">Ngp Van</a>
+                  </td>
+                  <td class="number">$23,400</td>
+                  <td class="number">8</td>
+                </tr>
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Bold+American+Food">Bold American Food</a>
+                  </td>
+                  <td class="number">$23,137</td>
+                  <td class="number">1</td>
+                </tr>
+                <tr style="background-color: rgb(224, 230, 236);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Oblander+Group">Oblander Group</a>
+                  </td>
+                  <td class="number">$21,410</td>
+                  <td class="number">2</td>
+                </tr>
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Radford%2C+Gerald">Radford, Gerald</a>
+                  </td>
+                  <td class="number">$14,000</td>
+                  <td class="number">7</td>
+                </tr>
+                <tr style="background-color: rgb(224, 230, 236);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Bistro+Bis">Bistro Bis</a>
+                  </td>
+                  <td class="number">$13,685</td>
+                  <td class="number">10</td>
+                </tr>
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Mothership+Strategies">Mothership Strategies</a>
+                  </td>
+                  <td class="number">$13,200</td>
+                  <td class="number">4</td>
+                </tr>
+                <tr style="background-color: rgb(224, 230, 236);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Studio+Named+Bermudez">Studio Named Bermudez</a>
+                  </td>
+                  <td class="number">$12,433</td>
+                  <td class="number">4</td>
+                </tr>
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Meridien+Hotel">Meridien Hotel</a>
+                  </td>
+                  <td class="number">$10,756</td>
+                  <td class="number">4</td>
+                </tr>
+                <tr style="background-color: rgb(224, 230, 236);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=New+London+Communications">New London Communications</a>
+                  </td>
+                  <td class="number">$10,340</td>
+                  <td class="number">1</td>
+                </tr>
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Coleman+Franklin+Group">Coleman Franklin Group</a>
+                  </td>
+                  <td class="number">$7,500</td>
+                  <td class="number">1</td>
+                </tr>
+                <tr style="background-color: rgb(224, 230, 236);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Suntrust+Merchant+Services">Suntrust Merchant Services</a>
+                  </td>
+                  <td class="number">$7,201</td>
+                  <td class="number">66</td>
+                </tr>
+                <tr style="background-color: rgb(240, 243, 246);">
+                  <td>
+                    <a href="/expends/vendor.php?year=2016&amp;vendor=Faith+%26+Politics+Institute">Faith &amp; Politics Institute</a>
+                  </td>
+                  <td class="number">$7,063</td>
+                  <td class="number">2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="news">
+            <div *ngIf="official.times_topics_url!=undefined && official.times_topics_url!='null'">
+              <!--a href="{{official.times_topics_url}}">Times</a-->
+              <iframe [src]='byPassUrl()' height="1000" width="100%"></iframe>
+            </div>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="social">
             <div *ngIf="official.facebook_account!=undefined">

@@ -27,3 +27,38 @@ button:disabled {
   color: #ccc;
   cursor: auto;
 }
+
+a {
+  color: #F05F40;
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+}
+
+table {
+  font-family: 'Merriweather',
+  'Helvetica Neue',
+  Arial,
+  sans-serif;
+}
+
+h1, h2, h3 ,h4 ,h5 ,h6 {
+  font-family: 'Merriweather',
+  'Helvetica Neue',
+  Arial,
+  sans-serif;
+}
+
+p {
+  font-family: 'Merriweather',
+  'Helvetica Neue',
+  Arial,
+  sans-serif;
+}
+
+.biggerFont {
+  font-size: 16px;
+}
+
+#person {
+  margin-bottom: 20px;
+  max-height: 300px;
+}
