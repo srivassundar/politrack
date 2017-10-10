@@ -75,6 +75,10 @@
               <td><div *ngIf="detail_result.candidate.education.institution.length==undefined"><p>{{detail_result.candidate.education.institution.fullText}}</p></div>
                 <div *ngIf="detail_result.candidate.education.institution.length"><p *ngFor="let institution of detail_result.candidate.education.institution">{{institution.fullText}}</p></div></td>
             </tr>
+            <tr>
+              <th scope="row">Religion</th>
+              <td>{{detail_result.candidate.religion}}</td>
+            </tr>
           </table>
         </div>
       </div>
