@@ -6,6 +6,8 @@ import sys
 
 import requests
 
+from congress_legislators_importer import append_wiki_url
+
 # Script Defaults
 DEFAULTS = {
     'states': ['GA'],
@@ -53,7 +55,8 @@ def setup_table(conn):
             'api_uri'           text            ,
             'district'          integer         ,
             'at_large'          integer         ,
-            'img_url'           string
+            'img_url'           string          ,
+            'wiki_url'          string
         );
     '''.format(tbl=DEFAULTS['db_table'])
 
@@ -131,6 +134,7 @@ def main():
         for state in states:
             num_rows = retrieve_state_data(state, conn)
             total_rows += num_rows
+        append_wiki_url(states, conn)
         print('Adding %d rows to the database' % total_rows)
         conn.commit()
     print('Done')
