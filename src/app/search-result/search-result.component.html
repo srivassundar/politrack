@@ -31,8 +31,8 @@
 
   </div>
   <div class="search-results-list">
-  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-md-3 official-lists">
-    <img src="{{official.img_url}}" style="width:150px; height:200px;">
+  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-sm-6 col-md-3 official-lists">
+    <img src="{{official.img_url}}" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
     <h2>{{official.name}}</h2>
     <h4>({{official.party}} - {{official.state}})</h4>
     <p>{{official.role}}</p><br>

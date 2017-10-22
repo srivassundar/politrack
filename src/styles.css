@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:700');
 /*font-family: 'Raleway', sans-serif;*/
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:800');
+/*font-family: 'Merriweather', sans-serif;*/
+
 @font-face {
     font-family: 'circular-std-book';
     src: url('assets/fonts/circular-std-book.otf'); /* Legacy iOS */
@@ -100,10 +103,11 @@ nav._ngcontent-c0, a.active._ngcontent-c0 {
     font-size: 28px;
 }
 #motto {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Merriweather Sans', sans-serif;
     font-size: 40px;
     margin-left: 0px;
     margin-top: 120px;
+    text-transform: capitalize;
     text-align: center;
 }
 div.col-lg-4 {
@@ -137,8 +141,9 @@ div.col-lg-4 {
 }
 .col-lg-4 input[name="officialSearch"] {
     width: 76%;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
+    /*border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;*/
+    border-radius: 10px;
     font-family: 'whitneyHTF-light';
     padding: 10px;
 }
@@ -171,7 +176,7 @@ div.col-lg-4 {
 .h1, h1 {
     margin-top: 50px;
     margin-left: 20px;
-    font-family: "whitneyHTF-medium";
+    font-family: 'Merriweather', sans-serif;
 }
 .grid .grid-pad {
     text-align: center;
@@ -406,7 +411,7 @@ div.progress-bars p {
   }
   #searchBar {
     width: 100vw;
-    background-color: #E68686;
+    background-color: #f15f40;
     padding: 20px;
   }
   h1.trendingHeader {
@@ -442,7 +447,7 @@ div.progress-bars p {
     display: block;
     width: 80vw;
     border-radius: 10px;
-    background-color: #E68686;
+    background-color: #f15f40;
     padding: 10px;
     margin-top: 30px;
   }
