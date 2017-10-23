@@ -94,3 +94,13 @@ p {
   /*width: 80%;*/
   text-align:center;
 }
+
+.filter-sorting {
+  background-color: gray;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+.filter-sorting-text {
+  text-align: left;
+}
