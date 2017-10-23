@@ -4,6 +4,7 @@ import { Location }                 from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgClass, NgStyle}           from '@angular/common';
 import 'rxjs/add/operator/switchMap';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { OfficialService } from './../official.service';
 import { Official, OfficialDetail } from './../official';
@@ -37,7 +38,8 @@ export class OfficialDetailComponent implements OnInit {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private location: Location,
-    private http: HttpClient
+    private http: HttpClient,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +71,41 @@ export class OfficialDetailComponent implements OnInit {
       console.log(this.official);
       this.input_official = null;
       // this.category = this.categoryService.getCategory(this.official.category);
+    }
+  }
+  /**
+   * Function to display A date in the format of Month, day year
+   * @param date1 String of a date can be in format of what Date fuction can allow but must have
+   * month day and year to fuction properly.
+   */
+  displayDate(date1: string): string {
+    let date2 = new Date(date1);
+    let day = date2.getDate();
+    let month = date2.getMonth();
+    let year = date2.getFullYear();
+    const array1 = ['January', 'February', 'March', 'April', 'May',
+     'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return array1[month] + ' ' + day + ', ' + year;
+  }
+  /**
+   * function used to bypass security of new york times url for the iframe.
+   */
+  byPassUrl() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.official.times_topics_url);
+  }
+
+  getAge(date1: string): string {
+    let now = new Date(); // current date
+    let date2 = new Date(date1); // date of official born
+    let year1, year2, age;
+    year1 = now.getFullYear();
+    year2 = date2.getFullYear();
+    if (now < date2) {
+      age = (year1 - year2) - 1 ;
+      return age + '';
+    } else {
+      age = year1 - year2;
+      return age + '';
     }
   }
 

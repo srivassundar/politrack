@@ -14,6 +14,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { OfficialDetailComponent } from './official-detail/official-detail.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AboutComponent } from './about/about.component';
     SearchResultComponent,
     OfficialDetailComponent,
     AboutComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
