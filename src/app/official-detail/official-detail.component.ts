@@ -9,7 +9,7 @@ import { OfficialService } from './../official.service';
 import { Official, OfficialDetail } from './../official';
 
 @Component({
-  app selector: 'official-detail',
+  selector: 'official-detail',
   templateUrl: './official-detail.component.html',
   styleUrls: ['./official-detail.component.css']
 })
@@ -25,7 +25,6 @@ export class OfficialDetailComponent implements OnInit {
 
   constructor(
     private officialService: OfficialService,
-    private categoryService: CategoryService,
     private route: ActivatedRoute,
     private location: Location,
     private http: HttpClient,

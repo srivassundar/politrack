@@ -7,7 +7,7 @@ import { Official } from './../official';
 import { OfficialService } from './../official.service';
 
 @Component({
-  app selector: 'search-result',
+  selector: 'search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.css'],
   providers: [OfficialService]

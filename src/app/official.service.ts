@@ -6,6 +6,7 @@ import { Official, OfficialDetail } from './official';
 
 @Injectable()
 export class OfficialService {
+  official_list: Official[];
   detail_list: OfficialDetail[];
   selected_official: Official; // used for official_delail page
   search_keyword: string;
