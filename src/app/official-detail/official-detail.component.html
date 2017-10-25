@@ -2,7 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-        <img style="max-width: 200px" src="{{official.img_url}}">
+        <div *ngIf="official.gender=='M'" class="col-md-4">
+          <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'" style="max-width: 200px">
+        </div>
+        <div *ngIf="official.gender=='F'" class="col-md-4">
+          <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'" style="max-width: 200px">
+        </div>
         <table class="table ">
           <tr>
             <th colspan="2" style="text-align:center;background:lavender"><span style="display: inline-block;">

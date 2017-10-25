@@ -32,7 +32,12 @@
   </div>
   <div class="search-results-list">
   <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-md-3 official-lists">
-    <img src="{{official.img_url}}" style="width:150px; height:200px;">
+    <div *ngIf="official.gender=='M'">
+    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'" style="width:150px; height:200px;">
+    </div>
+    <div *ngIf="official.gender=='F'">
+    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'" style="width:150px; height:200px;">
+    </div>
     <h2>{{official.name}}</h2>
     <h4>({{official.party}} - {{official.state}})</h4>
     <p>{{official.role}}</p><br>
