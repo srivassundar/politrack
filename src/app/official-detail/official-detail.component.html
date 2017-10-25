@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col-md-4">
         <div class="text-center">
-          <div *ngIf="official.gender=='M'" class="col-md-4">
-            <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'" style="max-width: 200px">
+          <div *ngIf="official.gender=='M'">
+            <img id="person" class="img-circle img-thumbnail" src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'">
           </div>
-          <div *ngIf="official.gender=='F'" class="col-md-4">
-            <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'" style="max-width: 200px">
+          <div *ngIf="official.gender=='F'">
+            <img id="person" class="img-circle img-thumbnail" src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'">
           </div>
           <table class="table">
             <tr>
