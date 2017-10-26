@@ -1,9 +1,14 @@
-from __future__ import print_function
+'''
+Google Civic API helper functions are located here. They handle talking
+to the API and returning results.
+'''
+
 
 import re
 import requests
 
 
+# Static parameters for the API
 CIVIC_API_PARAMS = {
     'API_KEY': 'AIzaSyCNjxGVdNvYR-kG0lDAClkG1aH5jWxcsII',
     'address_endpoint':
@@ -14,7 +19,10 @@ CIVIC_API_PARAMS = {
 
 
 def get_state_district_for_address(address):
-    # Query Google Civic Information API to figure out the district
+    '''
+    Query Google Civic Information API to figure out the Congressional
+    district number for the given address.
+    '''
     params = {
         'key': CIVIC_API_PARAMS['API_KEY'],
         'address': address,
