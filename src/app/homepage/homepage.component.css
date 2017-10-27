@@ -5,7 +5,6 @@ h2 {margin-left: 10px;}
 [class*='col-']:last-of-type {
   padding-right: ;
 }
-
 a {
   text-decoration: none;
 }
@@ -14,10 +13,6 @@ a {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
-/*h3 {
-  text-align: center; margin-bottom: 0;
-}*/
 h4 {
   position: relative;
 }
@@ -73,20 +68,15 @@ h4 {
   }
 }
 .make-full-height {
-    min-height: -webkit-calc(100vh - 350px);
-    min-height: -moz-calc(100vh - 350px);
-    min-height: calc(100vh - 350px);
+  min-height: -webkit-calc(100vh - 350px);
+  min-height: -moz-calc(100vh - 350px);
+  min-height: calc(100vh - 350px);
 }
-
 .home-center {
-  /*padding-top:30vh;
-  height: 80vh;
-  background-image: url(/assets/thumbnails/harambe.png);*/
   background-repeat: no-repeat;
   background-position: center bottom;
   background-size: 360px 323px;
 }
-
 .home-button {
   border-radius: 2px;
   width:20%;
@@ -96,13 +86,9 @@ h4 {
   color: white;
   font-weight: 900;
   border-radius: 20px;
-  /*
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;*/
   padding: 11px;
   margin: 0;
 }
-
 @media (max-width: 621px) {
   .home-button {
     font-size: 15px;
