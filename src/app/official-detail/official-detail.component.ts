@@ -65,11 +65,9 @@ export class OfficialDetailComponent implements OnInit {
     let wiki_keyword = this.official['wiki_url'];
     wiki_keyword = wiki_keyword.substr(wiki_keyword.indexOf('/wiki/') + 6); // Only gets the text after 'https://en.wikipedia.org/wiki/...'
 
-    /* Get biography of the official from wikipedia */
+    /* Get introduction of the official from wikipedia */
     this.officialService.getOfficialWiki(this.http, wiki_keyword).subscribe(wiki => {
-      wiki.pages.forEach(function(page_number) {
-        this.biography = wiki.pages[page_number].extract;
-      });
+      this.biography = wiki.pages[Object.keys(wiki.pages)[0]].extract;
     });
   }
 
