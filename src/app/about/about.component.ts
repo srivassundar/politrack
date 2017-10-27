@@ -5,7 +5,7 @@ import { OnInit } from '@angular/core';
 @Component({
   selector: 'about',
   templateUrl: './about.component.html',
-  styleUrls: ['./../app.component.css'],
+  styleUrls: ['./about.component.css'],
 })
 
 export class AboutComponent implements OnInit {
@@ -16,27 +16,4 @@ export class AboutComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
-  // onSelect(): void {
-  //   // this.selectedProject = project;
-  // }
-
-  // nextStep(): void {
-  //   this.step = this.step + 1;
-  //   // if (this.step > 3)
-  //   // {
-  //   //   this.submit_project();
-  //   // }
-  // }
-
-  // previousStep(): void {
-  //   this.step--;
-  // }
-
-  // goBack(): void {
-  //   this.location.back();
-  // }
-
 }
-
