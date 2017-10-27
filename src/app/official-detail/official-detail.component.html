@@ -1,4 +1,4 @@
-<div *ngIf="official" style="background: white !important">
+<div *ngIf="official" style="background: white !important; margin-top: 50px;">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
@@ -10,7 +10,7 @@
             <img id="person" class="img-circle img-thumbnail" src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'">
           </div>
           <table class="table">
-            <tr>
+            <tr class="detail-tab">
               <th colspan="2" style="text-align:center;background:lavender"><span style="display: inline-block;">
                 <div *ngIf="official.role=='Representative'">
                 <a href="https://en.wikipedia.org/wiki/United_States_House_of_Representatives">{{official.role}}</a>  
@@ -27,7 +27,7 @@
                 </div>
               </th>
             </tr>
-            <tr>
+            <tr class="detail-tab">
               <td colspan="2" style="text-align:center;border-bottom:none">
                 <div style="width:100%; margin:0; padding:0; background-color: lavender">
                   <b>
@@ -36,17 +36,17 @@
                 </div>
               </td>
             </tr>
-            <tr>
+            <tr class="detail-tab">
               <td colspan="2" style="text-align:center;border-bottom:none">
               <span class="nowrap">
                 <b>Assumed office</b>
               </span>
               <br>{{displayDate(detail_result.office.termStart)}}</td>
             </tr>
-            <tr>
+            <tr class="detail-tab">
               <th colspan="2" style="text-align:center;background:lavender">Personal details</th>
             </tr>
-            <tr>
+            <tr class="detail-tab">
               <th scope="row">Born</th>
               <td>
                 {{official.name}}
@@ -56,7 +56,7 @@
                 {{detail_result.candidate.birthPlace}}, U.S.
               </td>
             </tr>
-            <tr>
+            <tr class="detail-tab">
               <th scope="row">Political party</th>
               <td>
                 <div *ngIf="official.party=='D'">
@@ -67,20 +67,20 @@
                 </div>
               </td>
             </tr>
-            <tr>
+            <tr class="detail-tab">
               <th scope="row">Spouse(s)</th>
               <td>{{detail_result.candidate.spouse}}</td>
             </tr>
-            <tr>
+            <tr class="detail-tab">
               <th scope="row">Children</th>
               <td>{{detail_result.candidate.children}}</td>
             </tr>
-            <tr>
+            <tr class="detail-tab">
               <th scope="row">Education</th>
               <td><div *ngIf="detail_result.candidate.education.institution.length==undefined"><p>{{detail_result.candidate.education.institution.fullText}}</p></div>
                 <div *ngIf="detail_result.candidate.education.institution.length"><p *ngFor="let institution of detail_result.candidate.education.institution">{{institution.fullText}}</p></div></td>
             </tr>
-            <tr>
+            <tr class="detail-tab">
               <th scope="row">Religion</th>
               <td>{{detail_result.candidate.religion}}</td>
             </tr>
@@ -88,25 +88,25 @@
         </div>
       </div>
       <div class="col-md-8">
-        <h2>{{official.name}}</h2>
+        <h2 class="detail-text">{{official.name}}</h2>
         <br>
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active">
-            <a href="#bio" aria-controls="bio" role="tab" data-toggle="tab">Biography</a>
+            <a class="detail-tab" href="#bio" aria-controls="bio" role="tab" data-toggle="tab">Biography</a>
           </li>
           <li role="presentation">
-            <a href="#voted" aria-controls="voted" role="tab" data-toggle="tab">Voted on Bills</a>
+            <a class="detail-tab" href="#voted" aria-controls="voted" role="tab" data-toggle="tab">Voted on Bills</a>
           </li>
           <li role="presentation">
-            <a href="#finance" aria-controls="finance" role="tab" data-toggle="tab">Finances</a>
+            <a class="detail-tab" href="#finance" aria-controls="finance" role="tab" data-toggle="tab">Finances</a>
           </li>
           <li role="presentation">
-            <a href="#social" aria-controls="social" role="tab" data-toggle="tab">Social Media</a>
+            <a class="detail-tab" href="#social" aria-controls="social" role="tab" data-toggle="tab">Social Media</a>
           </li>
           <li role="presentation">
-            <a href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a>
+            <a class="detail-tab" href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a>
           </li>
         </ul>
 
@@ -134,7 +134,7 @@
             
             <table class="table table-striped">
               <tbody>
-                <tr>
+                <tr class="detail-tab">
                   <th class="span-3">Date</th>
                   <th class="span-3">Bill No.</th>
                   <th class="span-8">Bill Title</th>
@@ -142,7 +142,7 @@
                   <th class="span-3">Vote</th>
                 </tr>
                 
-                <tr class="odd">
+                <tr class="odd detail-tab">
                   <td>March 30, 2017</td>
                   <td>
                     <a href="/bill/22673/58905/26820/epa-science-advisory-board-reform-act-of-2017">HR 1431</a>
@@ -156,7 +156,7 @@
                 </tr>
                 
                 
-                <tr>
+                <tr class="detail-tab">
                   <td>March 29, 2017</td>
                   <td>
                     <a href="/bill/22631/58793/26820/honest-and-open-new-epa-science-treatment-act-of-2017">HR 1430</a>
@@ -170,7 +170,7 @@
                 </tr>
                 
                 
-                <tr class="odd">
+                <tr class="odd detail-tab">
                   <td>March 28, 2017</td>
                   <td>
                     <a href="/bill/22622/58786/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-federal-communications-commission-relating-to-protecting-the-privacy-of-customers-of-broadband-and-other-telecommunications-services">S J Res 34</a>
@@ -185,7 +185,7 @@
                 </tr>
                 
                 
-                <tr>
+                <tr class="detail-tab">
                   <td>March 16, 2017</td>
                   <td>
                     <a href="/bill/22611/58745/26820/veterans-2nd-amendment-protection-act">HR 1181</a>
@@ -199,7 +199,7 @@
                 </tr>
                 
                 
-                <tr class="odd">
+                <tr class="odd detail-tab">
                   <td>March 16, 2017</td>
                   <td>
                     <a href="/bill/22612/58747/26820/va-accountability-first-act-of-2017">HR 1259</a>
@@ -213,7 +213,7 @@
                 </tr>
                 
                 
-                <tr>
+                <tr class="detail-tab">
                   <td>March 10, 2017</td>
                   <td>
                     <a href="/bill/22607/58736/26820/lawsuit-abuse-reduction-act-of-2017">HR 720</a>
@@ -227,7 +227,7 @@
                 </tr>
                 
                 
-                <tr class="odd">
+                <tr class="odd detail-tab">
                   <td>March 9, 2017</td>
                   <td>
                     <a href="/bill/22608/58739/26820/fairness-in-class-action-litigation-and-furthering-asbestos-claim-transparency-act-of-2017">HR 985</a>
@@ -241,7 +241,7 @@
                 </tr>
                 
                 
-                <tr>
+                <tr class="detail-tab">
                   <td>March 1, 2017</td>
                   <td>
                     <a href="/bill/22587/58693/26820/searching-for-and-cutting-regulations-that-are-unnecessarily-burdensome-act">HR 998</a>
@@ -255,7 +255,7 @@
                 </tr>
                 
                 
-                <tr class="odd">
+                <tr class="odd detail-tab">
                   <td>Feb. 16, 2017</td>
                   <td>
                     <a href="/bill/22637/58809/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-secretary-of-health-and-human-services-relating-to-compliance-with-title-x-requirements-by-project-recipients-in-selecting-subrecipients">H J Res 43</a>

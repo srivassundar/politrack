@@ -1,25 +1,32 @@
-<h1>Showing results for: {{search_keyword}}</h1>
+<h1 class="breadcrumb">Showing results for: {{search_keyword}}</h1>
 <br><br clear="all" />
 <div class="grid grid-pad">
   <div class="topGrid">
-
-  <div class="left-sidebar">
-  <select placeholder="Sort by">
-    <option value="sortBy">Sort by</option>
-    <option value="firstname">First Name</option>
-    <option value="lastname">Last Name</option>
-    <option value="year">Year Elected</option>
-  </select>
+  <div class="col-md-3 text filter-sorting">
+      <h3 class="section-heading"><b>Filter</b></h3>
+          <h4 class="filter-sorting-text">Political Party: </h4>
+              <form action="">
+                  <input type="checkbox" name="democrat" value="democrat"> Democrat<br>
+                      <input type="checkbox" name="republican" value="republican"> Republican<br>
+                      <input type="checkbox" name="independent" value="independent"> Independent<br>
+              </form>
+  
+          <h4 class="filter-sorting-text">Sort: </h4>
+              <form action="">
+                  <input type="radio" name="sort" value="First Name"> First Name<br>
+                  <input type="radio" name="sort" value="Last Name"> Last Name<br>
+                  <input type="radio" name="sort" value="Year Elected"> Year Elected<br>
+              </form>
   </div>
 
   </div>
   <div class="search-results-list">
   <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-md-3 official-lists">
     <div *ngIf="official.gender=='M'">
-    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'" style="width:150px; height:200px;">
+    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
     </div>
     <div *ngIf="official.gender=='F'">
-    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'" style="width:150px; height:200px;">
+    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
     </div>
     <h2>{{official.name}}</h2>
     <h4>({{official.party}} - {{official.state}})</h4>
