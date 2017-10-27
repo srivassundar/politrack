@@ -3,7 +3,7 @@
 }
 h2 {margin-left: 10px;}
 [class*='col-']:last-of-type {
-  padding-right: ;
+  padding-right: 0;
 }
 a {
   text-decoration: none;
