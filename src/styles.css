@@ -41,23 +41,29 @@
     src: url('assets/fonts/WhitneyHTF-Black.otf'); /* Legacy iOS */
 }
 
-
+/*
 html {
   padding-bottom: 75px;
-}
+}*/
 body {
     font-family: 'whitneyHTF-book';
     max-width: 100vw;
     overflow-x: hidden;
     /*margin-left: 60px;
-    margin-right: 60px;*/
+    margin-right: 60px;
     background-image: url(/assets/thumbnails/American.png);
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: 370px 287px;
-    background-attachment: fixed;
+    background-attachment: fixed;*/
 }
 
+.home-background{
+  background-image: url(/assets/thumbnails/American1.png);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 370px 287px;
+}
 
 
 nav {
