@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActivatedRoute, Params }   from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { OnInit } from '@angular/core';
-
 import { Official } from './../official';
 import { OfficialService } from './../official.service';
 
@@ -27,6 +26,9 @@ export class SearchResultComponent implements OnInit {
     private http: HttpClient
   ) {}
 
+  /**
+   * Function to retrieve all politicians matching the search criteria.
+   */
   ngOnInit(): void {
     this.route.params.subscribe(
       params => this.officialService.searchOfficials(this.http, params['keyword'])
@@ -38,24 +40,6 @@ export class SearchResultComponent implements OnInit {
     this.search_keyword = this.officialService.getSearchKeyword();
     console.log(this.search_result);
   }
-
-  // search_officials(): void {
-  //   this.officialService.searchOfficials().then(search_result => {
-  //       this.search_result = search_result;
-  //     });
-  // }
-
-  // onSelect(official: Official): void {
-  //   this.selectedOfficial = official;
-  //   console.log(this.selectedOfficial);
-  //   this.gotoDetail();
-  // }
-
-  // gotoDetail(): void {
-  //   console.log(this.selectedOfficial.name);
-  //   this.router.navigate(['/detail',
-  //   this.selectedOfficial.name])
-  // }
 
 }
 

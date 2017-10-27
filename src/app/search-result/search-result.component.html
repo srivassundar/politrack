@@ -2,34 +2,6 @@
 <br><br clear="all" />
 <div class="grid grid-pad">
   <div class="topGrid">
-<!--   <button>Educational</button>
-  <button>Environmental</button>
-  <button>Public safety</button>
-  <button>Sales</button>
-  <button>Social</button>
-  <button>Food drive</button>
-  <button>Community</button>
-  <button>Outdoor</button>
-  <br clear="all" />
-
-  <button>Looking for donations</button>
-  <button>Nearing volunteer mark</button>
-  <button>Almost at full funding</button>
-  <button>Occurring soon</button>
-  <button>Ending soon</button>
-  <button>Nearby</button>
-  <br clear="all" /><br clear="all" /><br clear="all" /> -->
-
-<!--
-  <div class="left-sidebar">
-  <select placeholder="Sort by">
-    <option value="sortBy">Sort by</option>
-    <option value="firstname">First Name</option>
-    <option value="lastname">Last Name</option>
-    <option value="year">Year Elected</option>
-  </select>
-  </div>-->
-  
   <div class="col-md-3 text filter-sorting">
       <h3 class="section-heading"><b>Filter</b></h3>
           <h4 class="filter-sorting-text">Political Party: </h4>
@@ -49,8 +21,13 @@
 
   </div>
   <div class="search-results-list">
-  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-sm-6 col-md-3 official-lists">
-    <img src="{{official.img_url}}" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
+  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-md-3 official-lists">
+    <div *ngIf="official.gender=='M'">
+    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
+    </div>
+    <div *ngIf="official.gender=='F'">
+    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
+    </div>
     <h2>{{official.name}}</h2>
     <h4>({{official.party}} - {{official.state}})</h4>
     <p>{{official.role}}</p><br>

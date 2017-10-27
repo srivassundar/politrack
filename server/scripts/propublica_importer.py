@@ -1,8 +1,10 @@
-from __future__ import print_function
+'''
+Script for importing current Congress and Senate representatives from
+the ProPublica API and populating the database.
+'''
 
 import argparse
 import sqlite3
-import sys
 
 import requests
 
@@ -11,7 +13,6 @@ from congress_legislators_importer import append_wiki_url
 # Script Defaults
 DEFAULTS = {
     'states': ['GA'],
-    'num_workers': 5,
     'db_filepath': '../db/propublica_officials.db',
     'db_table': 'officials_info',
     'clean_db': False,
@@ -104,7 +105,7 @@ def retrieve_state_data(state, conn):
         header = {'X-API-KEY': API_PARAMS['API_KEY']}
         response = requests.get(officials_endpoint, headers=header)
         if response.status_code != 200:
-            print("Something went wrong while trying to retrieve endpoint",
+            print('Something went wrong while trying to retrieve endpoint',
                   officials_endpoint)
             continue
         response = response.json()
@@ -147,7 +148,7 @@ def parse_args():
                         nargs='*', help='states to retrieve (two letter); '
                                         'to retrieve all states specify no '
                                         'states')
-    parser.add_argument('-c', '--clean', action="store_true",
+    parser.add_argument('-c', '--clean', action='store_true',
                         help='remove all records from table'
                              ' (specify states if you want to run script)')
     args = parser.parse_args()
