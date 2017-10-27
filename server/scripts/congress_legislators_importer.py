@@ -1,4 +1,7 @@
-from __future__ import print_function
+'''
+Add Wikipedia URL for each official from the congress legislators
+dataset into the database.
+'''
 
 import argparse
 import json
@@ -7,11 +10,8 @@ import sys
 
 # Script Defaults
 DEFAULTS = {
-    'states': ['GA'],
-    'num_workers': 5,
     'db_filepath': '../db/propublica_officials.db',
     'db_table': 'officials_info',
-    'clean_db': False,
 }
 
 ALL_STATES = ['AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI',
@@ -96,7 +96,7 @@ def parse_args():
 
     states = ALL_STATES
     if args.states is not None and len(args.states):
-            states = args.states
+        states = args.states
     if any(len(state) != 2 for state in states):
         print('Each state must be a two letter state code')
     states = [state.upper() for state in states]

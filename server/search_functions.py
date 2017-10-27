@@ -1,4 +1,6 @@
-from __future__ import print_function
+'''
+Module containing functions handling the search officials functionality.
+'''
 
 from enum import Enum
 
@@ -16,7 +18,8 @@ class QUERY_TYPE(Enum):
 
 
 def get_officials_for_query(query):
-    '''Takes in a search query and gets officials related to it.
+    '''
+    Takes in a search query and gets officials related to it.
 
     First understands if the query is an address/zipcode or a name.
     Then appropriately retrieves the officials from the database.
@@ -39,6 +42,9 @@ def get_officials_for_query(query):
 
 
 def classify_query(query):
+    '''
+    Classify the query into address or name.
+    '''
     # The query is too short!
     if len(query) < 2:
         return QUERY_TYPE.INVALID
@@ -55,6 +61,10 @@ def classify_query(query):
 
 
 def get_officials_by_address(query):
+    '''
+    Query the database to get all officials that represent a
+    particular address.
+    '''
     # Get state, congressional district from Google Civic Information API
     state, cd, predicted_address = get_state_district_for_address(query)
     if state is None or cd is None:
@@ -83,6 +93,10 @@ def get_officials_by_address(query):
 
 
 def get_officials_by_name(query):
+    '''
+    Query the database to get all officials that have a name match with
+    the query string.
+    '''
     # Normalize query
     rm_punct_trans = str.maketrans('', '', '.,:;?[]{}()-_+=*&%$#@!')
     query = str(query).translate(rm_punct_trans)
@@ -99,8 +113,8 @@ def get_officials_by_name(query):
     '''
     like_clause = '''
         OR '''.join(
-            "LOWER(name) LIKE '%{tok}%'".format(tok=tok) for tok in tokens
-        )
+        "LOWER(name) LIKE '%{tok}%'".format(tok=tok) for tok in tokens
+    )
     cursor = get_db().cursor()
     # print(select_by_name.format(like_clause=like_clause))
     cursor.execute(select_by_name.format(like_clause=like_clause))

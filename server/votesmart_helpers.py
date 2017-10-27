@@ -1,10 +1,16 @@
+'''
+Module for helper functions for connecting to and getting data from the
+Votesmart API.
+'''
+
 import requests
 
 API_KEY = 'f2ff4cb23fe3500a9a7f789b06c55ad5'
 
 
 def _apicall(func, params):
-    params = { k: v for k, v in params.items() if v }
+    '''Helper function for making API calls.'''
+    params = {k: v for k, v in params.items() if v}
     params['o'] = 'JSON'
     params['key'] = API_KEY
     url = 'http://api.votesmart.org/%s' % func
@@ -16,6 +22,10 @@ def _apicall(func, params):
 
 
 def fetch_details(candidateId):
+    '''
+    Fetch biographical and address details for a candidate from their
+    Votesmart ID.
+    '''
     params = {'candidateId': candidateId}
     result = _apicall('CandidateBio.getDetailedBio', params)
     result1 = _apicall('Address.getOffice', params)['address']
