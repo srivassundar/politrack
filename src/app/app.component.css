@@ -2,7 +2,6 @@
   background-color: #CFD8DC !important;
   color: white;
 }
-
 h1 {
   font-size: 1.2em;
   color: #999;
@@ -15,25 +14,21 @@ h2 {
 }
 nav a {
   text-decoration: none;
-  /*margin-top: 7.5px;*/
   display: block;
-  /*border-radius: 4px;*/
   font-size: 20px;
   text-align: center;
   text-transform: uppercase;
-  color: orangered;
+  color: orangered !important;
   font-weight:700;
 }
-
   .responsive-nav {
     display: none;
   }
-
 nav a:visited, a:link {
-  color: #000000;
+  color: #000000 !important;
 }
 nav a:hover {
-  color: #333;
+  color: #333 !important;
 }
 @media (min-width: 615px) {
   nav .logo {
@@ -51,7 +46,6 @@ nav input {
   border-color: #d9d9d9;
 }
 nav input::placeholder {
-  /*padding: 5px;*/
   font-family: 'whitneyHTF-light';
   color: #969696;
   font-size: 13px;
@@ -77,12 +71,10 @@ nav input a {
   float: right;
   height: 100%;
 }
-
 @media (max-width: 621px) {
   .makenavright{
     display: none;
   }
-  /*logo doesn't center why? */
   nav .logo {
     display: block;
     margin-left: auto;
@@ -90,7 +82,6 @@ nav input a {
     float: left;
   }
 }
-
 .searchnav {
   position: relative;
   top: 15%;
@@ -100,40 +91,34 @@ nav input a {
   top: 38%;
   transform: translateY(-50%);
 }
-
 @media (max-width: 621px) {
   .show-menu {
-        display: block !important;
-        float: none;
-        float: right;
-        margin-right: 20px;
+    display: block !important;
+    float: none;
+    float: right;
+    margin-right: 20px;
   }
-
 }
-
 /*Style 'show menu' label button and hide it by default*/
 .show-menu {
-    text-align: center;
-    padding: 10px 0;
-    display: none;
+  text-align: center;
+  padding: 10px 0;
+  display: none;
 }
 /*Hide checkbox*/
 input[type=checkbox]{
-    display: none;
+  display: none;
 }
-
-
 /*Show menu when invisible checkbox is checked*/
-input[type=checkbox]:checked ~ #menu{
-    display: block !important;
-    z-index: 20;
-    background-color: #fff;
+input[type=checkbox]:checked ~ #menu {
+  display: block !important;
+  z-index: 20;
+  background-color: #fff;
 }
-
 /*Hide menu when width is over 590px */
 @media (min-width: 621px) {
   input[type=checkbox]:checked ~ #menu{
     display: none !important;
-}
+  }
 }
 
