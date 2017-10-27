@@ -62,3 +62,14 @@ p {
   margin-bottom: 20px;
   max-height: 300px;
 }
+
+.detail-text {
+  text-align: center;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+  border-bottom: 4px solid #f15f40;
+}
+
+.detail-tab {
+  font-size: 16px;
+}
