@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpParams, HttpClient } from '@angular/common/http';
+import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Official, OfficialDetail } from './official';
@@ -45,6 +45,23 @@ export class OfficialService {
   }
 
   /**
+   * Function to retrieve the biography of the official from Wikipedia API.
+   * @param http The http client that the search query will be running on.
+   * @param The name of the official.
+   * @return An Observable object containing the biography of the official.
+   */
+    getOfficialWiki(http: HttpClient, official_name: string) {
+    let http_headers = new HttpHeaders();
+    http_headers = http_headers.append('Api-User-Agent', 'PoliTrack/1.0 (lindaz@gatech.edu)');
+    http_headers = http_headers.append('Content-Type', 'application/json; charset=UTF-8');
+
+    return http.get('https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&origin=*' , {
+      params: new HttpParams().set('titles', official_name),
+      headers: http_headers
+    }).map(data => data['query']);
+  }
+
+  /**
    * Function to retrieve the word(s) that the user is searching by
    * @return The word(s) the user is searching by
    */
@@ -52,10 +69,18 @@ export class OfficialService {
     return this.search_keyword;
   }
 
+  /**
+   * Function to retrieve the list of officials
+   * @return The Promise object containing list of officials
+   */
   getOfficials(): Promise<Official[]> {
     return Promise.resolve(this.official_list);
   }
 
+  /**
+   * Function to retrieve the official object from the official_list using the name of official
+   * @return The official object that matches the name
+   */
   getOfficial(name: string): Promise<Official> {
     return this.getOfficials()
                .then(officials => this.official_list.find(official => official.name === name));

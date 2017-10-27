@@ -19,6 +19,7 @@ export class OfficialDetailComponent implements OnInit {
   official: Official;
   search_result: Official[];
   detail_result: OfficialDetail[];
+  biography: string;
   facebook_path: 'https://facebook.com';
   twitter_path: 'https://twitter.com';
   youtube_path: 'https://youtube.com';
@@ -32,7 +33,7 @@ export class OfficialDetailComponent implements OnInit {
   ) {}
 
   /**
-   * Function to retrieve the official details data from the back-end server
+   * Function to retrieve the official data from the back-end server
    */
   ngOnInit(): void {
     const self = this;
@@ -41,20 +42,35 @@ export class OfficialDetailComponent implements OnInit {
         params => this.officialService.searchOfficials(this.http, params['name'])
           .subscribe(official_list => {
             this.search_result = official_list;
-            this.official = official_list.find(official => official.name ===
-                                              params['name']);
-            this.officialService.detailSearchOfficials(this.http,
-            this.official.id).subscribe(detail_list => {
-              this.detail_result = detail_list;
-              this.detail_result['candidate']['spouse'] = this.detail_result['candidate']['family'].split(';')[0];
-              this.detail_result['candidate']['children'] = this.detail_result['candidate']['family'].split(';')[1];
-            });
+            this.official = official_list.find(official => official.name === params['name']);
+            this.getOfficalDetail();
           })
       );
     } else {
       this.official = this.input_official;
       this.input_official = null;
     }
+  }
+
+  /**
+   * Function to retrieve the detailed official data from the back-end server
+   */
+  getOfficalDetail() {
+    this.officialService.detailSearchOfficials(this.http, this.official.id).subscribe(detail_list => {
+      this.detail_result = detail_list;
+      this.detail_result['candidate']['spouse'] = this.detail_result['candidate']['family'].split(';')[0];
+      this.detail_result['candidate']['children'] = this.detail_result['candidate']['family'].split(';')[1];
+    });
+
+    let wiki_keyword = this.official['wiki_url'];
+    wiki_keyword = wiki_keyword.substr(wiki_keyword.indexOf('/wiki/') + 6); // Only gets the text after 'https://en.wikipedia.org/wiki/...'
+
+    /* Get biography of the official from wikipedia */
+    this.officialService.getOfficialWiki(this.http, wiki_keyword).subscribe(wiki => {
+      wiki.pages.forEach(function(page_number) {
+        this.biography = wiki.pages[page_number].extract;
+      });
+    });
   }
 
   /**
