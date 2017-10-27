@@ -33,12 +33,10 @@ export class SearchResultComponent implements OnInit {
     this.route.params.subscribe(
       params => this.officialService.searchOfficials(this.http, params['keyword'])
         .subscribe(official_list => {
-          console.log('in search result compt');
           this.search_result = official_list;
         })
     );
     this.search_keyword = this.officialService.getSearchKeyword();
-    console.log(this.search_result);
   }
 
 }

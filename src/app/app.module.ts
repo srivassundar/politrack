@@ -3,13 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule }   from '@angular/router';
+import { RouterModule } from '@angular/router';
 
-import { AppComponent }         from './app.component';
-import { AppRoutingModule }     from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 import { OfficialService } from './official.service';
-import { CategoryService } from './category.service';
 import { HomepageComponent } from './homepage/homepage.component';
 import { OfficialDetailComponent } from './official-detail/official-detail.component';
 import { SearchResultComponent } from './search-result/search-result.component';
@@ -32,7 +31,7 @@ import { ContactComponent } from './contact/contact.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [OfficialService, CategoryService],
+  providers: [OfficialService],
   bootstrap: [AppComponent]
 })
 
