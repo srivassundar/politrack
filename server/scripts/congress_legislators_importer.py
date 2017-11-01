@@ -77,20 +77,14 @@ def append_congress_legislator_info(states, conn):
     cursor = conn.cursor()
     cursor.execute(create_leg_table)
     for leg_id in legislators_ids:
-        try:
-            leg_info = {
-                'id': leg_id['bioguide'],
-                'wiki_url': 'https://en.wikipedia.org/wiki/{wiki_name}'.format(
-                    wiki_name=leg_id['wikipedia']),
-                'votesmart_id': leg_id.get('votesmart'),
-                'opensecrets_id': leg_id.get('opensecrets'),
-                'govtrack_id': leg_id.get('govtrack')
-            }
-        except Exception as e:
-            print(leg_info)
-            print(leg_id)
-            print(e)
-            raise(e)
+        leg_info = {
+            'id': leg_id['bioguide'],
+            'wiki_url': 'https://en.wikipedia.org/wiki/{wiki_name}'.format(
+                wiki_name=leg_id['wikipedia']),
+            'votesmart_id': leg_id.get('votesmart'),
+            'opensecrets_id': leg_id.get('opensecrets'),
+            'govtrack_id': leg_id.get('govtrack')
+        }
         cursor.execute(insert_leg, leg_info)
     cursor.execute(join_officials_leg)
     cursor.execute(drop_leg_table)
