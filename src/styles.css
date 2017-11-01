@@ -5,32 +5,32 @@
 /*font-family: 'Merriweather', sans-serif;*/
 
 @font-face {
-    font-family: 'circular-std-book';
-    src: url('assets/fonts/circular-std-book.otf'); /* Legacy iOS */
+  font-family: 'circular-std-book';
+  src: url('assets/fonts/circular-std-book.otf'); /* Legacy iOS */
 }
 @font-face {
-    font-family: 'circular-std-medium';
-    src: url('assets/fonts/circular-std-medium.ttf'); /* Legacy iOS */
+  font-family: 'circular-std-medium';
+  src: url('assets/fonts/circular-std-medium.ttf'); /* Legacy iOS */
 }
 @font-face {
-    font-family: 'circular-std-bold';
-    src: url('assets/fonts/circular-std-bold.otf'); /* Legacy iOS */
+  font-family: 'circular-std-bold';
+  src: url('assets/fonts/circular-std-bold.otf'); /* Legacy iOS */
 }
 @font-face {
-    font-family: 'whitneyHTF-light';
-    src: url('assets/fonts/WhitneyHTF-Light.ttf'); /* Legacy iOS */
+  font-family: 'whitneyHTF-light';
+  src: url('assets/fonts/WhitneyHTF-Light.ttf'); /* Legacy iOS */
 }
 @font-face {
-    font-family: 'whitneyHTF-book';
-    src: url('assets/fonts/WhitneyHTF-Book.otf'); /* Legacy iOS */
+  font-family: 'whitneyHTF-book';
+  src: url('assets/fonts/WhitneyHTF-Book.otf'); /* Legacy iOS */
 }
 @font-face {
-    font-family: 'whitneyHTF-medium';
-    src: url('assets/fonts/WhitneyHTF-Medium.ttf'); /* Legacy iOS */
+  font-family: 'whitneyHTF-medium';
+  src: url('assets/fonts/WhitneyHTF-Medium.ttf'); /* Legacy iOS */
 }
 @font-face {
-    font-family: 'whitneyHTF-semibold';
-    src: url('assets/fonts/WhitneyHTF-SemiBold.otf'); /* Legacy iOS */
+  font-family: 'whitneyHTF-semibold';
+  src: url('assets/fonts/WhitneyHTF-SemiBold.otf'); /* Legacy iOS */
 }
 @font-face {
     font-family: 'whitneyHTF-bold';
@@ -41,21 +41,14 @@
     src: url('assets/fonts/WhitneyHTF-Black.otf'); /* Legacy iOS */
 }
 
-/*
+/* could be needed later
 html {
   padding-bottom: 75px;
 }*/
 body {
-    font-family: 'whitneyHTF-book';
-    max-width: 100vw;
-    overflow-x: hidden;
-    /*margin-left: 60px;
-    margin-right: 60px;
-    background-image: url(/assets/thumbnails/American.png);
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: 370px 287px;
-    background-attachment: fixed;*/
+  font-family: 'whitneyHTF-book';
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .home-background{
@@ -67,164 +60,148 @@ body {
 
 
 nav {
-    position: -webkit-sticky;
-    position: sticky;
-    z-index: 1;
-    top: 0px;
-    /*margin-left: -65px;
-    padding-top: 7.5px;
-    padding-left: 60px;
-    padding-right: 60px;*/
-    background-color: white;
-    height: 110px;
-    width: 100%;
-    vertical-align: center;
-
-    -webkit-box-shadow: 0 8px 6px -6px #d6d6d6;
-    -moz-box-shadow: 0 8px 6px -6px #d6d6d6;
-    box-shadow: 0 8px 6px -6px #d6d6d6;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+  top: 0px;
+  background-color: white;
+  height: 110px;
+  width: 100%;
+  vertical-align: center;
+  -webkit-box-shadow: 0 8px 6px -6px #d6d6d6;
+  -moz-box-shadow: 0 8px 6px -6px #d6d6d6;
+  box-shadow: 0 8px 6px -6px #d6d6d6;
 }
 
 nav a {
-    padding: 5px 20px;
-    color: #000000;
+  padding: 5px 20px;
+  color: #000000;
 }
 a.logo.active {
-    padding-top: 1.5px;
-    color: #000000;
-    font-family: 'whitneyHTF-bold';
+  padding-top: 1.5px;
+  color: #000000;
+  font-family: 'whitneyHTF-bold';
 }
 nav._ngcontent-c0, a.active._ngcontent-c0 {
-    color: #000000;
-    padding-left: 130px;
+  color: #000000;
+  padding-left: 130px;
 }
 .h2, h2 {
-    font-family: 'whitneyHTF-book';
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 0px;
-    text-align: left;
-    color: #444444;
-    padding-left: 5px;
-    font-size: 28px;
+  font-family: 'whitneyHTF-book';
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 0px;
+  text-align: left;
+  color: #444444;
+  padding-left: 5px;
+  font-size: 28px;
 }
 #motto {
-    font-family: 'Merriweather Sans', sans-serif;
-    font-size: 40px;
-    margin-left: 0px;
-    margin-top: 120px;
-    text-transform: capitalize;
-    text-align: center;
+  font-family: 'Merriweather Sans', sans-serif;
+  font-size: 40px;
+  margin-left: 0px;
+  margin-top: 120px;
+  text-transform: capitalize;
+  text-align: center;
 }
 div.col-lg-4 {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    text-align: center;
-    width: 1150px;
-    background-color: #ededed;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    z-index: 0;
-    position: absolute;
-    left: 0;
-    right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+  width: 1150px;
+  background-color: #ededed;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  z-index: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 .col-lg-4 {
   padding-right: 0px;
   padding-left: 0px;
 }
 .col-lg-4 input {
-    border: none;
-    display: inline-block;
-    float: left;
-    padding: 5px;
-    font-size: 18px;
-    margin-right: 10px;
+  border: none;
+  display: inline-block;
+  float: left;
+  padding: 5px;
+  font-size: 18px;
+  margin-right: 10px;
 }
 .col-lg-4 input::placeholder {
-    color: #969696;
+  color: #969696;
 }
 .col-lg-4 input[name="officialSearch"] {
-    width: 76%;
-    /*border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;*/
-    border-radius: 10px;
-    font-family: 'whitneyHTF-light';
-    padding: 10px;
+  width: 76%;
+  border-radius: 10px;
+  font-family: 'whitneyHTF-light';
+  padding: 10px;
 }
 @media (max-width: 621px) {
   .col-lg-4 input[name="officialSearch"] {
-      width: 90%;
-      border-radius: 2px;
-      font-family: 'whitneyHTF-light';
-      padding: 10px;
-      font-size: 14px;
-      float: none;
+    width: 90%;
+    border-radius: 2px;
+    font-family: 'whitneyHTF-light';
+    padding: 10px;
+    font-size: 14px;
+    float: none;
   }
 }
 
 .col-lg-4 input[name="neighSearch"] {
-    width: 22%;
+  width: 22%;
 }
 .col-lg-4 input[name="dateSearch"] {
-    width: 16%;
+  width: 16%;
 }
 .col-lg-4 button {
-
-    margin-right: 15px;
-    background-color: #000000;
-    color: #fff;
-    border: none;
-    font-size: 16px;
-    font-family: 'whitneyHTF-medium';
+  margin-right: 15px;
+  background-color: #000000;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-family: 'whitneyHTF-medium';
 }
 .h1, h1 {
-    margin-top: 50px;
-    margin-left: 20px;
-    font-family: 'Merriweather', sans-serif;
+  margin-top: 50px;
+  margin-left: 20px;
+  font-family: 'Merriweather', sans-serif;
 }
 .grid .grid-pad {
-    text-align: center;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
+  text-align: center;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }
 div.col-1-4 {
-    width: 100px;
-    text-align: center;
-/*    border-style: solid;
-    border-width: 1px;*/
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    padding: 10px;
+  width: 100px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 10px;
 }
 div.col-1-4[_ngcontent-c1] {
-  width: 33.33%;
+width: 33.33%;
 }
 .inner {
-/*    border-color: #e0e0e0;
-    border-style: solid;
-    border-width: 1px;*/
-    text-align: center;
-    display: inline-block;
-    margin: 0 auto;
-    width: 95%;
-    height: 90%;
-    padding-left: 10px;
-    padding-right: 10px;
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+  width: 95%;
+  height: 90%;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .inner p {
-  font-size: 14px;
+font-size: 14px;
 }
 div.col-1-4 img {
-/*    display: block;
-    margin-left: auto;
-    margin-right: auto;*/
-    margin-top: 10px;
-    width: 100%;
-    height: 100%;
+  margin-top: 10px;
+  width: 100%;
+  height: 100%;
 }
 div.progress {
   margin-left: 10.5px;
@@ -233,24 +210,21 @@ div.progress {
   margin-bottom: 5px;
 }
 div.progress-bar {
-    display: block;
-    margin: 0 auto;
-    height: 100%;
-    background-color: #00B76B;
-    float: left;
-    font-size: 14px;
-    font-family: 'whitneyHTF-book';
-    width:90%;
-    padding-top: 1px;
-/*    border-style: solid;
-    border-width: 2px;
-    border-color: #000000;*/
+  display: block;
+  margin: 0 auto;
+  height: 100%;
+  background-color: #00B76B;
+  float: left;
+  font-size: 14px;
+  font-family: 'whitneyHTF-book';
+  width:90%;
+  padding-top: 1px;
 }
 div.col-1-4 p {
-    margin-left: 0px;
-    margin-top: 0px;
-    text-align: center;
-    padding-top: 14px;
+  margin-left: 0px;
+  margin-top: 0px;
+  text-align: center;
+  padding-top: 14px;
 }
 project-detail img {
   width: 100%;
@@ -323,7 +297,7 @@ div.tagButtons button:hover {
   font-family: 'whitneyHTF-light';
 }
 .col-1-4 {
-    padding: 14px;
+  padding: 14px;
 }
 div.aboutContainer h2 {
   margin-top: 30px;
@@ -331,11 +305,11 @@ div.aboutContainer h2 {
   background-color: white;
 }
 div.aboutContainer p {
-margin-top: 30px;
-margin-left: 5px;
-padding-left: 5px;
-width: 70%;
-text-align: left;
+  margin-top: 30px;
+  margin-left: 5px;
+  padding-left: 5px;
+  width: 70%;
+  text-align: left;
 }
 div.Playbooktitle p {
   font-size-adjust: 20px;
@@ -358,14 +332,14 @@ div.topGrid {
   margin-left: 2%;
 }
 div.topGrid select {
-   -webkit-appearance: none;
-   -moz-appearance: none;
-   appearance: none;
-   padding: 10px;
-   padding-left: 15px;
-   padding-right: 5px;
-   font-family: 'whitneyHTF-medium';
-   vertical-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 5px;
+  font-family: 'whitneyHTF-medium';
+  vertical-align: center;
 }
 div.signUp button, button, div.button, button.helpButton, #helpButton {
   background-color: none;
@@ -398,7 +372,7 @@ div.progress-bars p {
 }
 @media (max-width: 621px) {
   #explorePrj, #createPrj, #aboutNav, #signUpNav {
-      display: none;
+    display: none;
   }
   nav input[name="projectSearch"] {
     display: none;
@@ -444,7 +418,7 @@ div.progress-bars p {
     display: inline-block;
   }
   h1.trendingHeader {
-  margin-top: 150px;
+    margin-top: 150px;
   }
   #motto {
     display: block;
@@ -458,12 +432,7 @@ div.progress-bars p {
     margin-top: 30px;
   }
 }
-/*
-@media (min-width: 950px) {
-  #signUpNav {
-    display: inline-block;
-  }
-}*/
+
 button:disabled, button[disabled], #helpButton:disabled, #helpButton[disabled] {
   background-color: #C4C9C4;
 }
