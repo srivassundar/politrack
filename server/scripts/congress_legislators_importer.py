@@ -30,18 +30,23 @@ def get_legislators():
         return json.load(fp)
 
 
-def append_wiki_url(states, conn):
+def append_congress_legislator_info(states, conn):
     legislators_ids = [v['id'] for v in get_legislators()]
     create_leg_table = '''
         CREATE TEMPORARY TABLE IF NOT EXISTS {tmp_tbl} (
             'id'        text    PRIMARY KEY,
-            'wiki_url'  text
+            'wiki_url'  text,
+            'votesmart_id' text,
+            'opensecrets_id' text,
+            'govtrack_id' text
         );
     '''.format(tmp_tbl='temp_leg')
 
     insert_leg = '''
-        INSERT OR REPLACE INTO {tmp_tbl} ('id', 'wiki_url')
-        VALUES (:id, :wiki_url);
+        INSERT OR REPLACE INTO {tmp_tbl} (
+            'id', 'wiki_url', 'votesmart_id', 'opensecrets_id', 'govtrack_id'
+        )
+        VALUES (:id, :wiki_url, :votesmart_id, :opensecrets_id, :govtrack_id);
     '''.format(tmp_tbl='temp_leg')
 
     join_officials_leg = '''
@@ -50,38 +55,52 @@ def append_wiki_url(states, conn):
             'last_name', 'role', 'gender', 'party', 'times_topics_url',
             'twitter_id', 'facebook_account', 'youtube_id', 'seniority',
             'next_election', 'api_uri', 'district', 'at_large', 'img_url',
-            'wiki_url'
+            'wiki_url', 'votesmart_id', 'opensecrets_id', 'govtrack_id'
         )
         SELECT O.id, state, name, first_name, middle_name,
         last_name, role, gender, party, times_topics_url,
         twitter_id, facebook_account, youtube_id, seniority,
         next_election, api_uri, district, at_large, img_url,
-        L.wiki_url
+        L.wiki_url, L.votesmart_id, L.opensecrets_id, L.govtrack_id
         FROM {tbl} O
-        INNER JOIN {tmp_tbl} L
+        LEFT OUTER JOIN {tmp_tbl} L
         ON O.id = L.id
         WHERE state IN ({states_str})
         ;
     '''.format(tbl=DEFAULTS['db_table'], tmp_tbl='temp_leg',
                states_str=', '.join("'{s}'".format(s=s) for s in states))
+    
+    drop_leg_table = '''
+        DROP TABLE IF EXISTS {tmp_tbl};
+    '''.format(tmp_tbl='temp_leg')
 
     cursor = conn.cursor()
     cursor.execute(create_leg_table)
     for leg_id in legislators_ids:
-        leg_info = {
-            'id': leg_id['bioguide'],
-            'wiki_url': 'https://en.wikipedia.org/wiki/{wiki_name}'.format(
-                wiki_name=leg_id['wikipedia'])
-        }
+        try:
+            leg_info = {
+                'id': leg_id['bioguide'],
+                'wiki_url': 'https://en.wikipedia.org/wiki/{wiki_name}'.format(
+                    wiki_name=leg_id['wikipedia']),
+                'votesmart_id': leg_id.get('votesmart'),
+                'opensecrets_id': leg_id.get('opensecrets'),
+                'govtrack_id': leg_id.get('govtrack')
+            }
+        except Exception as e:
+            print(leg_info)
+            print(leg_id)
+            print(e)
+            raise(e)
         cursor.execute(insert_leg, leg_info)
     cursor.execute(join_officials_leg)
+    cursor.execute(drop_leg_table)
 
 
 def main():
     states = parse_args()
 
     with sqlite3.connect(DEFAULTS['db_filepath']) as conn:
-        append_wiki_url(states, conn)
+        append_congress_legislator_info(states, conn)
         conn.commit()
 
 
