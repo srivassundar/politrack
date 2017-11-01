@@ -5,7 +5,7 @@ import sys
 from flask import Flask, make_response, jsonify, request, g, send_from_directory, abort
 
 from votesmart_helpers import fetch_details
-from propublica_helpers import fetch_member_details
+from propublica_helpers import fetch_member_ids
 from search_functions import get_officials_for_query
 
 app = Flask(__name__)
@@ -64,11 +64,11 @@ def get_details():
     # The only reason for exceptions to be thrown are when the remote
     # server is unavailable or the API key/ID is invalid.
     try:
-        details = fetch_member_details(request.args.get('id'))
-        if details is None:
+        member_ids = fetch_member_ids(request.args.get('id'))
+        if member_ids is None:
             return jsonify({'error': 'Invalid ID'})
 
-        votesmart_id = details['votesmart_id']
+        votesmart_id = member_ids['votesmart_id']
         return jsonify(fetch_details(votesmart_id))
     except Exception as e:
         from traceback import print_exc
