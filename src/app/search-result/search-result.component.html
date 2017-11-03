@@ -13,8 +13,8 @@
   
           <h4 class="filter-sorting-text">Sort: </h4>
               <form action="">
-                  <input type="radio" name="sort" value="First Name" (change)="sort('firstName')"> First Name<br>
-                  <input type="radio" name="sort" value="Last Name" (change)="sort('lastName')"> Last Name<br>
+                  <input type="radio" #sortFirst name="sort" value="firstName" (change)="sort(sortFirst.value)"> First Name<br>
+                  <input type="radio" #sortLast name="sort" value="lastName" (change)="sort(sortLast.value)"> Last Name<br>
               </form>
   </div>
 
