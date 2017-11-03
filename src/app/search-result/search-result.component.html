@@ -6,16 +6,15 @@
       <h3 class="section-heading"><b>Filter</b></h3>
           <h4 class="filter-sorting-text">Political Party: </h4>
               <form action="">
-                  <input type="checkbox" name="democrat" value="democrat"> Democrat<br>
-                      <input type="checkbox" name="republican" value="republican"> Republican<br>
-                      <input type="checkbox" name="independent" value="independent"> Independent<br>
+                  <input type="checkbox" #d name="democrat" value="democrat" (change)="democrat = d.checked; filter()"> Democrat<br>
+                  <input type="checkbox" #r name="republican" value="republican" (change)="republican = r.checked; filter()"> Republican<br>
+                  <input type="checkbox" #i name="independent" value="independent" (change)="independent = i.checked; filter()"> Independent<br>
               </form>
   
           <h4 class="filter-sorting-text">Sort: </h4>
               <form action="">
-                  <input type="radio" name="sort" value="First Name"> First Name<br>
-                  <input type="radio" name="sort" value="Last Name"> Last Name<br>
-                  <input type="radio" name="sort" value="Year Elected"> Year Elected<br>
+                  <input type="radio" name="sort" value="First Name" (change)="sort('firstName')"> First Name<br>
+                  <input type="radio" name="sort" value="Last Name" (change)="sort('lastName')"> Last Name<br>
               </form>
   </div>
 

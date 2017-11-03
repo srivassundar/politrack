@@ -16,8 +16,12 @@ import { OfficialService } from './../official.service';
 export class SearchResultComponent implements OnInit {
   search_keyword: string;
   search_result: Official[];
+  officials: Official[];
   selectedOfficial: Official;
   key: string;
+  democrat: boolean;
+  republican: boolean;
+  independent:boolean;
 
   constructor(
     private officialService: OfficialService,
@@ -25,7 +29,8 @@ export class SearchResultComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient
   ) {}
-
+  
+  
   /**
    * Function to retrieve all politicians matching the search criteria.
    */
@@ -34,10 +39,69 @@ export class SearchResultComponent implements OnInit {
       params => this.officialService.searchOfficials(this.http, params['keyword'])
         .subscribe(official_list => {
           this.search_result = official_list;
+          this.officials = official_list;
         })
     );
     this.search_keyword = this.officialService.getSearchKeyword();
   }
-
+  
+  sort(sortBy: String): void {
+    if (sortBy === "firstName") {
+      this.search_result.sort(function(a, b) {
+      	var nameA = a.first_name, nameB = b.first_name;
+      	if (nameA < nameB) {
+       		return -1; 
+      	}
+      	if (nameA > nameB) {
+      		return 1;
+      	}
+      	nameA = a.last_name, nameB = b.last_name;
+      	if (nameA < nameB) {
+       		return -1; 
+      	}
+      	if (nameA > nameB) {
+      		return 1;
+      	}
+      	return 0;
+      });
+    } 
+    if (sortBy === "lastName") {
+      this.search_result.sort(function(a, b) {
+      	var nameA = a.last_name, nameB = b.last_name;
+      	if (nameA < nameB) {
+       		return -1; 
+      	}
+      	if (nameA > nameB) {
+      		return 1;
+      	}
+      	nameA = a.first_name, nameB = b.first_name;
+      	if (nameA < nameB) {
+       		return -1; 
+      	}
+      	if (nameA > nameB) {
+      		return 1;
+      	}
+      	return 0;
+      });
+    }
+  }
+  
+  filter(): void {
+    if (!this.democrat && !this.republican && !this.independent || this.democrat && this.republican && this.independent) {
+      this.search_result = this.officials;
+    }
+    else {
+      this.search_result = [];
+      if (this.democrat) {
+        this.search_result = this.officials.filter(official => official.party === "D");
+      } 
+      if (this.republican) {
+        this.search_result = this.officials.filter(official => (official.party === "R" || this.search_result.indexOf(official) != -1));
+      }
+      if (this.independent) {
+        this.search_result = this.officials.filter(official => (official.party === "I" || this.search_result.indexOf(official) != -1));
+      } 
+    }
+  }
 }
 
