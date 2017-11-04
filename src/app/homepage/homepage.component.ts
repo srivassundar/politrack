@@ -23,21 +23,30 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+/**
+ * OnValueChanged function checks to see if the keyword specified in the search bar is greater than zero.
+ * if the keyword specified is greater than zero then the placeholder of search is disabled.
+ */
   onValueChanged() {
     if (this.keyword && this.keyword.length > 0) {
       this.invalid = false;
     }
   }
-
+  /**
+   * onClick function navigates to search result page when search button is clicked.
+   */
   onClick(): void {
     this.search();
   }
-
+  /**
+   * onEnter function navigates to search result page when the enter button is pressed.
+   */
   onEnter(): void {
     this.search();
   }
-
+  /**
+   * The search function navigates to search result page and also passes in keyword typed in the search bar.
+   */
   search(): void {
     if (this.keyword && this.keyword.length > 0) {
       this.router.navigate(['/search', this.keyword]);
