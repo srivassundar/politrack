@@ -3,19 +3,67 @@
 <div class="grid grid-pad">
   <div class="topGrid">
   <div class="col-md-3 text filter-sorting">
-      <h3 class="section-heading"><b>Filter</b></h3>
-          <h4 class="filter-sorting-text">Political Party: </h4>
-              <form action="">
-                  <input type="checkbox" #d name="democrat" value="democrat" (change)="democrat = d.checked; filter()"> Democrat<br>
-                  <input type="checkbox" #r name="republican" value="republican" (change)="republican = r.checked; filter()"> Republican<br>
-                  <input type="checkbox" #i name="independent" value="independent" (change)="independent = i.checked; filter()"> Independent<br>
-              </form>
-  
-          <h4 class="filter-sorting-text">Sort: </h4>
+    <h3 class="filter-sorting-text">Sort: </h3>
               <form action="">
                   <input type="radio" #sortFirst name="sort" value="firstName" (change)="sort(sortFirst.value)"> First Name<br>
                   <input type="radio" #sortLast name="sort" value="lastName" (change)="sort(sortLast.value)"> Last Name<br>
               </form>
+      <h3 class="filter-sorting-text"><b>Filter</b></h3>
+              <form action="">
+                <h4 class="filter-sorting-text">Political Party: </h4>
+                  <input type="checkbox" #d name="democrat" value="democrat" (change)="democrat = d.checked; filter()"> Democrat<br>
+                  <input type="checkbox" #r name="republican" value="republican" (change)="republican = r.checked; filter()"> Republican<br>
+                  <input type="checkbox" #i name="independent" value="independent" (change)="independent = i.checked; filter()"> Independent<br>
+                <h4 class="filter-sorting-text">State: </h4>
+                  <input type="checkbox" name="al" value="al"> Alabama<br> 
+                  <input type="checkbox" name="ak" value="ak"> Alaska<br>
+                  <input type="checkbox" name="az" value="az"> Arizona<br>
+                  <input type="checkbox" name="ar" value="ar"> Arkansas<br>
+                  <input type="checkbox" name="ca" value="ca"> California<br>
+                  <input type="checkbox" name="co" value="co"> Colorado<br>
+                  <input type="checkbox" name="ct" value="ct"> Connecticut<br>
+                  <input type="checkbox" name="de" value="de"> Delaware<br>
+                  <input type="checkbox" name="fl" value="fl"> Florida<br>
+                  <input type="checkbox" name="ga" value="ga"> Georgia<br>
+                  <input type="checkbox" name="hi" value="hi"> Hawaii<br>
+                  <input type="checkbox" name="id" value="id"> Idaho<br>
+                  <input type="checkbox" name="ilin" value="ilin"> Illinois | Indiana<br>
+                  <input type="checkbox" name="ia" value="ia"> Iowa<br>
+                  <input type="checkbox" name="ks" value="ks"> Kansas<br>
+                  <input type="checkbox" name="ky" value="ky"> Kentucky<br>
+                  <input type="checkbox" name="la" value="la"> Louisiana<br>
+                  <input type="checkbox" name="me" value="me"> Maine<br>
+                  <input type="checkbox" name="md" value="md"> Maryland<br>
+                  <input type="checkbox" name="ma" value="ma"> Massachusetts<br>
+                  <input type="checkbox" name="mi" value="mi"> Michigan<br>
+                  <input type="checkbox" name="mn" value="mn"> Minnesota<br>
+                  <input type="checkbox" name="ms" value="ms"> Mississippi<br>
+                  <input type="checkbox" name="mo" value="mo"> Missouri<br>
+                  <input type="checkbox" name="mtne" value="mtne"> Montana | Nebraska<br>
+                  <input type="checkbox" name="nv" value="nv"> Nevada<br>
+                  <input type="checkbox" name="nh" value="nh"> New Hampshire<br>
+                  <input type="checkbox" name="nj" value="nj"> New Jersey<br>
+                  <input type="checkbox" name="nm" value="nm"> New Mexico<br>
+                  <input type="checkbox" name="ny" value="ny"> New York<br>
+                  <input type="checkbox" name="nc" value="nc"> North Carolina<br>
+                  <input type="checkbox" name="nd" value="nd"> North Dakota<br>
+                  <input type="checkbox" name="oh" value="oh"> Ohio<br>
+                  <input type="checkbox" name="ok" value="ok"> Oklahoma<br>
+                  <input type="checkbox" name="or" value="or"> Oregon<br>
+                  <input type="checkbox" name="pari" value="pari"> Pennsylvania | Rhode Island<br>
+                  <input type="checkbox" name="sc" value="sc"> South Carolina<br>
+                  <input type="checkbox" name="sd" value="sd"> South Dakota<br>
+                  <input type="checkbox" name="tn" value="tn"> Tennessee<br>
+                  <input type="checkbox" name="tx" value="tx"> Texas<br>
+                  <input type="checkbox" name="ut" value="ut"> Utah<br>
+                  <input type="checkbox" name="vt" value="vt"> Vermont<br>
+                  <input type="checkbox" name="va" value="va"> Virginia<br>
+                  <input type="checkbox" name="wa" value="wa"> Washington<br>
+                  <input type="checkbox" name="wv" value="wv"> West Virginia<br>
+                  <input type="checkbox" name="wi" value="wi"> Wisconsin<br>
+                  <input type="checkbox" name="wy" value="wy"> Wyoming<br>
+              </form>
+  
   </div>
 
   </div>
