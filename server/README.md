@@ -1117,3 +1117,339 @@ Votes and Bills data can be fetched as per the example below:
       }
     }
 ```
+
+Finances data can be fetched as per the example below:
+```
+    curl -i "http://0.0.0.0:8082/api/v0/details/finances?id=L000287"
+    HTTP/1.0 200 OK
+    Content-Type: application/json
+    Content-Length: 7937
+    Server: Werkzeug/0.12.1 Python/3.4.3
+    Date: Tue, 07 Nov 2017 05:26:02 GMT
+    
+    {
+      "contributors": {
+        "@attributes": {
+          "cand_name": "John Lewis (D)", 
+          "cid": "N00002577", 
+          "cycle": "2018", 
+          "notice": "The organizations themselves did not donate, rather the money came from the organization's PAC, its individual members or employees or owners, and those individuals' immediate families.", 
+          "origin": "Center for Responsive Politics", 
+          "source": "https://www.opensecrets.org/members-of-congress/contributors?cid=N00002577&cycle=2018"
+        }, 
+        "contributor": [
+          {
+            "@attributes": {
+              "indivs": "0", 
+              "org_name": "Directors Guild of America", 
+              "pacs": "10000", 
+              "total": "10000"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "9100", 
+              "org_name": "Gmhetc", 
+              "pacs": "0", 
+              "total": "9100"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "0", 
+              "org_name": "AFLAC Inc", 
+              "pacs": "5000", 
+              "total": "5000"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "0", 
+              "org_name": "American College of Rheumatology", 
+              "pacs": "5000", 
+              "total": "5000"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "0", 
+              "org_name": "American Federation of Teachers", 
+              "pacs": "5000", 
+              "total": "5000"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "0", 
+              "org_name": "American Society of Anesthesiologists", 
+              "pacs": "5000", 
+              "total": "5000"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "5000", 
+              "org_name": "Hudson Housing Capital", 
+              "pacs": "0", 
+              "total": "5000"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "0", 
+              "org_name": "International Brotherhood of Electrical Workers", 
+              "pacs": "5000", 
+              "total": "5000"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "0", 
+              "org_name": "Machinists/Aerospace Workers Union", 
+              "pacs": "5000", 
+              "total": "5000"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "0", 
+              "org_name": "Publix Super Markets", 
+              "pacs": "5000", 
+              "total": "5000"
+            }
+          }
+        ]
+      }, 
+      "industries": {
+        "@attributes": {
+          "cand_name": "John Lewis (D)", 
+          "cid": "N00002577", 
+          "cycle": "2018", 
+          "last_updated": "10/16/2017", 
+          "origin": "Center for Responsive Politics", 
+          "source": "https://www.opensecrets.org/members-of-congress/industries?cid=N00002577&cycle=2018"
+        }, 
+        "industry": [
+          {
+            "@attributes": {
+              "indivs": "148975", 
+              "industry_code": "W06", 
+              "industry_name": "Retired", 
+              "pacs": "0", 
+              "total": "148975"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "17179", 
+              "industry_code": "H01", 
+              "industry_name": "Health Professionals", 
+              "pacs": "39800", 
+              "total": "56979"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "22146", 
+              "industry_code": "W04", 
+              "industry_name": "Education", 
+              "pacs": "0", 
+              "total": "22146"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "12642", 
+              "industry_code": "K01", 
+              "industry_name": "Lawyers/Law Firms", 
+              "pacs": "2497", 
+              "total": "15139"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "0", 
+              "industry_code": "P02", 
+              "industry_name": "Industrial Unions", 
+              "pacs": "12500", 
+              "total": "12500"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "11325", 
+              "industry_code": "B02", 
+              "industry_name": "TV/Movies/Music", 
+              "pacs": "0", 
+              "total": "11325"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "6806", 
+              "industry_code": "F10", 
+              "industry_name": "Real Estate", 
+              "pacs": "3500", 
+              "total": "10306"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "0", 
+              "industry_code": "P05", 
+              "industry_name": "Misc Unions", 
+              "pacs": "10000", 
+              "total": "10000"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "1259", 
+              "industry_code": "F09", 
+              "industry_name": "Insurance", 
+              "pacs": "8500", 
+              "total": "9759"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "8174", 
+              "industry_code": "N12", 
+              "industry_name": "Misc Business", 
+              "pacs": "0", 
+              "total": "8174"
+            }
+          }
+        ]
+      }, 
+      "sectors": {
+        "@attributes": {
+          "cand_name": "John Lewis (D)", 
+          "cid": "N00002577", 
+          "cycle": "2018", 
+          "last_updated": "10/16/2017", 
+          "origin": "Center for Responsive Politics", 
+          "source": "http://www.opensecrets.org/member-of-congress/industries?cid=N00002577&cycle=2018"
+        }, 
+        "sector": [
+          {
+            "@attributes": {
+              "indivs": "3082", 
+              "pacs": "9000", 
+              "sector_name": "Agribusiness", 
+              "sectorid": "A", 
+              "total": "12082"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "18696", 
+              "pacs": "5000", 
+              "sector_name": "Communic/Electronics", 
+              "sectorid": "B", 
+              "total": "23696"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "2486", 
+              "pacs": "1000", 
+              "sector_name": "Construction", 
+              "sectorid": "C", 
+              "total": "3486"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "412", 
+              "pacs": "1000", 
+              "sector_name": "Defense", 
+              "sectorid": "D", 
+              "total": "1412"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "397", 
+              "pacs": "2000", 
+              "sector_name": "Energy/Nat Resource", 
+              "sectorid": "E", 
+              "total": "2397"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "13087", 
+              "pacs": "16500", 
+              "sector_name": "Finance/Insur/RealEst", 
+              "sectorid": "F", 
+              "total": "29587"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "22510", 
+              "pacs": "42800", 
+              "sector_name": "Health", 
+              "sectorid": "H", 
+              "total": "65310"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "14187", 
+              "pacs": "2497", 
+              "sector_name": "Lawyers & Lobbyists", 
+              "sectorid": "K", 
+              "total": "16684"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "1522", 
+              "pacs": "4000", 
+              "sector_name": "Transportation", 
+              "sectorid": "M", 
+              "total": "5522"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "22207", 
+              "pacs": "7500", 
+              "sector_name": "Misc Business", 
+              "sectorid": "N", 
+              "total": "29707"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "200", 
+              "pacs": "37000", 
+              "sector_name": "Labor", 
+              "sectorid": "P", 
+              "total": "37200"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "2567", 
+              "pacs": "3000", 
+              "sector_name": "Ideology/Single-Issue", 
+              "sectorid": "Q", 
+              "total": "5567"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "184204", 
+              "pacs": "1000", 
+              "sector_name": "Other", 
+              "sectorid": "W", 
+              "total": "185204"
+            }
+          }
+        ]
+      }
+    }
+```
