@@ -5,7 +5,7 @@ import sys
 from flask import Flask, make_response, jsonify, request, g, send_from_directory, abort
 
 from votesmart_helpers import fetch_details
-from propublica_helpers import fetch_member_ids
+from propublica_helpers import fetch_member_ids, fetch_votes_bills
 from search_functions import get_officials_for_query
 
 app = Flask(__name__)
@@ -70,6 +70,38 @@ def get_details():
 
         votesmart_id = member_ids['votesmart_id']
         return jsonify(fetch_details(votesmart_id))
+    except Exception as e:
+        from traceback import print_exc
+        print_exc(file=sys.stdout)
+        return abort(500)
+
+
+@app.route('/api/v0/details/votes_bills', methods=['GET'])
+def get_votes_bills():
+    '''
+    Endpoint for getting votes and bills related information about a political
+    representative using their Bioguide ID that is passed in via
+    the `id` query parameter.
+    '''
+    id = request.args.get('id')
+    if id is None:
+        return jsonify({'error': 'No ID specified'})
+    votes_limit = float(request.args.get('votes_limit', 'inf'))
+    bills_limit = float(request.args.get('bills_limit', 'inf'))
+
+    # The only reason for exceptions to be thrown are when the remote
+    # server is unavailable or the API key/ID is invalid.
+    try:
+        votes_bills = fetch_votes_bills(id)
+        if ('error' not in votes_bills['votes_info'] and
+                votes_limit < float(votes_bills['votes_info']['num_results'])):
+            votes_bills['votes_info']['votes'] = votes_bills['votes_info']['votes'][:int(votes_limit)]
+            votes_bills['votes_info']['num_results'] = int(votes_limit)
+        if ('error' not in votes_bills['bills_info'] and
+                bills_limit < float(votes_bills['bills_info']['num_results'])):
+            votes_bills['bills_info']['bills'] = votes_bills['bills_info']['bills'][:int(bills_limit)]
+            votes_bills['bills_info']['num_results'] = int(bills_limit)
+        return jsonify(votes_bills)
     except Exception as e:
         from traceback import print_exc
         print_exc(file=sys.stdout)
