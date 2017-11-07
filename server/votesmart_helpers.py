@@ -5,7 +5,7 @@ Votesmart API.
 
 import requests
 
-API_KEY = 'f2ff4cb23fe3500a9a7f789b06c55ad5'
+API_KEY = 'f2ff4cb23fe3500a9a7f789a06b55ad5'
 
 
 def _apicall(func, params):
