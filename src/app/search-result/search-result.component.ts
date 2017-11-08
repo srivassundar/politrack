@@ -42,8 +42,8 @@ export class SearchResultComponent implements OnInit {
     this.route.params.subscribe(
       params => this.officialService.searchOfficials(this.http, params['keyword'])
         .subscribe(official_list => {
-          this.search_result = official_list;
-          this.officials = official_list;
+          this.search_result = official_list.slice();
+          this.officials = official_list.slice();
 
           // Initialize states checkboxes
           this.init_states();
@@ -57,7 +57,7 @@ export class SearchResultComponent implements OnInit {
   sort(): void {
     console.log('Sorting by ' + this.sortBy);
     if (this.sortBy === 'relevance') {
-      this.search_result = this.officials;
+      // this.search_result = this.officials;
       this.filter();
     } else if (this.sortBy === 'firstName') {
       this.search_result.sort(function(a, b) {
@@ -101,7 +101,7 @@ export class SearchResultComponent implements OnInit {
   filter(): void {
     // Filter by party
     if (!this.democrat && !this.republican && !this.independent || this.democrat && this.republican && this.independent) {
-      this.search_result = this.officials;
+      this.search_result = this.officials.slice();
     } else {
       this.search_result = [];
       if (this.democrat) {
