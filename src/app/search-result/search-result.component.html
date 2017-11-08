@@ -4,15 +4,15 @@
   <div class="topGrid">
   <div class="col-md-3 text filter-sorting">
     <h3 class="filter-sorting-text">Sort: </h3>
-      <form action="">
-        <!-- <input type="radio" #sortRelevance name="sort" value="relevance" (change)="sortBy = (sortRelevance.value); sort()" checked> Relevance<br> -->
+      <form class="filter-sort-font" action="">
+        <input type="radio" #sortRelevance name="sort" value="relevance" (change)="sortBy = (sortRelevance.value); sort()" checked> Relevance<br>
         <input type="radio" #sortFirst name="sort" value="firstName" (change)="sortBy = (sortFirst.value); sort()"> First Name<br>
         <input type="radio" #sortLast name="sort" value="lastName" (change)="sortBy = (sortLast.value); sort()"> Last Name<br>
       </form>
 
-    <h3 class="filter-sorting-text"><b>Filter</b></h3>
+    <h3 class="filter-sorting-text">Filter:</h3>
     <button class="home-button" onclick="$('input:checkbox').removeAttr('checked')" (click)="clear_filter()" >Clear all filters</button>
-    <form action="">
+    <form class="filter-sort-font" action="">
       <h4 class="filter-sorting-text">Political Party: </h4>
       <div id="filter">
         <input type="checkbox" #d name="democrat" value="democrat" (change)="democrat = d.checked; filter()"> Democrat<br>
