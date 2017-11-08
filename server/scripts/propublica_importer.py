@@ -8,7 +8,7 @@ import sqlite3
 
 import requests
 
-from congress_legislators_importer import append_wiki_url
+from congress_legislators_importer import append_congress_legislator_info
 
 # Script Defaults
 DEFAULTS = {
@@ -57,7 +57,10 @@ def setup_table(conn):
             'district'          integer         ,
             'at_large'          integer         ,
             'img_url'           string          ,
-            'wiki_url'          string
+            'wiki_url'          string          ,
+            'votesmart_id'      text            ,
+            'opensecrets_id'    text            ,
+            'govtrack_id'       text
         );
     '''.format(tbl=DEFAULTS['db_table'])
 
@@ -135,7 +138,7 @@ def main():
         for state in states:
             num_rows = retrieve_state_data(state, conn)
             total_rows += num_rows
-        append_wiki_url(states, conn)
+        append_congress_legislator_info(states, conn)
         print('Adding %d rows to the database' % total_rows)
         conn.commit()
     print('Done')

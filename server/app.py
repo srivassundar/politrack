@@ -5,7 +5,8 @@ import sys
 from flask import Flask, make_response, jsonify, request, g, send_from_directory, abort
 
 from votesmart_helpers import fetch_details
-from propublica_helpers import fetch_member_details
+from opensecrets_helpers import fetch_finances
+from propublica_helpers import fetch_member_ids, fetch_votes_bills
 from search_functions import get_officials_for_query
 
 app = Flask(__name__)
@@ -64,12 +65,70 @@ def get_details():
     # The only reason for exceptions to be thrown are when the remote
     # server is unavailable or the API key/ID is invalid.
     try:
-        details = fetch_member_details(request.args.get('id'))
-        if details is None:
+        member_ids = fetch_member_ids(request.args.get('id'))
+        if member_ids is None:
             return jsonify({'error': 'Invalid ID'})
 
-        votesmart_id = details['votesmart_id']
+        votesmart_id = member_ids['votesmart_id']
         return jsonify(fetch_details(votesmart_id))
+    except Exception as e:
+        from traceback import print_exc
+        print_exc(file=sys.stdout)
+        return abort(500)
+
+
+@app.route('/api/v0/details/votes_bills', methods=['GET'])
+def get_votes_bills():
+    '''
+    Endpoint for getting votes and bills related information about a political
+    representative using their Bioguide ID that is passed in via
+    the `id` query parameter.
+    '''
+    id = request.args.get('id')
+    if id is None:
+        return jsonify({'error': 'No ID specified'})
+    votes_limit = float(request.args.get('votes_limit', 'inf'))
+    bills_limit = float(request.args.get('bills_limit', 'inf'))
+
+    # The only reason for exceptions to be thrown are when the remote
+    # server is unavailable or the API key/ID is invalid.
+    try:
+        votes_bills = fetch_votes_bills(id)
+        if ('error' not in votes_bills['votes_info'] and
+                votes_limit < float(votes_bills['votes_info']['num_results'])):
+            votes_bills['votes_info']['votes'] = votes_bills['votes_info']['votes'][:int(votes_limit)]
+            votes_bills['votes_info']['num_results'] = int(votes_limit)
+        if ('error' not in votes_bills['bills_info'] and
+                bills_limit < float(votes_bills['bills_info']['num_results'])):
+            votes_bills['bills_info']['bills'] = votes_bills['bills_info']['bills'][:int(bills_limit)]
+            votes_bills['bills_info']['num_results'] = int(bills_limit)
+        return jsonify(votes_bills)
+    except Exception as e:
+        from traceback import print_exc
+        print_exc(file=sys.stdout)
+        return abort(500)
+
+
+@app.route('/api/v0/details/finances', methods=['GET'])
+def get_finances():
+    '''
+    Endpoint for getting detailed information about a political
+    representative from on their Propublica ID that is passed in via
+    the `id` query parameter.
+    '''
+    id = request.args.get('id')
+    if id is None:
+        return jsonify({'error': 'No ID specified'})
+
+    # The only reason for exceptions to be thrown are when the remote
+    # server is unavailable or the API key/ID is invalid.
+    try:
+        member_ids = fetch_member_ids(request.args.get('id'))
+        if member_ids is None:
+            return jsonify({'error': 'Invalid ID'})
+
+        opensecrets_id = member_ids['opensecrets_id']
+        return jsonify(fetch_finances(opensecrets_id))
     except Exception as e:
         from traceback import print_exc
         print_exc(file=sys.stdout)
