@@ -4,69 +4,125 @@
   <div class="topGrid">
   <div class="col-md-3 text filter-sorting">
     <h3 class="filter-sorting-text">Sort: </h3>
-              <form action="">
-                  <input type="radio" #sortFirst name="sort" value="firstName" (change)="sort(sortFirst.value)"> First Name<br>
-                  <input type="radio" #sortLast name="sort" value="lastName" (change)="sort(sortLast.value)"> Last Name<br>
-              </form>
-      <h3 class="filter-sorting-text"><b>Filter</b></h3>
-              <form action="">
-                <h4 class="filter-sorting-text">Political Party: </h4>
-                  <input type="checkbox" #d name="democrat" value="democrat" (change)="democrat = d.checked; filter()"> Democrat<br>
-                  <input type="checkbox" #r name="republican" value="republican" (change)="republican = r.checked; filter()"> Republican<br>
-                  <input type="checkbox" #i name="independent" value="independent" (change)="independent = i.checked; filter()"> Independent<br>
-                <h4 class="filter-sorting-text">State: </h4>
-                  <input type="checkbox" name="al" value="al"> Alabama<br> 
-                  <input type="checkbox" name="ak" value="ak"> Alaska<br>
-                  <input type="checkbox" name="az" value="az"> Arizona<br>
-                  <input type="checkbox" name="ar" value="ar"> Arkansas<br>
-                  <input type="checkbox" name="ca" value="ca"> California<br>
-                  <input type="checkbox" name="co" value="co"> Colorado<br>
-                  <input type="checkbox" name="ct" value="ct"> Connecticut<br>
-                  <input type="checkbox" name="de" value="de"> Delaware<br>
-                  <input type="checkbox" name="fl" value="fl"> Florida<br>
-                  <input type="checkbox" name="ga" value="ga"> Georgia<br>
-                  <input type="checkbox" name="hi" value="hi"> Hawaii<br>
-                  <input type="checkbox" name="id" value="id"> Idaho<br>
-                  <input type="checkbox" name="il" value="il"> Illinois<br>
-                  <input type="checkbox" name="in" value="in"> Indiana<br>
-                  <input type="checkbox" name="ia" value="ia"> Iowa<br>
-                  <input type="checkbox" name="ks" value="ks"> Kansas<br>
-                  <input type="checkbox" name="ky" value="ky"> Kentucky<br>
-                  <input type="checkbox" name="la" value="la"> Louisiana<br>
-                  <input type="checkbox" name="me" value="me"> Maine<br>
-                  <input type="checkbox" name="md" value="md"> Maryland<br>
-                  <input type="checkbox" name="ma" value="ma"> Massachusetts<br>
-                  <input type="checkbox" name="mi" value="mi"> Michigan<br>
-                  <input type="checkbox" name="mn" value="mn"> Minnesota<br>
-                  <input type="checkbox" name="ms" value="ms"> Mississippi<br>
-                  <input type="checkbox" name="mo" value="mo"> Missouri<br>
-                  <input type="checkbox" name="mt" value="mt"> Montana<br>
-                  <input type="checkbox" name="ne" value="ne"> Nebraska<br>
-                  <input type="checkbox" name="nv" value="nv"> Nevada<br>
-                  <input type="checkbox" name="nh" value="nh"> New Hampshire<br>
-                  <input type="checkbox" name="nj" value="nj"> New Jersey<br>
-                  <input type="checkbox" name="nm" value="nm"> New Mexico<br>
-                  <input type="checkbox" name="ny" value="ny"> New York<br>
-                  <input type="checkbox" name="nc" value="nc"> North Carolina<br>
-                  <input type="checkbox" name="nd" value="nd"> North Dakota<br>
-                  <input type="checkbox" name="oh" value="oh"> Ohio<br>
-                  <input type="checkbox" name="ok" value="ok"> Oklahoma<br>
-                  <input type="checkbox" name="or" value="or"> Oregon<br>
-                  <input type="checkbox" name="pa" value="pa"> Pennsylvania<br>
-                  <input type="checkbox" name="ri" value="ri"> Rhode Island<br>
-                  <input type="checkbox" name="sc" value="sc"> South Carolina<br>
-                  <input type="checkbox" name="sd" value="sd"> South Dakota<br>
-                  <input type="checkbox" name="tn" value="tn"> Tennessee<br>
-                  <input type="checkbox" name="tx" value="tx"> Texas<br>
-                  <input type="checkbox" name="ut" value="ut"> Utah<br>
-                  <input type="checkbox" name="vt" value="vt"> Vermont<br>
-                  <input type="checkbox" name="va" value="va"> Virginia<br>
-                  <input type="checkbox" name="wa" value="wa"> Washington<br>
-                  <input type="checkbox" name="wv" value="wv"> West Virginia<br>
-                  <input type="checkbox" name="wi" value="wi"> Wisconsin<br>
-                  <input type="checkbox" name="wy" value="wy"> Wyoming<br>
-              </form>
-  
+      <form action="">
+        <!-- <input type="radio" #sortRelevance name="sort" value="relevance" (change)="sortBy = (sortRelevance.value); sort()" checked> Relevance<br> -->
+        <input type="radio" #sortFirst name="sort" value="firstName" (change)="sortBy = (sortFirst.value); sort()"> First Name<br>
+        <input type="radio" #sortLast name="sort" value="lastName" (change)="sortBy = (sortLast.value); sort()"> Last Name<br>
+      </form>
+
+    <h3 class="filter-sorting-text"><b>Filter</b></h3>
+    <button class="home-button" onclick="$('input:checkbox').removeAttr('checked')" (click)="clear_filter()" >Clear all filters</button>
+    <form action="">
+      <h4 class="filter-sorting-text">Political Party: </h4>
+      <div id="filter">
+        <input type="checkbox" #d name="democrat" value="democrat" (change)="democrat = d.checked; filter()"> Democrat<br>
+        <input type="checkbox" #r name="republican" value="republican" (change)="republican = r.checked; filter()"> Republican<br>
+        <input type="checkbox" #i name="independent" value="independent" (change)="independent = i.checked; filter()"> Independent<br>
+      </div>
+      <h4 class="filter-sorting-text">Filter by state: </h4>
+      <div id="filter">
+        <div *ngIf="states.hasOwnProperty('AL')">
+          <input type="checkbox" name="al" value="al" (change)="filter_state('AL')"> Alabama<br></div>
+        <div *ngIf="states.hasOwnProperty('AK')">
+          <input type="checkbox" name="ak" value="ak" (change)="filter_state('AK')"> Alaska<br></div>
+        <div *ngIf="states.hasOwnProperty('AZ')">
+          <input type="checkbox" name="az" value="az" (change)="filter_state('AZ')"> Arizona<br></div>
+        <div *ngIf="states.hasOwnProperty('AR')">
+          <input type="checkbox" name="ar" value="ar" (change)="filter_state('AR')"> Arkansas<br></div>
+        <div *ngIf="states.hasOwnProperty('CA')">
+          <input type="checkbox" name="ca" value="ca" (change)="filter_state('CA')"> California<br></div>
+        <div *ngIf="states.hasOwnProperty('CO')">
+          <input type="checkbox" name="co" value="co" (change)="filter_state('CO')"> Colorado<br></div>
+        <div *ngIf="states.hasOwnProperty('CT')">
+          <input type="checkbox" name="ct" value="ct" (change)="filter_state('CT')"> Connecticut<br></div>
+        <div *ngIf="states.hasOwnProperty('DE')">
+          <input type="checkbox" name="de" value="de" (change)="filter_state('DE')"> Delaware<br></div>
+        <div *ngIf="states.hasOwnProperty('FL')">
+          <input type="checkbox" name="fl" value="fl" (change)="filter_state('FL')"> Florida<br></div>
+        <div *ngIf="states.hasOwnProperty('GA')">
+          <input type="checkbox" name="ga" value="ga" (change)="filter_state('GA')"> Georgia<br></div>
+        <div *ngIf="states.hasOwnProperty('HI')">
+          <input type="checkbox" name="hi" value="hi" (change)="filter_state('HI')"> Hawaii<br></div>
+        <div *ngIf="states.hasOwnProperty('ID')">
+          <input type="checkbox" name="id" value="id" (change)="filter_state('ID')"> Idaho<br></div>
+        <div *ngIf="states.hasOwnProperty('IL')">
+          <input type="checkbox" name="il" value="il" (change)="filter_state('IL')"> Illinois<br></div>
+        <div *ngIf="states.hasOwnProperty('IN')">
+          <input type="checkbox" name="in" value="in" (change)="filter_state('IN')"> Indiana<br></div>
+        <div *ngIf="states.hasOwnProperty('IA')">
+          <input type="checkbox" name="ia" value="ia" (change)="filter_state('IA')"> Iowa<br></div>
+        <div *ngIf="states.hasOwnProperty('KS')">
+          <input type="checkbox" name="ks" value="ks" (change)="filter_state('KS')"> Kansas<br></div>
+        <div *ngIf="states.hasOwnProperty('KY')">
+          <input type="checkbox" name="ky" value="ky" (change)="filter_state('KY')"> Kentucky<br></div>
+        <div *ngIf="states.hasOwnProperty('LA')">
+          <input type="checkbox" name="la" value="la" (change)="filter_state('LA')"> Louisiana<br></div>
+        <div *ngIf="states.hasOwnProperty('ME')">
+          <input type="checkbox" name="me" value="me" (change)="filter_state('ME')"> Maine<br></div>
+        <div *ngIf="states.hasOwnProperty('MD')">
+          <input type="checkbox" name="md" value="md" (change)="filter_state('MD')"> Maryland<br></div>
+        <div *ngIf="states.hasOwnProperty('MA')">
+          <input type="checkbox" name="ma" value="ma" (change)="filter_state('MA')"> Massachusetts<br></div>
+        <div *ngIf="states.hasOwnProperty('MI')">
+          <input type="checkbox" name="mi" value="mi" (change)="filter_state('MI')"> Michigan<br></div>
+        <div *ngIf="states.hasOwnProperty('MN')">
+          <input type="checkbox" name="mn" value="mn" (change)="filter_state('MN')"> Minnesota<br></div>
+        <div *ngIf="states.hasOwnProperty('MS')">
+          <input type="checkbox" name="ms" value="ms" (change)="filter_state('MS')"> Mississippi<br></div>
+        <div *ngIf="states.hasOwnProperty('MO')">
+          <input type="checkbox" name="mo" value="mo" (change)="filter_state('MO')"> Missouri<br></div>
+        <div *ngIf="states.hasOwnProperty('MT')">
+          <input type="checkbox" name="mt" value="mt" (change)="filter_state('MT')"> Montana<br></div>
+        <div *ngIf="states.hasOwnProperty('NE')">
+          <input type="checkbox" name="ne" value="ne" (change)="filter_state('NE')"> Nebraska<br></div>
+        <div *ngIf="states.hasOwnProperty('NV')">
+          <input type="checkbox" name="nv" value="nv" (change)="filter_state('NV')"> Nevada<br></div>
+        <div *ngIf="states.hasOwnProperty('NH')">
+          <input type="checkbox" name="nh" value="nh" (change)="filter_state('NH')"> New Hampshire<br></div>
+        <div *ngIf="states.hasOwnProperty('NJ')">
+          <input type="checkbox" name="nj" value="nj" (change)="filter_state('NJ')"> New Jersey<br></div>
+        <div *ngIf="states.hasOwnProperty('NM')">
+          <input type="checkbox" name="nm" value="nm" (change)="filter_state('NM')"> New Mexico<br></div>
+        <div *ngIf="states.hasOwnProperty('NY')">
+          <input type="checkbox" name="ny" value="ny" (change)="filter_state('NY')"> New York<br></div>
+        <div *ngIf="states.hasOwnProperty('NC')">
+          <input type="checkbox" name="nc" value="nc" (change)="filter_state('NC')"> North Carolina<br></div>
+        <div *ngIf="states.hasOwnProperty('ND')">
+          <input type="checkbox" name="nd" value="nd" (change)="filter_state('ND')"> North Dakota<br></div>
+        <div *ngIf="states.hasOwnProperty('OH')">
+          <input type="checkbox" name="oh" value="oh" (change)="filter_state('OH')"> Ohio<br></div>
+        <div *ngIf="states.hasOwnProperty('OK')">
+          <input type="checkbox" name="ok" value="ok" (change)="filter_state('OK')"> Oklahoma<br></div>
+        <div *ngIf="states.hasOwnProperty('OR')">
+          <input type="checkbox" name="or" value="or" (change)="filter_state('OR')"> Oregon<br></div>
+        <div *ngIf="states.hasOwnProperty('PA')">
+          <input type="checkbox" name="pa" value="pa" (change)="filter_state('PA')"> Pennsylvania<br></div>
+        <div *ngIf="states.hasOwnProperty('RI')">
+          <input type="checkbox" name="ri" value="ri" (change)="filter_state('RI')"> Rhode Island<br></div>
+        <div *ngIf="states.hasOwnProperty('SC')">
+          <input type="checkbox" name="sc" value="sc" (change)="filter_state('SC')"> South Carolina<br></div>
+        <div *ngIf="states.hasOwnProperty('SD')">
+          <input type="checkbox" name="sd" value="sd" (change)="filter_state('SD')"> South Dakota<br></div>
+        <div *ngIf="states.hasOwnProperty('TN')">
+          <input type="checkbox" name="tn" value="tn" (change)="filter_state('TN')"> Tennessee<br></div>
+        <div *ngIf="states.hasOwnProperty('TX')">
+          <input type="checkbox" name="tx" value="tx" (change)="filter_state('TX')"> Texas<br></div>
+        <div *ngIf="states.hasOwnProperty('UT')">
+          <input type="checkbox" name="ut" value="ut" (change)="filter_state('UT')"> Utah<br></div>
+        <div *ngIf="states.hasOwnProperty('VT')">
+          <input type="checkbox" name="vt" value="vt" (change)="filter_state('VT')"> Vermont<br></div>
+        <div *ngIf="states.hasOwnProperty('VA')">
+          <input type="checkbox" name="va" value="va" (change)="filter_state('VA')"> Virginia<br></div>
+        <div *ngIf="states.hasOwnProperty('WA')">
+          <input type="checkbox" name="wa" value="wa" (change)="filter_state('WA')"> Washington<br></div>
+        <div *ngIf="states.hasOwnProperty('WV')">
+          <input type="checkbox" name="wv" value="wv" (change)="filter_state('WV')"> West Virginia<br></div>
+        <div *ngIf="states.hasOwnProperty('WI')">
+          <input type="checkbox" name="wi" value="wi" (change)="filter_state('WI')"> Wisconsin<br></div>
+        <div *ngIf="states.hasOwnProperty('WY')">
+          <input type="checkbox" name="wy" value="wy" (change)="filter_state('WY')"> Wyoming<br></div>
+      </div>
+    </form>
   </div>
 
   </div>
@@ -86,4 +142,3 @@
   </div>
   </div>
 </div>
-
