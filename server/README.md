@@ -1120,12 +1120,12 @@ Votes and Bills data can be fetched as per the example below:
 
 Finances data can be fetched as per the example below:
 ```
-    curl -i "http://0.0.0.0:8082/api/v0/details/finances?id=L000287"
+    curl -i http://0.0.0.0:8082/api/v0/details/finances?id=L000287
     HTTP/1.0 200 OK
     Content-Type: application/json
-    Content-Length: 7937
+    Content-Length: 8490
     Server: Werkzeug/0.12.1 Python/3.4.3
-    Date: Tue, 07 Nov 2017 05:26:02 GMT
+    Date: Fri, 10 Nov 2017 17:19:47 GMT
     
     {
       "contributors": {
@@ -1142,8 +1142,8 @@ Finances data can be fetched as per the example below:
             "@attributes": {
               "indivs": "0", 
               "org_name": "Directors Guild of America", 
-              "pacs": "10000", 
-              "total": "10000"
+              "pacs": "20000", 
+              "total": "20000"
             }
           }, 
           {
@@ -1156,10 +1156,50 @@ Finances data can be fetched as per the example below:
           }, 
           {
             "@attributes": {
+              "indivs": "6041", 
+              "org_name": "IBM Corp", 
+              "pacs": "0", 
+              "total": "6041"
+            }
+          }, 
+          {
+            "@attributes": {
               "indivs": "0", 
+              "org_name": "Credit Union National Assn", 
+              "pacs": "6000", 
+              "total": "6000"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "196", 
+              "org_name": "Home Depot", 
+              "pacs": "5000", 
+              "total": "5196"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "13", 
+              "org_name": "American Federation of Teachers", 
+              "pacs": "5000", 
+              "total": "5013"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "10", 
+              "org_name": "International Brotherhood of Electrical Workers", 
+              "pacs": "5000", 
+              "total": "5010"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "3", 
               "org_name": "AFLAC Inc", 
               "pacs": "5000", 
-              "total": "5000"
+              "total": "5003"
             }
           }, 
           {
@@ -1173,47 +1213,7 @@ Finances data can be fetched as per the example below:
           {
             "@attributes": {
               "indivs": "0", 
-              "org_name": "American Federation of Teachers", 
-              "pacs": "5000", 
-              "total": "5000"
-            }
-          }, 
-          {
-            "@attributes": {
-              "indivs": "0", 
               "org_name": "American Society of Anesthesiologists", 
-              "pacs": "5000", 
-              "total": "5000"
-            }
-          }, 
-          {
-            "@attributes": {
-              "indivs": "5000", 
-              "org_name": "Hudson Housing Capital", 
-              "pacs": "0", 
-              "total": "5000"
-            }
-          }, 
-          {
-            "@attributes": {
-              "indivs": "0", 
-              "org_name": "International Brotherhood of Electrical Workers", 
-              "pacs": "5000", 
-              "total": "5000"
-            }
-          }, 
-          {
-            "@attributes": {
-              "indivs": "0", 
-              "org_name": "Machinists/Aerospace Workers Union", 
-              "pacs": "5000", 
-              "total": "5000"
-            }
-          }, 
-          {
-            "@attributes": {
-              "indivs": "0", 
-              "org_name": "Publix Super Markets", 
               "pacs": "5000", 
               "total": "5000"
             }
@@ -1225,99 +1225,99 @@ Finances data can be fetched as per the example below:
           "cand_name": "John Lewis (D)", 
           "cid": "N00002577", 
           "cycle": "2018", 
-          "last_updated": "10/16/2017", 
+          "last_updated": "11/06/2018", 
           "origin": "Center for Responsive Politics", 
           "source": "https://www.opensecrets.org/members-of-congress/industries?cid=N00002577&cycle=2018"
         }, 
         "industry": [
           {
             "@attributes": {
-              "indivs": "148975", 
+              "indivs": "233431", 
               "industry_code": "W06", 
               "industry_name": "Retired", 
               "pacs": "0", 
-              "total": "148975"
+              "total": "233431"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "17179", 
+              "indivs": "27351", 
               "industry_code": "H01", 
               "industry_name": "Health Professionals", 
-              "pacs": "39800", 
-              "total": "56979"
+              "pacs": "40800", 
+              "total": "68151"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "22146", 
+              "indivs": "51200", 
               "industry_code": "W04", 
               "industry_name": "Education", 
               "pacs": "0", 
-              "total": "22146"
+              "total": "51200"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "12642", 
+              "indivs": "21509", 
               "industry_code": "K01", 
               "industry_name": "Lawyers/Law Firms", 
-              "pacs": "2497", 
-              "total": "15139"
+              "pacs": "4497", 
+              "total": "26006"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "0", 
-              "industry_code": "P02", 
-              "industry_name": "Industrial Unions", 
-              "pacs": "12500", 
-              "total": "12500"
+              "indivs": "136", 
+              "industry_code": "P05", 
+              "industry_name": "Misc Unions", 
+              "pacs": "20000", 
+              "total": "20136"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "11325", 
+              "indivs": "16958", 
               "industry_code": "B02", 
               "industry_name": "TV/Movies/Music", 
               "pacs": "0", 
-              "total": "11325"
+              "total": "16958"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "6806", 
-              "industry_code": "F10", 
-              "industry_name": "Real Estate", 
-              "pacs": "3500", 
-              "total": "10306"
-            }
-          }, 
-          {
-            "@attributes": {
-              "indivs": "0", 
-              "industry_code": "P05", 
-              "industry_name": "Misc Unions", 
-              "pacs": "10000", 
-              "total": "10000"
-            }
-          }, 
-          {
-            "@attributes": {
-              "indivs": "1259", 
-              "industry_code": "F09", 
-              "industry_name": "Insurance", 
-              "pacs": "8500", 
-              "total": "9759"
-            }
-          }, 
-          {
-            "@attributes": {
-              "indivs": "8174", 
+              "indivs": "15339", 
               "industry_code": "N12", 
               "industry_name": "Misc Business", 
               "pacs": "0", 
-              "total": "8174"
+              "total": "15339"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "11123", 
+              "industry_code": "F10", 
+              "industry_name": "Real Estate", 
+              "pacs": "3500", 
+              "total": "14623"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "14225", 
+              "industry_code": "N05", 
+              "industry_name": "Business Services", 
+              "pacs": "0", 
+              "total": "14225"
+            }
+          }, 
+          {
+            "@attributes": {
+              "indivs": "10", 
+              "industry_code": "P02", 
+              "industry_name": "Industrial Unions", 
+              "pacs": "12500", 
+              "total": "12510"
             }
           }
         ]
@@ -1327,129 +1327,148 @@ Finances data can be fetched as per the example below:
           "cand_name": "John Lewis (D)", 
           "cid": "N00002577", 
           "cycle": "2018", 
-          "last_updated": "10/16/2017", 
+          "last_updated": "11/06/2018", 
           "origin": "Center for Responsive Politics", 
           "source": "http://www.opensecrets.org/member-of-congress/industries?cid=N00002577&cycle=2018"
         }, 
         "sector": [
           {
             "@attributes": {
-              "indivs": "3082", 
-              "pacs": "9000", 
+              "indivs": "5338", 
+              "pacs": "10000", 
               "sector_name": "Agribusiness", 
               "sectorid": "A", 
-              "total": "12082"
+              "total": "15338"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "18696", 
+              "indivs": "39332", 
               "pacs": "5000", 
               "sector_name": "Communic/Electronics", 
               "sectorid": "B", 
-              "total": "23696"
+              "total": "44332"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "2486", 
+              "indivs": "5678", 
               "pacs": "1000", 
               "sector_name": "Construction", 
               "sectorid": "C", 
-              "total": "3486"
+              "total": "6678"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "412", 
+              "indivs": "783", 
               "pacs": "1000", 
               "sector_name": "Defense", 
               "sectorid": "D", 
-              "total": "1412"
+              "total": "1783"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "397", 
+              "indivs": "1002", 
               "pacs": "2000", 
               "sector_name": "Energy/Nat Resource", 
               "sectorid": "E", 
-              "total": "2397"
+              "total": "3002"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "13087", 
-              "pacs": "16500", 
+              "indivs": "21407", 
+              "pacs": "19000", 
               "sector_name": "Finance/Insur/RealEst", 
               "sectorid": "F", 
-              "total": "29587"
+              "total": "40407"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "22510", 
-              "pacs": "42800", 
+              "indivs": "39483", 
+              "pacs": "43800", 
               "sector_name": "Health", 
               "sectorid": "H", 
-              "total": "65310"
+              "total": "83283"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "14187", 
-              "pacs": "2497", 
+              "indivs": "23206", 
+              "pacs": "4497", 
               "sector_name": "Lawyers & Lobbyists", 
               "sectorid": "K", 
-              "total": "16684"
+              "total": "27703"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "1522", 
+              "indivs": "3011", 
               "pacs": "4000", 
               "sector_name": "Transportation", 
               "sectorid": "M", 
-              "total": "5522"
+              "total": "7011"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "22207", 
-              "pacs": "7500", 
+              "indivs": "43356", 
+              "pacs": "15000", 
               "sector_name": "Misc Business", 
               "sectorid": "N", 
-              "total": "29707"
+              "total": "58356"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "200", 
-              "pacs": "37000", 
+              "indivs": "385", 
+              "pacs": "50500", 
               "sector_name": "Labor", 
               "sectorid": "P", 
-              "total": "37200"
+              "total": "50885"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "2567", 
+              "indivs": "2805", 
               "pacs": "3000", 
               "sector_name": "Ideology/Single-Issue", 
               "sectorid": "Q", 
-              "total": "5567"
+              "total": "5805"
             }
           }, 
           {
             "@attributes": {
-              "indivs": "184204", 
+              "indivs": "311450", 
               "pacs": "1000", 
               "sector_name": "Other", 
               "sectorid": "W", 
-              "total": "185204"
+              "total": "312450"
             }
           }
         ]
+      }, 
+      "summary": {
+        "@attributes": {
+          "cand_name": "Lewis, John", 
+          "cash_on_hand": "905426.04", 
+          "chamber": "H", 
+          "cid": "N00002577", 
+          "cycle": "2018", 
+          "debt": "0", 
+          "first_elected": "1986", 
+          "last_updated": "09/30/2017", 
+          "next_election": "2018", 
+          "origin": "Center for Responsive Politics", 
+          "party": "D", 
+          "source": "http://www.opensecrets.org/members-of-congress/summary?cid=N00002577&cycle=2018", 
+          "spent": "680635.99", 
+          "state": "GA", 
+          "total": "1367977.42"
+        }
       }
     }
 ```
