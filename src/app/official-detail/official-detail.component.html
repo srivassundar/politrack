@@ -11,14 +11,16 @@
           </div>
           <table class="table">
             <tr class="detail-tab">
-              <th colspan="2" style="text-align:center;background:lavender"><span style="display: inline-block;">
-                <div *ngIf="official.role=='Representative'">
-                <a href="https://en.wikipedia.org/wiki/United_States_House_of_Representatives">{{official.role}}</a>
-                </div>
-                <div *ngIf="official.role.includes('Senator')">
-                <a href="https://en.wikipedia.org/wiki/United_States_Senate">{{official.role}}</a>
-                </div>
-                </span><br>
+              <th colspan="2" style="text-align:center;background:lavender">
+                <span style="display: inline-block;">
+                  <div *ngIf="official.role=='Representative'">
+                    <a href="https://en.wikipedia.org/wiki/United_States_House_of_Representatives">{{official.role}}</a>
+                  </div>
+                  <div *ngIf="official.role.includes('Senator')">
+                    <a href="https://en.wikipedia.org/wiki/United_States_Senate">{{official.role}}</a>
+                  </div>
+                </span>
+                <br>
                 <div *ngIf="official.role=='Representative'">
                   from {{official.state}} District {{official.district}}
                 </div>
@@ -38,10 +40,10 @@
             </tr>
             <tr class="detail-tab">
               <td colspan="2" style="text-align:center;border-bottom:none">
-              <span class="nowrap">
-                <b>Assumed office</b>
-              </span>
-              <br>{{displayDate(detail_result.office.termStart)}}</td>
+                <span class="nowrap">
+                  <b>Assumed office</b>
+                </span>
+                <br>{{displayDate(detail_result.office.termStart)}}</td>
             </tr>
             <tr class="detail-tab">
               <th colspan="2" style="text-align:center;background:lavender">Personal details</th>
@@ -50,20 +52,19 @@
               <th scope="row">Born</th>
               <td>
                 {{official.name}}
-                <br>
-                {{displayDate(detail_result.candidate.birthDate)}} <span class="noprint ForceAgeToShow">(age&nbsp;{{getAge(detail_result.candidate.birthDate)}})</span>
-                <br>
-                {{detail_result.candidate.birthPlace}}, U.S.
+                <br> {{displayDate(detail_result.candidate.birthDate)}}
+                <span class="noprint ForceAgeToShow">(age&nbsp;{{getAge(detail_result.candidate.birthDate)}})</span>
+                <br> {{detail_result.candidate.birthPlace}}, U.S.
               </td>
             </tr>
             <tr class="detail-tab">
               <th scope="row">Political party</th>
               <td>
                 <div *ngIf="official.party=='D'">
-                <a href="https://en.wikipedia.org/wiki/Democratic_Party_(United_States)">Democratic</a>
+                  <a href="https://en.wikipedia.org/wiki/Democratic_Party_(United_States)">Democratic</a>
                 </div>
                 <div *ngIf="official.party=='R'">
-                <a href="https://en.wikipedia.org/wiki/Republican_Party_(United_States)">Republican</a>
+                  <a href="https://en.wikipedia.org/wiki/Republican_Party_(United_States)">Republican</a>
                 </div>
               </td>
             </tr>
@@ -77,8 +78,14 @@
             </tr>
             <tr class="detail-tab">
               <th scope="row">Education</th>
-              <td><div *ngIf="detail_result.candidate.education.institution.length==undefined"><p>{{detail_result.candidate.education.institution.fullText}}</p></div>
-                <div *ngIf="detail_result.candidate.education.institution.length"><p *ngFor="let institution of detail_result.candidate.education.institution">{{institution.fullText}}</p></div></td>
+              <td>
+                <div *ngIf="detail_result.candidate.education.institution.length==undefined">
+                  <p>{{detail_result.candidate.education.institution.fullText}}</p>
+                </div>
+                <div *ngIf="detail_result.candidate.education.institution.length">
+                  <p *ngFor="let institution of detail_result.candidate.education.institution">{{institution.fullText}}</p>
+                </div>
+              </td>
             </tr>
             <tr class="detail-tab">
               <th scope="row">Religion</th>
@@ -97,7 +104,7 @@
             <a class="detail-tab" href="#bio" aria-controls="bio" role="tab" data-toggle="tab">Biography</a>
           </li>
           <li role="presentation">
-            <a class="detail-tab" href="#voted" aria-controls="voted" role="tab" data-toggle="tab">Voted on Bills</a>
+            <a class="detail-tab" href="#voted" aria-controls="voted" role="tab" data-toggle="tab" (click)="getBills()">Voted on Bills</a>
           </li>
           <li role="presentation">
             <a class="detail-tab" href="#finance" aria-controls="finance" role="tab" data-toggle="tab">Finances</a>
@@ -117,17 +124,62 @@
             <p class="biggerFont">{{biography}}</p>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="voted">
-
-            <table class="table table-striped">
-              <tbody>
-                <tr class="detail-tab">
-                  <th class="span-3">Date</th>
-                  <th class="span-3">Bill No.</th>
-                  <th class="span-8">Bill Title</th>
-                  <th class="span-8">Outcome</th>
-                  <th class="span-3">Vote</th>
-                </tr>
-
+            <div *ngIf="bills_result != undefined && votes_result != undefined">
+              <h2 class="detail-text">Co-Sponsored Bills</h2>
+              <table class="table table-striped">
+                <tbody>
+                  <tr class="detail-tab">
+                    <th class="span-3">Date</th>
+                    <th class="span-3">Bill No.</th>
+                    <th class="span-8">Bill Title</th>
+                    <!--th class="span-8">Outcome</th-->
+                    <!--th class="span-3">Vote</th-->
+                  </tr>
+                  <tr *ngFor="let bills of bills_Items;" class="odd detail-tab">
+                    <td>{{bills.introduced_date}}</td>
+                    <td>
+                      <a href="{{bills.congressdotgov_url}}">{{bills.number}}</a>
+                    </td>
+                    <td>
+                      <a href="{{bills.govtrack_url}}">{{bills.short_title}}</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <ul class="pagination pagination-lg">
+                <li *ngFor="let page of pageBillIndex" [ngClass]="{'active': (currentBill == page)}">
+                  <a (click)="setBillPage(page)">{{page}}</a>
+                </li>
+              </ul>
+              <h2 class="detail-text">Voted on Bills</h2>
+              <table class="table table-striped">
+                <tbody>
+                  <tr class="detail-tab">
+                    <th class="span-3">Date</th>
+                    <th class="span-3">Bill No.</th>
+                    <th class="span-8">Bill Title</th>
+                    <th class="span-8">Outcome</th>
+                    <th class="span-3">Vote</th>
+                  </tr>
+                  <tr *ngFor="let bills of votes_Items;" class="odd detail-tab">
+                    <td>{{bills.date}}</td>
+                    <td>{{bills.bill.number}}</td>
+                    <td>{{bills.description}}</td>
+                    <td>{{bills.result}} - {{bills.chamber}}
+                      <br>yes: {{bills.total.yes}}<br>no: {{bills.total.no}}
+                    </td>
+                    <td>{{bills.position}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <ul class="pagination pagination-lg">
+                <li *ngFor="let page1 of pageVoteIndex" [ngClass]="{'active': (currentVote == page1)}">
+                  <a (click)="setVotePage(page1)">{{page1}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--
                 <tr class="odd detail-tab">
                   <td>March 30, 2017</td>
                   <td>
@@ -256,8 +308,7 @@
                 </tr>
               </tbody>
             </table>
-
-          </div>
+          -->
           <div role="tabpanel" class="tab-pane fade" id="finance">
             <img style="padding-left: 60px;" src="../../assets/thumbnails/finances.png" />
             <table class="table">
@@ -420,18 +471,24 @@
           </div>
           <div role="tabpanel" class="tab-pane fade" id="social">
             <div *ngIf="official.facebook_account!=undefined">
-            <h5>Facebook</h5>
-            <p>{{official.name}}'s <a href="{{facebook_path}}/{{official?.facebook_account}}">Facebook Page</a></p>
-            <br>
+              <h5>Facebook</h5>
+              <p>{{official.name}}'s
+                <a href="https://facebook.com/{{official?.facebook_account}}">Facebook Page</a>
+              </p>
+              <br>
             </div>
             <div *ngIf="official.twitter_id!=undefined">
-            <h5>Twitter</h5>
-            <p>{{official.name}}'s <a href = "{{twitter_path}}/{{official?.twitter_id}}">Twitter Page</a></p>
-            <br>
+              <h5>Twitter</h5>
+              <p>{{official.name}}'s
+                <a href="https://twitter.com/{{official?.twitter_id}}">Twitter Page</a>
+              </p>
+              <br>
             </div>
             <div *ngIf="official.youtube_id!=undefined">
-            <h5>Youtube</h5>
-            <p>{{official.name}}'s <a href="{{youtube_path}}/{{official?.youtube_id}}">Youtube Page</a></p>
+              <h5>Youtube</h5>
+              <p>{{official.name}}'s
+                <a href="https://youtube.com/{{official?.youtube_id}}">Youtube Page</a>
+              </p>
             </div>
           </div>
         </div>

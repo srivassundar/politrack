@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Official, OfficialDetail } from './official';
+import { Official, OfficialDetail, OfficialBills } from './official';
 
 @Injectable()
 export class OfficialService {
   official_list: Official[];
   detail_list: OfficialDetail[];
+  bills_list: OfficialBills[];
   selected_official: Official; // used for official_delail page
   search_keyword: string;
 
@@ -43,6 +44,34 @@ export class OfficialService {
     return http.get('/api/v0/details', { params: new HttpParams().set('id', keyword) } )
       .map(data => data['bio']);
   }
+
+
+  billsSearchOfficial(http: HttpClient, keyword: string): Observable<OfficialBills[]> {
+    /*
+    this.bills_list = [];
+    this.search_keyword = keyword;
+    http.get('/api/v0/details/votes_bills?id=' + keyword + '&votes_limit=100&bills_limit=100').subscribe(data => {
+      this.bills_list.push(data['bills_info']);
+      this.bills_list.push(data['votes_info']);
+    });
+    */
+    return http.get('/api/v0/details/votes_bills?id=' + keyword + '&votes_limit=0&bills_limit=100')
+      .map(data => data['bills_info']);
+  } 
+
+  votesSearchOfficial(http: HttpClient, keyword: string): Observable<OfficialBills[]> {
+    /*
+    this.bills_list = [];
+    this.search_keyword = keyword;
+    http.get('/api/v0/details/votes_bills?id=' + keyword + '&votes_limit=100&bills_limit=100').subscribe(data => {
+      this.bills_list.push(data['bills_info']);
+      this.bills_list.push(data['votes_info']);
+    });
+    */
+    return http.get('/api/v0/details/votes_bills?id=' + keyword + '&votes_limit=100&bills_limit=0')
+      .map(data => data['votes_info']);
+  }
+
 
   /**
    * Function to retrieve the biography of the official from Wikipedia API.

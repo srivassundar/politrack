@@ -24,3 +24,8 @@ export class OfficialDetail {
   bio: string;
   office: string;
 }
+
+export class OfficialBills {
+  bill_info: string;
+  votes_info: string;
+}
