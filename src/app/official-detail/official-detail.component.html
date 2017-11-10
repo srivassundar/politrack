@@ -126,14 +126,13 @@
           <div role="tabpanel" class="tab-pane fade" id="voted">
             <div *ngIf="bills_result != undefined && votes_result != undefined">
               <h2 class="detail-text">Co-Sponsored Bills</h2>
+              <!-- Co-Sponsored Bills-->
               <table class="table table-striped">
                 <tbody>
                   <tr class="detail-tab">
                     <th class="span-3">Date</th>
                     <th class="span-3">Bill No.</th>
                     <th class="span-8">Bill Title</th>
-                    <!--th class="span-8">Outcome</th-->
-                    <!--th class="span-3">Vote</th-->
                   </tr>
                   <tr *ngFor="let bills of bills_Items;" class="odd detail-tab">
                     <td>{{bills.introduced_date}}</td>
@@ -179,136 +178,6 @@
               </ul>
             </div>
           </div>
-          <!--
-                <tr class="odd detail-tab">
-                  <td>March 30, 2017</td>
-                  <td>
-                    <a href="/bill/22673/58905/26820/epa-science-advisory-board-reform-act-of-2017">HR 1431</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22673/58905/26820/epa-science-advisory-board-reform-act-of-2017">EPA Science Advisory Board Reform Act of 2017</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(229 - 193)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="detail-tab">
-                  <td>March 29, 2017</td>
-                  <td>
-                    <a href="/bill/22631/58793/26820/honest-and-open-new-epa-science-treatment-act-of-2017">HR 1430</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22631/58793/26820/honest-and-open-new-epa-science-treatment-act-of-2017">Honest and Open New EPA Science Treatment Act of 2017</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(228 - 194)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="odd detail-tab">
-                  <td>March 28, 2017</td>
-                  <td>
-                    <a href="/bill/22622/58786/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-federal-communications-commission-relating-to-protecting-the-privacy-of-customers-of-broadband-and-other-telecommunications-services">S J Res 34</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22622/58786/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-federal-communications-commission-relating-to-protecting-the-privacy-of-customers-of-broadband-and-other-telecommunications-services">Providing for congressional disapproval of the rule submitted by the Federal Communications Commission relating to Protecting
-                      the Privacy of Customers of Broadband and other Telecommunications Services</a>
-                  </td>
-                  <td>Joint Resolution Passed - House
-                    <br>(215 - 205)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="detail-tab">
-                  <td>March 16, 2017</td>
-                  <td>
-                    <a href="/bill/22611/58745/26820/veterans-2nd-amendment-protection-act">HR 1181</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22611/58745/26820/veterans-2nd-amendment-protection-act">Veterans 2nd Amendment Protection Act</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(240 - 175)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="odd detail-tab">
-                  <td>March 16, 2017</td>
-                  <td>
-                    <a href="/bill/22612/58747/26820/va-accountability-first-act-of-2017">HR 1259</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22612/58747/26820/va-accountability-first-act-of-2017">VA Accountability First Act of 2017</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(237 - 178)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="detail-tab">
-                  <td>March 10, 2017</td>
-                  <td>
-                    <a href="/bill/22607/58736/26820/lawsuit-abuse-reduction-act-of-2017">HR 720</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22607/58736/26820/lawsuit-abuse-reduction-act-of-2017">Lawsuit Abuse Reduction Act of 2017</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(230 - 188)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="odd detail-tab">
-                  <td>March 9, 2017</td>
-                  <td>
-                    <a href="/bill/22608/58739/26820/fairness-in-class-action-litigation-and-furthering-asbestos-claim-transparency-act-of-2017">HR 985</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22608/58739/26820/fairness-in-class-action-litigation-and-furthering-asbestos-claim-transparency-act-of-2017">Fairness in Class Action Litigation and Furthering Asbestos Claim Transparency Act of 2017</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(220 - 201)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="detail-tab">
-                  <td>March 1, 2017</td>
-                  <td>
-                    <a href="/bill/22587/58693/26820/searching-for-and-cutting-regulations-that-are-unnecessarily-burdensome-act">HR 998</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22587/58693/26820/searching-for-and-cutting-regulations-that-are-unnecessarily-burdensome-act">Searching for and Cutting Regulations that are Unnecessarily Burdensome Act</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(240 - 185)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="odd detail-tab">
-                  <td>Feb. 16, 2017</td>
-                  <td>
-                    <a href="/bill/22637/58809/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-secretary-of-health-and-human-services-relating-to-compliance-with-title-x-requirements-by-project-recipients-in-selecting-subrecipients">H J Res 43</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22637/58809/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-secretary-of-health-and-human-services-relating-to-compliance-with-title-x-requirements-by-project-recipients-in-selecting-subrecipients">Providing for Congressional Disapproval of the Rule Submitted by the Secretary of Health and Human Services Relating
-                      to Compliance with Title X Requirements by Project Recipients in Selecting Subrecipients</a>
-                  </td>
-                  <td>Joint Resolution Passed - House
-                    <br>(230 - 188)</td>
-                  <td>Nay</td>
-                </tr>
-              </tbody>
-            </table>
-          -->
           <div role="tabpanel" class="tab-pane fade" id="finance">
             <img style="padding-left: 60px;" src="../../assets/thumbnails/finances.png" />
             <table class="table">

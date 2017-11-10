@@ -95,16 +95,16 @@ export class OfficialDetailComponent implements OnInit {
           billNum = this.bills_result['num_results'];
           voteNum = this.votes_result['num_results'];
           // calculating the amount of pages needed for tables
-          division = billNum / 10;
+          division = billNum / 5;
           division = Math.floor(division);
-          remainder = billNum % 10;
+          remainder = billNum % 5;
           division = (remainder === 0) ? division : division + 1;
           this.pagesBills = division;
           this.refreshBillsList();
           this.pageBillIndex = this.fillBillArray();
-          division = voteNum / 10;
+          division = voteNum / 5;
           division = Math.floor(division);
-          remainder = voteNum % 10;
+          remainder = voteNum % 5;
           division = (remainder === 0) ? division : division + 1;
           this.pagesVotes = division;
           this.refreshVotesList();
@@ -114,7 +114,9 @@ export class OfficialDetailComponent implements OnInit {
       this.initialize = false;
     }
   }
-
+  /**
+   * Used to iterate through the number of pages available.
+   */
   fillBillArray() {
     var array = new Array();
     for (let index = 1; index < this.pagesBills + 1; index++) {
@@ -122,7 +124,9 @@ export class OfficialDetailComponent implements OnInit {
     }
     return array;
   }
-
+  /**
+   * Used to iterate through the number of pages available.
+   */
   fillVotesArray() {
     var array = new Array();
     for (let index = 1; index < this.pagesVotes + 1; index++) {
@@ -130,20 +134,30 @@ export class OfficialDetailComponent implements OnInit {
     }
     return array;
   }
-
+  /**
+   * Refreshes the table to display the list based on the current page.
+   */
   refreshBillsList() {
-    this.bills_Items = this.bills_result['bills'].slice((this.currentBill - 1) * 10, (this.currentBill) * 10);
+    this.bills_Items = this.bills_result['bills'].slice((this.currentBill - 1) * 5, (this.currentBill) * 5);
   }
-
+  /**
+   * Refreshes the table to display the list based on the current page.
+   */
   refreshVotesList() {
-    this.votes_Items = this.votes_result['votes'].slice((this.currentVote - 1) * 10, (this.currentVote) * 10);
+    this.votes_Items = this.votes_result['votes'].slice((this.currentVote - 1) * 5, (this.currentVote) * 5);
   }
-
+  /**
+   * Updates the current page and refreshes the table.
+   * @param index is the current page number being accessed
+   */
   setBillPage(index: number) {
     this.currentBill = index;
     this.refreshBillsList();
   }
-
+  /**
+   * Updates the current page and refreshes the table.
+   * @param index is the current page number being accessed
+   */
   setVotePage(index: number) {
     this.currentVote = index;
     this.refreshVotesList();
