@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { NgClass, NgStyle} from '@angular/common';
@@ -20,6 +20,8 @@ export class OfficialDetailComponent implements OnInit {
   search_result: Official[];
   detail_result: OfficialDetail[];
   biography: string;
+  loaded_finances: boolean;
+  finance_result: Object;
   facebook_path: 'https://facebook.com';
   twitter_path: 'https://twitter.com';
   youtube_path: 'https://youtube.com';
@@ -37,6 +39,8 @@ export class OfficialDetailComponent implements OnInit {
    */
   ngOnInit(): void {
     const self = this;
+    this.loaded_finances = false;
+    this.finance_result = [];
     if (this.input_official === undefined) {
       this.route.params.subscribe(
         params => this.officialService.searchOfficials(this.http, params['name'])
@@ -113,6 +117,28 @@ export class OfficialDetailComponent implements OnInit {
       age = year1 - year2;
       return age + '';
     }
+  }
+  
+  /**
+   * Function to retrieve the financial contributions to the officical from the back-end server
+   */
+  getFinanceData(): void {
+    if (!this.loaded_finances) {
+      this.officialService.getFinances(this.http, this.official.id).subscribe(finances => {
+        this.finance_result = finances;
+        this.finance_result['contributors'] = this.finance_result['contributors']['contributor'].map(function(value) {
+          return value['@attributes'];
+        });
+        this.finance_result['industries'] = this.finance_result['industries']['industry'].map(function(value) {
+          return value['@attributes'];
+        });
+        this.finance_result['sectors'] = this.finance_result['sectors']['sector'].map(function(value) {
+          return value['@attributes'];
+        });
+        console.log(this.finance_result);
+      });
+    }
+    this.loaded_finances = true;
   }
 
   goBack(): void {
