@@ -6,7 +6,9 @@ import { NgClass, NgStyle} from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OfficialService } from './../official.service';
-import { Official, OfficialDetail } from './../official';
+import { Official, OfficialDetail, OfficialBills } from './../official';
+import { TagContentType } from '@angular/compiler';
+import { Binary } from 'selenium-webdriver/firefox';
 
 @Component({
   selector: 'official-detail',
@@ -17,12 +19,20 @@ import { Official, OfficialDetail } from './../official';
 export class OfficialDetailComponent implements OnInit {
   @Input() input_official: Official;
   official: Official;
+  initialize: boolean;
   search_result: Official[];
   detail_result: OfficialDetail[];
+  votes_result: OfficialBills[]; // data for votes
+  bills_Items; // list of the bills
+  pageBillIndex: number[]; // number array for total pages
+  pageVoteIndex: number[]; // number array for for total pages
+  pagesBills: number;
+  pagesVotes: number;
+  currentBill: number;
+  currentVote: number;
+  votes_Items; // list of the votes
+  bills_result: OfficialBills[]; // data for bills
   biography: string;
-  facebook_path: 'https://facebook.com';
-  twitter_path: 'https://twitter.com';
-  youtube_path: 'https://youtube.com';
 
   constructor(
     private officialService: OfficialService,
@@ -36,6 +46,7 @@ export class OfficialDetailComponent implements OnInit {
    * Function to retrieve the official data from the back-end server
    */
   ngOnInit(): void {
+    this.initialize = true;
     const self = this;
     if (this.input_official === undefined) {
       this.route.params.subscribe(
@@ -71,10 +82,77 @@ export class OfficialDetailComponent implements OnInit {
     });
   }
 
+  getBills() {
+    if (this.initialize) {
+      let billNum, voteNum, remainder, division;
+      this.officialService.billsSearchOfficial(this.http, this.official.id).subscribe(bills_list => {
+        this.officialService.votesSearchOfficial(this.http, this.official.id).subscribe(votes_list => {
+          //Intialization of data
+          this.votes_result = votes_list;
+          this.bills_result = bills_list;
+          this.currentBill = 1;
+          this.currentVote = 1;
+          billNum = this.bills_result['num_results'];
+          voteNum = this.votes_result['num_results'];
+          // calculating the amount of pages needed for tables
+          division = billNum / 10;
+          division = Math.floor(division);
+          remainder = billNum % 10;
+          division = (remainder === 0) ? division : division + 1;
+          this.pagesBills = division;
+          this.refreshBillsList();
+          this.pageBillIndex = this.fillBillArray();
+          division = voteNum / 10;
+          division = Math.floor(division);
+          remainder = voteNum % 10;
+          division = (remainder === 0) ? division : division + 1;
+          this.pagesVotes = division;
+          this.refreshVotesList();
+          this.pageVoteIndex = this.fillVotesArray();
+        });
+      });
+      this.initialize = false;
+    }
+  }
+
+  fillBillArray() {
+    var array = new Array();
+    for (let index = 1; index < this.pagesBills + 1; index++) {
+      array.push(index);
+    }
+    return array;
+  }
+
+  fillVotesArray() {
+    var array = new Array();
+    for (let index = 1; index < this.pagesVotes + 1; index++) {
+      array.push(index);
+    }
+    return array;
+  }
+
+  refreshBillsList() {
+    this.bills_Items = this.bills_result['bills'].slice((this.currentBill - 1) * 10, (this.currentBill) * 10);
+  }
+
+  refreshVotesList() {
+    this.votes_Items = this.votes_result['votes'].slice((this.currentVote - 1) * 10, (this.currentVote) * 10);
+  }
+
+  setBillPage(index: number) {
+    this.currentBill = index;
+    this.refreshBillsList();
+  }
+
+  setVotePage(index: number) {
+    this.currentVote = index;
+    this.refreshVotesList();
+  }
+
   /**
    * Function to display A date in the format of Month Day, Year.
-   * @param date1 String of a date can be in format of what Date fuction can allow but must have
-   * month day and year to fuction properly.
+   * @param date1 String of a date can be in format of what Date function can allow but must have
+   * month day and year to function properly.
    * @return The properly formatted date
    */
   displayDate(date1: string): string {
