@@ -5,9 +5,15 @@
   <div class="col-md-3 text filter-sorting">
     <h3 class="filter-sorting-text">Sort: </h3>
       <form class="filter-sort-font" action="">
-        <input type="radio" #sortRelevance name="sort" value="relevance" (change)="sortBy = (sortRelevance.value); sort()" checked> Relevance<br>
-        <input type="radio" #sortFirst name="sort" value="firstName" (change)="sortBy = (sortFirst.value); sort()"> First Name<br>
-        <input type="radio" #sortLast name="sort" value="lastName" (change)="sortBy = (sortLast.value); sort()"> Last Name<br>
+        <input id="rel" type="radio" #sortRelevance name="sort" value="relevance" (change)="sortBy = (sortRelevance.value); sort()" checked>
+        <label for="rel">Relevance</label>
+        <br>
+        <input id="fname" type="radio" #sortFirst name="sort" value="firstName" (change)="sortBy = (sortFirst.value); sort()">
+        <label for="fname">First Name</label>
+        <br>
+        <input id="lname" type="radio" #sortLast name="sort" value="lastName" (change)="sortBy = (sortLast.value); sort()">
+        <label for="lname">Last Name</label>
+        <br>
       </form>
 
     <h3 class="filter-sorting-text">Filter:</h3>
@@ -15,24 +21,48 @@
     <form class="filter-sort-font" action="">
       <h4 class="filter-sorting-text">Political Party: </h4>
       <div id="filter">
-        <input type="checkbox" #d name="democrat" value="democrat" (change)="democrat = d.checked; filter()"> Democrat<br>
-        <input type="checkbox" #r name="republican" value="republican" (change)="republican = r.checked; filter()"> Republican<br>
-        <input type="checkbox" #i name="independent" value="independent" (change)="independent = i.checked; filter()"> Independent<br>
+        <input id="dem" type="checkbox" #d name="democrat" value="democrat" (change)="democrat = d.checked; filter()">
+        <label for="dem">Democrat</label>
+        <br>
+        <input id="repu" type="checkbox" #r name="republican" value="republican" (change)="republican = r.checked; filter()">
+        <label for="repu">Republican</label>
+        <br>
+        <input id="indep" type="checkbox" #i name="independent" value="independent" (change)="independent = i.checked; filter()">
+        <label for="indep">Independent</label>
+        <br>
       </div>
       <h4 class="filter-sorting-text">Filter by state: </h4>
       <div id="filter">
         <div *ngIf="states.hasOwnProperty('AL')">
-          <input type="checkbox" name="al" value="al" (change)="filter_state('AL')"> Alabama<br></div>
+          <input id="al_id" type="checkbox" name="al" value="al" (change)="filter_state('AL')">
+          <label for="al_id">Alabama</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('AK')">
-          <input type="checkbox" name="ak" value="ak" (change)="filter_state('AK')"> Alaska<br></div>
+          <input id="ak_id" type="checkbox" name="ak" value="ak" (change)="filter_state('AK')">
+          <label for="ak_id">Alaska</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('AZ')">
-          <input type="checkbox" name="az" value="az" (change)="filter_state('AZ')"> Arizona<br></div>
+          <input id="az_id" type="checkbox" name="az" value="az" (change)="filter_state('AZ')"> 
+          <label for="az_id">Arizona</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('AR')">
-          <input type="checkbox" name="ar" value="ar" (change)="filter_state('AR')"> Arkansas<br></div>
+          <input id="ar_id" type="checkbox" name="ar" value="ar" (change)="filter_state('AR')">
+          <label for="ar_id">Arkansas</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('CA')">
-          <input type="checkbox" name="ca" value="ca" (change)="filter_state('CA')"> California<br></div>
+          <input id="ca_id" type="checkbox" name="ca" value="ca" (change)="filter_state('CA')">
+          <label for="ca_id">California</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('CO')">
-          <input type="checkbox" name="co" value="co" (change)="filter_state('CO')"> Colorado<br></div>
+          <input id="co_id" type="checkbox" name="co" value="co" (change)="filter_state('CO')">
+          <label for="co_id">Colorado</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('CT')">
           <input type="checkbox" name="ct" value="ct" (change)="filter_state('CT')"> Connecticut<br></div>
         <div *ngIf="states.hasOwnProperty('DE')">
@@ -127,18 +157,20 @@
 
   </div>
   <div class="search-results-list">
-  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-md-3 official-lists">
-    <div *ngIf="official.gender=='M'">
-    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
+    <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-md-3 official-lists">
+      <div class="hover-effect">
+        <div *ngIf="official.gender=='M'">
+          <img class="hover-effect" src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
+        </div>
+        <div *ngIf="official.gender=='F'">
+          <img class="hover-effect" src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
+        </div>
+      
+        <p class="smaller-font">{{official.name}}</p>
+        <h4>({{official.party}} - {{official.state}})</h4>
+        <p class="bigger-font">{{official.role}}</p>
+        <p style="text-align:center; font-family:'whitneyHTF-semibold';">{{official.date}}</p>
+      </div>   
     </div>
-    <div *ngIf="official.gender=='F'">
-    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
-    </div>
-    <h2>{{official.name}}</h2>
-    <h4>({{official.party}} - {{official.state}})</h4>
-    <p>{{official.role}}</p><br>
-    <br>
-    <p style="text-align:center; font-family:'whitneyHTF-semibold';">{{official.date}}</p>
-  </div>
   </div>
 </div>
