@@ -23,6 +23,7 @@ def parse_response(response):
 
 def fetch_finances(opensecrets_id):
     result = {
+        'summary': {},
         'contributors': {},
         'sectors': {},
         'industries': {}
@@ -32,6 +33,10 @@ def fetch_finances(opensecrets_id):
         'apikey': API_KEY,
         'output': 'json'
     }
+    
+    params['method'] = 'candSummary'
+    response = requests.get(API_ENDPOINT, params=params)
+    result['summary'] = parse_response(response)['summary']
     
     params['method'] = 'candContrib'
     response = requests.get(API_ENDPOINT, params=params)
