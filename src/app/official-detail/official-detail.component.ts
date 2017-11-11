@@ -81,78 +81,58 @@ export class OfficialDetailComponent implements OnInit {
       this.biography = wiki.pages[Object.keys(wiki.pages)[0]].extract;
     });
   }
-
+  /**
+   * Function to get all the bill information of an official when the corresponding tab is clicked.
+   */
   getBills() {
     if (this.initialize) {
-      let billNum, voteNum, remainder, division;
+      let billNum, voteNum;
+      const calculatePage = function (pageSize: number, numberOfPages: number): number {
+        let division, remainder;
+        division = numberOfPages / pageSize;
+        division = Math.floor(division);
+        remainder = numberOfPages % pageSize;
+        division = (remainder === 0) ? division : division + 1;
+        return division;
+      };
       this.officialService.billsSearchOfficial(this.http, this.official.id).subscribe(bills_list => {
         this.officialService.votesSearchOfficial(this.http, this.official.id).subscribe(votes_list => {
-          //Intialization of data
+          // initialization of data
           this.votes_result = votes_list;
           this.bills_result = bills_list;
-          this.currentBill = 1;
-          this.currentVote = 1;
           billNum = this.bills_result['num_results'];
           voteNum = this.votes_result['num_results'];
           // calculating the amount of pages needed for tables
-          division = billNum / 5;
-          division = Math.floor(division);
-          remainder = billNum % 5;
-          division = (remainder === 0) ? division : division + 1;
-          this.pagesBills = division;
-          this.refreshBillsList();
-          this.pageBillIndex = this.fillBillArray();
-          division = voteNum / 5;
-          division = Math.floor(division);
-          remainder = voteNum % 5;
-          division = (remainder === 0) ? division : division + 1;
-          this.pagesVotes = division;
-          this.refreshVotesList();
-          this.pageVoteIndex = this.fillVotesArray();
+          this.pagesBills = calculatePage(5, billNum);
+          this.setBillPage(1);
+          this.pageBillIndex = this.fillBillArray(this.pagesBills);
+          this.pagesVotes = calculatePage(5, voteNum);
+          this.setVotePage(1);
+          this.pageVoteIndex = this.fillBillArray(this.pagesVotes);
         });
       });
       this.initialize = false;
     }
   }
+
   /**
    * Used to iterate through the number of pages available.
    */
-  fillBillArray() {
-    var array = new Array();
-    for (let index = 1; index < this.pagesBills + 1; index++) {
+  fillBillArray(numPages: number) {
+    const array = new Array();
+    for (let index = 1; index < numPages + 1; index++) {
       array.push(index);
     }
     return array;
   }
-  /**
-   * Used to iterate through the number of pages available.
-   */
-  fillVotesArray() {
-    var array = new Array();
-    for (let index = 1; index < this.pagesVotes + 1; index++) {
-      array.push(index);
-    }
-    return array;
-  }
-  /**
-   * Refreshes the table to display the list based on the current page.
-   */
-  refreshBillsList() {
-    this.bills_Items = this.bills_result['bills'].slice((this.currentBill - 1) * 5, (this.currentBill) * 5);
-  }
-  /**
-   * Refreshes the table to display the list based on the current page.
-   */
-  refreshVotesList() {
-    this.votes_Items = this.votes_result['votes'].slice((this.currentVote - 1) * 5, (this.currentVote) * 5);
-  }
+
   /**
    * Updates the current page and refreshes the table.
    * @param index is the current page number being accessed
    */
   setBillPage(index: number) {
     this.currentBill = index;
-    this.refreshBillsList();
+    this.bills_Items = this.bills_result['bills'].slice((this.currentBill - 1) * 5, (this.currentBill) * 5);
   }
   /**
    * Updates the current page and refreshes the table.
@@ -160,7 +140,7 @@ export class OfficialDetailComponent implements OnInit {
    */
   setVotePage(index: number) {
     this.currentVote = index;
-    this.refreshVotesList();
+    this.votes_Items = this.votes_result['votes'].slice((this.currentVote - 1) * 5, (this.currentVote) * 5);
   }
 
   /**
