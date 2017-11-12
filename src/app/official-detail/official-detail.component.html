@@ -179,49 +179,60 @@
             </div>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="finance">
-              <h4>Top Contributors</h4>
-              <table class="table">
-                <tr *ngIf="finance_result">
-                  <th>Contributor</th>
-                  <th>Total</th>
-                  <th>Individuals</th>
-                  <th>PACs</th>
-                </tr>
-                <tr *ngFor="let contributor of finance_result.contributors">
-                  <td>{{contributor.org_name}}</td>
-                  <td>${{contributor.total}}</td>
-                  <td>${{contributor.indivs}}</td>
-                  <td>${{contributor.pacs}}</td>
-                </tr>
+            <div *ngIf="finance_result != undefined">
+              <!-- TODO: <h2 class="detail-text">Summary</h2>-->
+              <h2 class="detail-text">Top Contributors</h2>
+              <table class="table table-striped">
+                <tbody>
+                  <tr class="detail-tab">
+                    <th>Contributor</th>
+                    <th>Total</th>
+                    <th>Individuals</th>
+                    <th>PACs</th>
+                  </tr>
+                  <tr *ngFor="let contributor of finance_result.contributors" class="odd detail-tab">
+                    <td>{{contributor.org_name}}</td>
+                    <td>${{contributor.total}}</td>
+                    <td>${{contributor.indivs}}</td>
+                    <td>${{contributor.pacs}}</td>
+                  </tr>
+                </tbody>
               </table>
+              <br/>
 
-              <h4>Top Industry Contributors</h4>
-              <table class="table">
-                <tr *ngIf="finance_result">
-                  <th>Industry</th>
-                  <th>Total</th>
-                  <th>Individuals</th>
-                  <th>PACs</th>
-                </tr>
-                <tr *ngFor="let industry of finance_result.industries">
-                  <td>{{industry.industry_name}}</td>
-                  <td>${{industry.total}}</td>
-                  <td>${{industry.indivs}}</td>
-                  <td>${{industry.pacs}}</td>
-                </tr>
+              <h2 class="detail-text">Top Industry Contributors</h2>
+              <table class="table table-striped">
+                <tbody>
+                  <tr class="detail-tab">
+                    <th>Industry</th>
+                    <th>Total</th>
+                    <th>Individuals</th>
+                    <th>PACs</th>
+                  </tr>
+                  <tr *ngFor="let industry of finance_result.industries" class="odd detail-tab">
+                    <td>{{industry.industry_name}}</td>
+                    <td>${{industry.total}}</td>
+                    <td>${{industry.indivs}}</td>
+                    <td>${{industry.pacs}}</td>
+                  </tr>
+                </tbody>
               </table>
+              <br/>
 
-              <h4>Top PAC Contributors</h4>
+              <h2 class="detail-text">Top PAC Contributors</h2>
               <table class="table">
-                <tr *ngIf="finance_result">
-                  <th>Sector Name</th>
-                  <th>Total</th>
-                </tr>
-                <tr *ngFor="let sector of finance_result.sectors">
-                  <td>{{sector.sector_name}}</td>
-                  <td>${{sector.total}}</td>
-                </tr>
+                <tbody>
+                  <tr class="detail-tab">
+                    <th>Sector Name</th>
+                    <th>Total</th>
+                  </tr>
+                  <tr *ngFor="let sector of finance_result.sectors" class="odd detail-tab">
+                    <td>{{sector.sector_name}}</td>
+                    <td>${{sector.total}}</td>
+                  </tr>
+                </tbody>
               </table>
+            </div>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="news">
             <div *ngIf="official.times_topics_url!=undefined && official.times_topics_url!='null'">
