@@ -51,7 +51,6 @@ export class OfficialDetailComponent implements OnInit {
     this.initialize = true;
     const self = this;
     this.loaded_finances = false;
-    this.finance_result = [];
     if (this.input_official === undefined) {
       this.route.params.subscribe(
         params => this.officialService.searchOfficials(this.http, params['name'])
@@ -59,6 +58,8 @@ export class OfficialDetailComponent implements OnInit {
             this.search_result = official_list;
             this.official = official_list.find(official => official.name === params['name']);
             this.getOfficalDetail();
+            this.getBills();
+            this.getFinanceData();
           })
       );
     } else {
@@ -99,21 +100,19 @@ export class OfficialDetailComponent implements OnInit {
         division = (remainder === 0) ? division : division + 1;
         return division;
       };
-      this.officialService.billsSearchOfficial(this.http, this.official.id).subscribe(bills_list => {
-        this.officialService.votesSearchOfficial(this.http, this.official.id).subscribe(votes_list => {
-          // initialization of data
-          this.votes_result = votes_list;
-          this.bills_result = bills_list;
-          billNum = this.bills_result['num_results'];
-          voteNum = this.votes_result['num_results'];
-          // calculating the amount of pages needed for tables
-          this.pagesBills = calculatePage(5, billNum);
-          this.setBillPage(1);
-          this.pageBillIndex = this.fillBillArray(this.pagesBills);
-          this.pagesVotes = calculatePage(5, voteNum);
-          this.setVotePage(1);
-          this.pageVoteIndex = this.fillBillArray(this.pagesVotes);
-        });
+      this.officialService.billsVotesSearchOfficial(this.http, this.official.id).subscribe(bills_votes => {
+        // initialization of data
+        this.votes_result = bills_votes['votes_info'];
+        this.bills_result = bills_votes['bills_info'];
+        billNum = this.bills_result['num_results'];
+        voteNum = this.votes_result['num_results'];
+        // calculating the amount of pages needed for tables
+        this.pagesBills = calculatePage(5, billNum);
+        this.setBillPage(1);
+        this.pageBillIndex = this.fillBillArray(this.pagesBills);
+        this.pagesVotes = calculatePage(5, voteNum);
+        this.setVotePage(1);
+        this.pageVoteIndex = this.fillBillArray(this.pagesVotes);
       });
       this.initialize = false;
     }
@@ -207,6 +206,7 @@ export class OfficialDetailComponent implements OnInit {
         this.finance_result['sectors'] = this.finance_result['sectors']['sector'].map(function(value) {
           return value['@attributes'];
         });
+        this.finance_result['summary'] = this.finance_result['summary']['@attributes'];
         console.log(this.finance_result);
       });
     }

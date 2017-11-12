@@ -46,24 +46,14 @@ export class OfficialService {
   }
 
   /**
-   * Function to retrieve the officials bills info from the server
+   * Function to retrieve the officials bills and votes info from the server
    * @param http the http client that the search query will be running on.
    * @param keyword the id to query for a specific official
-   * @return An Observable object containing the bills info of an official.
+   * @return An Observable object containing the bills and votes info of an official.
    */
-  billsSearchOfficial(http: HttpClient, keyword: string): Observable<OfficialBills[]> {
-    return http.get('/api/v0/details/votes_bills?id=' + keyword + '&votes_limit=0&bills_limit=100')
-      .map(data => data['bills_info']);
-  }
-/**
-   * Function to retrieve the officials votes info from the server
-   * @param http the http client that the search query will be running on.
-   * @param keyword the id to query for a specific official
-   * @return An Observable object containing the votes info of an official.
-   */
-  votesSearchOfficial(http: HttpClient, keyword: string): Observable<OfficialBills[]> {
-    return http.get('/api/v0/details/votes_bills?id=' + keyword + '&votes_limit=100&bills_limit=0')
-      .map(data => data['votes_info']);
+  billsVotesSearchOfficial(http: HttpClient, keyword: string): Observable<OfficialBills[]> {
+    return http.get('/api/v0/details/votes_bills?id=' + keyword + '&votes_limit=100&bills_limit=100')
+      .map(data => data);
   }
 
 
