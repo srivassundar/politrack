@@ -100,7 +100,7 @@
             <a class="detail-tab" href="#voted" aria-controls="voted" role="tab" data-toggle="tab">Voted on Bills</a>
           </li>
           <li role="presentation">
-            <a class="detail-tab" href="#finance" aria-controls="finance" role="tab" data-toggle="tab">Finances</a>
+            <a class="detail-tab" href="#finance" aria-controls="finance" role="tab" data-toggle="tab" (click)="getFinanceData()">Finances</a>
           </li>
           <li role="presentation">
             <a class="detail-tab" href="#social" aria-controls="social" role="tab" data-toggle="tab">Social Media</a>
@@ -259,158 +259,49 @@
 
           </div>
           <div role="tabpanel" class="tab-pane fade" id="finance">
-            <img style="padding-left: 60px;" src="../../assets/thumbnails/finances.png" />
-            <table class="table">
-              <thead style="background-color:#C9C9C9">
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <th>Vendor/Recipient</th>
+              <h4>Top Contributors</h4>
+              <table class="table">
+                <tr *ngIf="finance_result">
+                  <th>Contributor</th>
                   <th>Total</th>
-                  <th>No. of Payments</th>
+                  <th>Individuals</th>
+                  <th>PACs</th>
                 </tr>
-              </thead>
-              <tbody>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Democratic+Congressional+Campaign+Cmte">Democratic Congressional Campaign Cmte</a>
-                  </td>
-                  <td class="number">$270,000</td>
-                  <td class="number">11</td>
+                <tr *ngFor="let contributor of finance_result.contributors">
+                  <td>{{contributor.org_name}}</td>
+                  <td>${{contributor.total}}</td>
+                  <td>${{contributor.indivs}}</td>
+                  <td>${{contributor.pacs}}</td>
                 </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Fiorello+Consulting">Fiorello Consulting</a>
-                  </td>
-                  <td class="number">$66,000</td>
-                  <td class="number">22</td>
+              </table>
+              
+              <h4>Top Industry Contributors</h4>
+              <table class="table">
+                <tr *ngIf="finance_result">
+                  <th>Industry</th>
+                  <th>Total</th>
+                  <th>Individuals</th>
+                  <th>PACs</th>
                 </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Live+Nation+Worldwide">Live Nation Worldwide</a>
-                  </td>
-                  <td class="number">$49,633</td>
-                  <td class="number">1</td>
+                <tr *ngFor="let industry of finance_result.industries">
+                  <td>{{industry.industry_name}}</td>
+                  <td>${{industry.total}}</td>
+                  <td>${{industry.indivs}}</td>
+                  <td>${{industry.pacs}}</td>
                 </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Green%2C+Kenneth">Green, Kenneth</a>
-                  </td>
-                  <td class="number">$49,621</td>
-                  <td class="number">6</td>
+              </table>
+              
+              <h4>Top PAC Contributors</h4>
+              <table class="table">
+                <tr *ngIf="finance_result">
+                  <th>Sector Name</th>
+                  <th>Total</th>
                 </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Winpisinger+%26+Assoc">Winpisinger &amp; Assoc</a>
-                  </td>
-                  <td class="number">$39,095</td>
-                  <td class="number">24</td>
+                <tr *ngFor="let sector of finance_result.sectors">
+                  <td>{{sector.sector_name}}</td>
+                  <td>${{sector.total}}</td>
                 </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Delta+Air+Lines">Delta Air Lines</a>
-                  </td>
-                  <td class="number">$29,658</td>
-                  <td class="number">52</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Collins%2C+Michael">Collins, Michael</a>
-                  </td>
-                  <td class="number">$27,932</td>
-                  <td class="number">6</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Tabernacle">Tabernacle</a>
-                  </td>
-                  <td class="number">$24,796</td>
-                  <td class="number">5</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Ngp+Van">Ngp Van</a>
-                  </td>
-                  <td class="number">$23,400</td>
-                  <td class="number">8</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Bold+American+Food">Bold American Food</a>
-                  </td>
-                  <td class="number">$23,137</td>
-                  <td class="number">1</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Oblander+Group">Oblander Group</a>
-                  </td>
-                  <td class="number">$21,410</td>
-                  <td class="number">2</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Radford%2C+Gerald">Radford, Gerald</a>
-                  </td>
-                  <td class="number">$14,000</td>
-                  <td class="number">7</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Bistro+Bis">Bistro Bis</a>
-                  </td>
-                  <td class="number">$13,685</td>
-                  <td class="number">10</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Mothership+Strategies">Mothership Strategies</a>
-                  </td>
-                  <td class="number">$13,200</td>
-                  <td class="number">4</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Studio+Named+Bermudez">Studio Named Bermudez</a>
-                  </td>
-                  <td class="number">$12,433</td>
-                  <td class="number">4</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Meridien+Hotel">Meridien Hotel</a>
-                  </td>
-                  <td class="number">$10,756</td>
-                  <td class="number">4</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=New+London+Communications">New London Communications</a>
-                  </td>
-                  <td class="number">$10,340</td>
-                  <td class="number">1</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Coleman+Franklin+Group">Coleman Franklin Group</a>
-                  </td>
-                  <td class="number">$7,500</td>
-                  <td class="number">1</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Suntrust+Merchant+Services">Suntrust Merchant Services</a>
-                  </td>
-                  <td class="number">$7,201</td>
-                  <td class="number">66</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Faith+%26+Politics+Institute">Faith &amp; Politics Institute</a>
-                  </td>
-                  <td class="number">$7,063</td>
-                  <td class="number">2</td>
-                </tr>
-              </tbody>
-            </table>
+              </table>
           </div>
           <div role="tabpanel" class="tab-pane fade" id="news">
             <div *ngIf="official.times_topics_url!=undefined && official.times_topics_url!='null'">
