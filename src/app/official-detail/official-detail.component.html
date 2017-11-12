@@ -123,6 +123,8 @@
             <br>
             <p class="biggerFont">{{biography}}</p>
           </div>
+
+
           <div role="tabpanel" class="tab-pane fade" id="voted">
             <div *ngIf="bills_result != undefined && votes_result != undefined">
               <h2 class="detail-text">Co-Sponsored Bills</h2>
@@ -178,7 +180,10 @@
               </ul>
             </div>
           </div>
-          <div role="tabpanel" class="tab-pane fade" id="finance">
+
+
+          <div role="tabpanel" class="row tab-pane fade" id="finance">
+            <div class="col-md-7">
               <h4>Top Contributors</h4>
               <table class="table">
                 <tr *ngIf="finance_result">
@@ -194,7 +199,12 @@
                   <td>${{contributor.pacs}}</td>
                 </tr>
               </table>
+            </div>
+            <div class="col-md-5">
+              <google-chart *ngIf="overallChartData" [data]="overallChartData"></google-chart>
+            </div>
 
+            <div class="col-md-7">
               <h4>Top Industry Contributors</h4>
               <table class="table">
                 <tr *ngIf="finance_result">
@@ -210,7 +220,12 @@
                   <td>${{industry.pacs}}</td>
                 </tr>
               </table>
+            </div>
+            <div class="col-md-5">
+              <google-chart *ngIf="industrialChartData" [data]="industrialChartData"></google-chart>
+            </div>
 
+            <div class="col-md-7">
               <h4>Top PAC Contributors</h4>
               <table class="table">
                 <tr *ngIf="finance_result">
@@ -222,13 +237,21 @@
                   <td>${{sector.total}}</td>
                 </tr>
               </table>
+            </div>
+            <div class="col-md-5">
+              <google-chart *ngIf="pacChartData" [data]="pacChartData"></google-chart>
+            </div>
           </div>
+
+
           <div role="tabpanel" class="tab-pane fade" id="news">
             <div *ngIf="official.times_topics_url!=undefined && official.times_topics_url!='null'">
               <!--a href="{{official.times_topics_url}}">Times</a-->
               <iframe [src]='byPassUrl()' height="1000" width="100%"></iframe>
             </div>
           </div>
+
+
           <div role="tabpanel" class="tab-pane fade" id="social">
             <div *ngIf="official.facebook_account!=undefined">
               <h5>Facebook</h5>
