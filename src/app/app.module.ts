@@ -15,6 +15,8 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,7 @@ import { ContactComponent } from './contact/contact.component';
     HttpModule,
     AppRoutingModule,
     HttpClientModule,
+    Ng2GoogleChartsModule
   ],
   providers: [OfficialService],
   bootstrap: [AppComponent]

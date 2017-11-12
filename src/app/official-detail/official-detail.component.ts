@@ -36,6 +36,26 @@ export class OfficialDetailComponent implements OnInit {
   loaded_finances: boolean;
   finance_result: Object;
 
+  overallChartData = undefined;
+  industrialChartData = undefined;
+  pacChartData = undefined;
+
+  // overallChartData =  {
+  //   chartType: 'PieChart',
+  //   dataTable: [['Contributor', 'Total']],
+  //   options: {'title': 'Top Contributors Chart'},
+  // };
+  // industrialChartData =  {
+  //   chartType: 'PieChart',
+  //   dataTable: [['Contributor', 'Total']],
+  //   options: {'title': 'Top Industry Contributors Chart'},
+  // };
+  // pacChartData =  {
+  //   chartType: 'PieChart',
+  //   dataTable: [['Contributor', 'Total'], ['Loading...',     0]],
+  //   options: {'title': 'Top PAC Contributors Chart'},
+  // };
+
   constructor(
     private officialService: OfficialService,
     private route: ActivatedRoute,
@@ -207,10 +227,43 @@ export class OfficialDetailComponent implements OnInit {
           return value['@attributes'];
         });
         this.finance_result['summary'] = this.finance_result['summary']['@attributes'];
+        this.generateChartData();
         console.log(this.finance_result);
       });
     }
     this.loaded_finances = true;
+  }
+
+  generateChartData(): void {
+    let overallDataTable = [['Contributor', 'Total']];
+    this.finance_result['contributors'].forEach( function(contributor) {
+      overallDataTable.push([contributor.org_name, parseInt(contributor.total, 10)]);
+    });
+    this.overallChartData =  {
+      chartType: 'PieChart',
+      dataTable: overallDataTable,
+      options: {'title': 'Top Contributors Chart'},
+    };
+
+    let industrialDataTable = [['Contributor', 'Total']];
+    this.finance_result['industries'].forEach( function(contributor) {
+      industrialDataTable.push([contributor.industry_name, parseInt(contributor.total, 10)]);
+    });
+    this.industrialChartData =  {
+      chartType: 'PieChart',
+      dataTable: industrialDataTable,
+      options: {'title': 'Top Industry Contributors Chart'},
+    };
+
+    let sectorDataTable = [['Contributor', 'Total']];
+    this.finance_result['sectors'].forEach( function(contributor) {
+      sectorDataTable.push([contributor.sector_name, parseInt(contributor.total, 10)]);
+    });
+    this.pacChartData =  {
+      chartType: 'PieChart',
+      dataTable: sectorDataTable,
+      options: {'title': 'Top PAC Contributors Chart'},
+    };
   }
 
   goBack(): void {
