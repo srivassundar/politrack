@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Official, OfficialDetail } from './official';
+import { Official, OfficialDetail, OfficialBills } from './official';
 
 @Injectable()
 export class OfficialService {
   official_list: Official[];
   detail_list: OfficialDetail[];
+  bills_list: OfficialBills[];
   selected_official: Official; // used for official_delail page
   search_keyword: string;
 
@@ -45,12 +46,24 @@ export class OfficialService {
   }
 
   /**
+   * Function to retrieve the officials bills and votes info from the server
+   * @param http the http client that the search query will be running on.
+   * @param keyword the id to query for a specific official
+   * @return An Observable object containing the bills and votes info of an official.
+   */
+  billsVotesSearchOfficial(http: HttpClient, keyword: string): Observable<OfficialBills[]> {
+    return http.get('/api/v0/details/votes_bills?id=' + keyword + '&votes_limit=100&bills_limit=100')
+      .map(data => data);
+  }
+
+
+  /**
    * Function to retrieve the biography of the official from Wikipedia API.
    * @param http The http client that the search query will be running on.
    * @param The name of the official.
    * @return An Observable object containing the biography of the official.
    */
-    getOfficialWiki(http: HttpClient, official_name: string) {
+  getOfficialWiki(http: HttpClient, official_name: string) {
     let http_headers = new HttpHeaders();
     http_headers = http_headers.append('Api-User-Agent', 'PoliTrack/1.0 (lindaz@gatech.edu)');
     http_headers = http_headers.append('Content-Type', 'application/json; charset=UTF-8');
@@ -59,6 +72,17 @@ export class OfficialService {
       params: new HttpParams().set('titles', official_name),
       headers: http_headers
     }).map(data => data['query']);
+  }
+  
+    /**
+   * Function to retrieve the finance contribution to  the politican.
+   * @param http The http client that the search query will be running on.
+   * @param The ud of the official.
+   * @return An Observable object containing the financial contribution ro the official.
+   */
+  getFinances(http: HttpClient, official_id: string) {
+    return http.get('/api/v0/details/finances', { params: new HttpParams().set('id', official_id) } )
+      .map(data => data);
   }
 
   /**

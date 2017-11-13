@@ -6,7 +6,9 @@ import { NgClass, NgStyle} from '@angular/common';
 import 'rxjs/add/operator/switchMap';
 import { DomSanitizer } from '@angular/platform-browser';
 import { OfficialService } from './../official.service';
-import { Official, OfficialDetail } from './../official';
+import { Official, OfficialDetail, OfficialBills } from './../official';
+import { TagContentType } from '@angular/compiler';
+import { Binary } from 'selenium-webdriver/firefox';
 
 @Component({
   selector: 'official-detail',
@@ -17,12 +19,42 @@ import { Official, OfficialDetail } from './../official';
 export class OfficialDetailComponent implements OnInit {
   @Input() input_official: Official;
   official: Official;
+  initialize: boolean;
   search_result: Official[];
   detail_result: OfficialDetail[];
+  votes_result: OfficialBills[]; // data for votes
+  bills_Items; // list of the bills
+  pageBillIndex: number[]; // number array for total pages
+  pageVoteIndex: number[]; // number array for for total pages
+  pagesBills: number;
+  pagesVotes: number;
+  currentBill: number;
+  currentVote: number;
+  votes_Items; // list of the votes
+  bills_result: OfficialBills[]; // data for bills
   biography: string;
-  facebook_path: 'https://facebook.com';
-  twitter_path: 'https://twitter.com';
-  youtube_path: 'https://youtube.com';
+  loaded_finances: boolean;
+  finance_result: Object;
+
+  overallChartData = undefined;
+  industrialChartData = undefined;
+  pacChartData = undefined;
+
+  // overallChartData =  {
+  //   chartType: 'PieChart',
+  //   dataTable: [['Contributor', 'Total']],
+  //   options: {'title': 'Top Contributors Chart'},
+  // };
+  // industrialChartData =  {
+  //   chartType: 'PieChart',
+  //   dataTable: [['Contributor', 'Total']],
+  //   options: {'title': 'Top Industry Contributors Chart'},
+  // };
+  // pacChartData =  {
+  //   chartType: 'PieChart',
+  //   dataTable: [['Contributor', 'Total'], ['Loading...',     0]],
+  //   options: {'title': 'Top PAC Contributors Chart'},
+  // };
 
   constructor(
     private officialService: OfficialService,
@@ -36,7 +68,9 @@ export class OfficialDetailComponent implements OnInit {
    * Function to retrieve the official data from the back-end server
    */
   ngOnInit(): void {
+    this.initialize = true;
     const self = this;
+    this.loaded_finances = false;
     if (this.input_official === undefined) {
       this.route.params.subscribe(
         params => this.officialService.searchOfficials(this.http, params['name'])
@@ -44,6 +78,8 @@ export class OfficialDetailComponent implements OnInit {
             this.search_result = official_list;
             this.official = official_list.find(official => official.name === params['name']);
             this.getOfficalDetail();
+            this.getBills();
+            this.getFinanceData();
           })
       );
     } else {
@@ -70,11 +106,70 @@ export class OfficialDetailComponent implements OnInit {
       this.biography = wiki.pages[Object.keys(wiki.pages)[0]].extract;
     });
   }
+  /**
+   * Function to get all the bill information of an official when the corresponding tab is clicked.
+   */
+  getBills() {
+    if (this.initialize) {
+      let billNum, voteNum;
+      const calculatePage = function (pageSize: number, numberOfPages: number): number {
+        let division, remainder;
+        division = numberOfPages / pageSize;
+        division = Math.floor(division);
+        remainder = numberOfPages % pageSize;
+        division = (remainder === 0) ? division : division + 1;
+        return division;
+      };
+      this.officialService.billsVotesSearchOfficial(this.http, this.official.id).subscribe(bills_votes => {
+        // initialization of data
+        this.votes_result = bills_votes['votes_info'];
+        this.bills_result = bills_votes['bills_info'];
+        billNum = this.bills_result['num_results'];
+        voteNum = this.votes_result['num_results'];
+        // calculating the amount of pages needed for tables
+        this.pagesBills = calculatePage(5, billNum);
+        this.setBillPage(1);
+        this.pageBillIndex = this.fillBillArray(this.pagesBills);
+        this.pagesVotes = calculatePage(5, voteNum);
+        this.setVotePage(1);
+        this.pageVoteIndex = this.fillBillArray(this.pagesVotes);
+      });
+      this.initialize = false;
+    }
+  }
+
+  /**
+   * Used to iterate through the number of pages available.
+   */
+  fillBillArray(numPages: number) {
+    const array = new Array();
+    for (let index = 1; index < numPages + 1; index++) {
+      array.push(index);
+    }
+    return array;
+  }
+
+  /**
+   * Updates the current page and refreshes the table.
+   * @param index is the current page number being accessed
+   */
+  setBillPage(index: number) {
+    this.currentBill = index;
+    this.bills_Items = this.bills_result['bills'].slice((this.currentBill - 1) * 5, (this.currentBill) * 5);
+  }
+  /**
+   * Updates the current page and refreshes the table.
+   * @param index is the current page number being accessed
+   */
+  setVotePage(index: number) {
+    this.currentVote = index;
+    this.votes_Items = this.votes_result['votes'].slice((this.currentVote - 1) * 5, (this.currentVote) * 5);
+  }
 
   /**
    * Function to display A date in the format of Month Day, Year.
-   * @param date1 String of a date can be in format of what Date fuction can allow but must have
-   * month day and year to fuction properly.
+   * @param date1 String of a date can be in format of what Date function can allow but must have
+   * month day and year to function properly.
    * @return The properly formatted date
    */
   displayDate(date1: string): string {
@@ -113,6 +208,62 @@ export class OfficialDetailComponent implements OnInit {
       age = year1 - year2;
       return age + '';
     }
+  }
+
+  /**
+   * Function to retrieve the financial contributions to the officical from the back-end server
+   */
+  getFinanceData(): void {
+    if (!this.loaded_finances) {
+      this.officialService.getFinances(this.http, this.official.id).subscribe(finances => {
+        this.finance_result = finances;
+        this.finance_result['contributors'] = this.finance_result['contributors']['contributor'].map(function(value) {
+          return value['@attributes'];
+        });
+        this.finance_result['industries'] = this.finance_result['industries']['industry'].map(function(value) {
+          return value['@attributes'];
+        });
+        this.finance_result['sectors'] = this.finance_result['sectors']['sector'].map(function(value) {
+          return value['@attributes'];
+        });
+        this.finance_result['summary'] = this.finance_result['summary']['@attributes'];
+        this.generateChartData();
+        console.log(this.finance_result);
+      });
+    }
+    this.loaded_finances = true;
+  }
+
+  generateChartData(): void {
+    let overallDataTable = [['Contributor', 'Total']];
+    this.finance_result['contributors'].forEach( function(contributor) {
+      overallDataTable.push([contributor.org_name, parseInt(contributor.total, 10)]);
+    });
+    this.overallChartData =  {
+      chartType: 'PieChart',
+      dataTable: overallDataTable,
+      options: {'title': 'Top Contributors Chart'},
+    };
+
+    let industrialDataTable = [['Contributor', 'Total']];
+    this.finance_result['industries'].forEach( function(contributor) {
+      industrialDataTable.push([contributor.industry_name, parseInt(contributor.total, 10)]);
+    });
+    this.industrialChartData =  {
+      chartType: 'PieChart',
+      dataTable: industrialDataTable,
+      options: {'title': 'Top Industry Contributors Chart'},
+    };
+
+    let sectorDataTable = [['Contributor', 'Total']];
+    this.finance_result['sectors'].forEach( function(contributor) {
+      sectorDataTable.push([contributor.sector_name, parseInt(contributor.total, 10)]);
+    });
+    this.pacChartData =  {
+      chartType: 'PieChart',
+      dataTable: sectorDataTable,
+      options: {'title': 'Top PAC Contributors Chart'},
+    };
   }
 
   goBack(): void {

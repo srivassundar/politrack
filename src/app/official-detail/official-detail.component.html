@@ -11,14 +11,16 @@
           </div>
           <table class="table">
             <tr class="detail-tab">
-              <th colspan="2" style="text-align:center;background:lavender"><span style="display: inline-block;">
-                <div *ngIf="official.role=='Representative'">
-                <a href="https://en.wikipedia.org/wiki/United_States_House_of_Representatives">{{official.role}}</a>
-                </div>
-                <div *ngIf="official.role.includes('Senator')">
-                <a href="https://en.wikipedia.org/wiki/United_States_Senate">{{official.role}}</a>
-                </div>
-                </span><br>
+              <th colspan="2" style="text-align:center;background:lavender">
+                <span style="display: inline-block;">
+                  <div *ngIf="official.role=='Representative'">
+                    <a href="https://en.wikipedia.org/wiki/United_States_House_of_Representatives">{{official.role}}</a>
+                  </div>
+                  <div *ngIf="official.role.includes('Senator')">
+                    <a href="https://en.wikipedia.org/wiki/United_States_Senate">{{official.role}}</a>
+                  </div>
+                </span>
+                <br>
                 <div *ngIf="official.role=='Representative'">
                   from {{official.state}} District {{official.district}}
                 </div>
@@ -31,17 +33,17 @@
               <td colspan="2" style="text-align:center;border-bottom:none">
                 <div style="width:100%; margin:0; padding:0; background-color: lavender">
                   <b>
-                    <a href="https://en.wikipedia.org/wiki/Incumbent" title="Incumbent">Incumbent</a>
+                    <a target="_blank" href="https://en.wikipedia.org/wiki/Incumbent" title="Incumbent">Incumbent</a>
                   </b>
                 </div>
               </td>
             </tr>
             <tr class="detail-tab">
               <td colspan="2" style="text-align:center;border-bottom:none">
-              <span class="nowrap">
-                <b>Assumed office</b>
-              </span>
-              <br>{{displayDate(detail_result.office.termStart)}}</td>
+                <span class="nowrap">
+                  <b>Assumed office</b>
+                </span>
+                <br>{{displayDate(detail_result.office.termStart)}}</td>
             </tr>
             <tr class="detail-tab">
               <th colspan="2" style="text-align:center;background:lavender">Personal details</th>
@@ -50,20 +52,19 @@
               <th scope="row">Born</th>
               <td>
                 {{official.name}}
-                <br>
-                {{displayDate(detail_result.candidate.birthDate)}} <span class="noprint ForceAgeToShow">(age&nbsp;{{getAge(detail_result.candidate.birthDate)}})</span>
-                <br>
-                {{detail_result.candidate.birthPlace}}, U.S.
+                <br> {{displayDate(detail_result.candidate.birthDate)}}
+                <span class="noprint ForceAgeToShow">(age&nbsp;{{getAge(detail_result.candidate.birthDate)}})</span>
+                <br> {{detail_result.candidate.birthPlace}}, U.S.
               </td>
             </tr>
             <tr class="detail-tab">
               <th scope="row">Political party</th>
               <td>
                 <div *ngIf="official.party=='D'">
-                <a href="https://en.wikipedia.org/wiki/Democratic_Party_(United_States)">Democratic</a>
+                  <a href="https://en.wikipedia.org/wiki/Democratic_Party_(United_States)">Democratic</a>
                 </div>
                 <div *ngIf="official.party=='R'">
-                <a href="https://en.wikipedia.org/wiki/Republican_Party_(United_States)">Republican</a>
+                  <a href="https://en.wikipedia.org/wiki/Republican_Party_(United_States)">Republican</a>
                 </div>
               </td>
             </tr>
@@ -77,8 +78,14 @@
             </tr>
             <tr class="detail-tab">
               <th scope="row">Education</th>
-              <td><div *ngIf="detail_result.candidate.education.institution.length==undefined"><p>{{detail_result.candidate.education.institution.fullText}}</p></div>
-                <div *ngIf="detail_result.candidate.education.institution.length"><p *ngFor="let institution of detail_result.candidate.education.institution">{{institution.fullText}}</p></div></td>
+              <td>
+                <div *ngIf="detail_result.candidate.education.institution.length==undefined">
+                  <p>{{detail_result.candidate.education.institution.fullText}}</p>
+                </div>
+                <div *ngIf="detail_result.candidate.education.institution.length">
+                  <p *ngFor="let institution of detail_result.candidate.education.institution">{{institution.fullText}}</p>
+                </div>
+              </td>
             </tr>
             <tr class="detail-tab">
               <th scope="row">Religion</th>
@@ -97,10 +104,10 @@
             <a class="detail-tab" href="#bio" aria-controls="bio" role="tab" data-toggle="tab">Biography</a>
           </li>
           <li role="presentation">
-            <a class="detail-tab" href="#voted" aria-controls="voted" role="tab" data-toggle="tab">Voted on Bills</a>
+            <a class="detail-tab" href="#voted" aria-controls="voted" role="tab" data-toggle="tab" (click)="getBills()">Voted on Bills</a>
           </li>
           <li role="presentation">
-            <a class="detail-tab" href="#finance" aria-controls="finance" role="tab" data-toggle="tab">Finances</a>
+            <a class="detail-tab" href="#finance" aria-controls="finance" role="tab" data-toggle="tab" (click)="getFinanceData()">Finances</a>
           </li>
           <li role="presentation">
             <a class="detail-tab" href="#social" aria-controls="social" role="tab" data-toggle="tab">Social Media</a>
@@ -116,323 +123,168 @@
             <br>
             <p class="biggerFont">{{biography}}</p>
           </div>
+
+
           <div role="tabpanel" class="tab-pane fade" id="voted">
-
-            <table class="table table-striped">
-              <tbody>
-                <tr class="detail-tab">
-                  <th class="span-3">Date</th>
-                  <th class="span-3">Bill No.</th>
-                  <th class="span-8">Bill Title</th>
-                  <th class="span-8">Outcome</th>
-                  <th class="span-3">Vote</th>
-                </tr>
-
-                <tr class="odd detail-tab">
-                  <td>March 30, 2017</td>
-                  <td>
-                    <a href="/bill/22673/58905/26820/epa-science-advisory-board-reform-act-of-2017">HR 1431</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22673/58905/26820/epa-science-advisory-board-reform-act-of-2017">EPA Science Advisory Board Reform Act of 2017</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(229 - 193)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="detail-tab">
-                  <td>March 29, 2017</td>
-                  <td>
-                    <a href="/bill/22631/58793/26820/honest-and-open-new-epa-science-treatment-act-of-2017">HR 1430</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22631/58793/26820/honest-and-open-new-epa-science-treatment-act-of-2017">Honest and Open New EPA Science Treatment Act of 2017</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(228 - 194)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="odd detail-tab">
-                  <td>March 28, 2017</td>
-                  <td>
-                    <a href="/bill/22622/58786/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-federal-communications-commission-relating-to-protecting-the-privacy-of-customers-of-broadband-and-other-telecommunications-services">S J Res 34</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22622/58786/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-federal-communications-commission-relating-to-protecting-the-privacy-of-customers-of-broadband-and-other-telecommunications-services">Providing for congressional disapproval of the rule submitted by the Federal Communications Commission relating to Protecting
-                      the Privacy of Customers of Broadband and other Telecommunications Services</a>
-                  </td>
-                  <td>Joint Resolution Passed - House
-                    <br>(215 - 205)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="detail-tab">
-                  <td>March 16, 2017</td>
-                  <td>
-                    <a href="/bill/22611/58745/26820/veterans-2nd-amendment-protection-act">HR 1181</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22611/58745/26820/veterans-2nd-amendment-protection-act">Veterans 2nd Amendment Protection Act</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(240 - 175)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="odd detail-tab">
-                  <td>March 16, 2017</td>
-                  <td>
-                    <a href="/bill/22612/58747/26820/va-accountability-first-act-of-2017">HR 1259</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22612/58747/26820/va-accountability-first-act-of-2017">VA Accountability First Act of 2017</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(237 - 178)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="detail-tab">
-                  <td>March 10, 2017</td>
-                  <td>
-                    <a href="/bill/22607/58736/26820/lawsuit-abuse-reduction-act-of-2017">HR 720</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22607/58736/26820/lawsuit-abuse-reduction-act-of-2017">Lawsuit Abuse Reduction Act of 2017</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(230 - 188)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="odd detail-tab">
-                  <td>March 9, 2017</td>
-                  <td>
-                    <a href="/bill/22608/58739/26820/fairness-in-class-action-litigation-and-furthering-asbestos-claim-transparency-act-of-2017">HR 985</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22608/58739/26820/fairness-in-class-action-litigation-and-furthering-asbestos-claim-transparency-act-of-2017">Fairness in Class Action Litigation and Furthering Asbestos Claim Transparency Act of 2017</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(220 - 201)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="detail-tab">
-                  <td>March 1, 2017</td>
-                  <td>
-                    <a href="/bill/22587/58693/26820/searching-for-and-cutting-regulations-that-are-unnecessarily-burdensome-act">HR 998</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22587/58693/26820/searching-for-and-cutting-regulations-that-are-unnecessarily-burdensome-act">Searching for and Cutting Regulations that are Unnecessarily Burdensome Act</a>
-                  </td>
-                  <td>Bill Passed - House
-                    <br>(240 - 185)</td>
-                  <td>Nay</td>
-                </tr>
-
-
-                <tr class="odd detail-tab">
-                  <td>Feb. 16, 2017</td>
-                  <td>
-                    <a href="/bill/22637/58809/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-secretary-of-health-and-human-services-relating-to-compliance-with-title-x-requirements-by-project-recipients-in-selecting-subrecipients">H J Res 43</a>
-                  </td>
-                  <td>
-                    <a href="/bill/22637/58809/26820/providing-for-congressional-disapproval-of-the-rule-submitted-by-the-secretary-of-health-and-human-services-relating-to-compliance-with-title-x-requirements-by-project-recipients-in-selecting-subrecipients">Providing for Congressional Disapproval of the Rule Submitted by the Secretary of Health and Human Services Relating
-                      to Compliance with Title X Requirements by Project Recipients in Selecting Subrecipients</a>
-                  </td>
-                  <td>Joint Resolution Passed - House
-                    <br>(230 - 188)</td>
-                  <td>Nay</td>
-                </tr>
-              </tbody>
-            </table>
-
+            <div *ngIf="bills_result != undefined && votes_result != undefined">
+              <h2 class="detail-text">Co-Sponsored Bills</h2>
+              <!-- Co-Sponsored Bills-->
+              <table class="table table-striped">
+                <tbody>
+                  <tr class="detail-tab">
+                    <th class="span-3">Date</th>
+                    <th class="span-3">Bill No.</th>
+                    <th class="span-8">Bill Title</th>
+                  </tr>
+                  <tr *ngFor="let bills of bills_Items;" class="odd detail-tab">
+                    <td>{{bills.introduced_date}}</td>
+                    <td>
+                      <a href="{{bills.congressdotgov_url}}">{{bills.number}}</a>
+                    </td>
+                    <td>
+                      <a href="{{bills.govtrack_url}}">{{bills.short_title}}</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <ul class="pagination pagination-lg">
+                <li *ngFor="let page of pageBillIndex" [ngClass]="{'active': (currentBill == page)}">
+                  <a (click)="setBillPage(page)">{{page}}</a>
+                </li>
+              </ul>
+              <h2 class="detail-text">Voted on Bills</h2>
+              <table class="table table-striped">
+                <tbody>
+                  <tr class="detail-tab">
+                    <th class="span-3">Date</th>
+                    <th class="span-3">Bill No.</th>
+                    <th class="span-8">Bill Title</th>
+                    <th class="span-8">Outcome</th>
+                    <th class="span-3">Vote</th>
+                  </tr>
+                  <tr *ngFor="let bills of votes_Items;" class="odd detail-tab">
+                    <td>{{bills.date}}</td>
+                    <td>{{bills.bill.number}}</td>
+                    <td>{{bills.description}}</td>
+                    <td>{{bills.result}} - {{bills.chamber}}
+                      <br>yes: {{bills.total.yes}}<br>no: {{bills.total.no}}
+                    </td>
+                    <td>{{bills.position}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <ul class="pagination pagination-lg">
+                <li *ngFor="let page1 of pageVoteIndex" [ngClass]="{'active': (currentVote == page1)}">
+                  <a (click)="setVotePage(page1)">{{page1}}</a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div role="tabpanel" class="tab-pane fade" id="finance">
-            <img style="padding-left: 60px;" src="../../assets/thumbnails/finances.png" />
-            <table class="table">
-              <thead style="background-color:#C9C9C9">
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <th>Vendor/Recipient</th>
+          <div role="tabpanel" class="row tab-pane fade" id="finance">
+            <div class="col-md-12" *ngIf="finance_result != undefined"><h2 class="detail-text">Top Contributors</h2></div>
+            <div class="col-md-7" *ngIf="finance_result != undefined">
+              <table class="table table-striped">
+                <tr class="detail-tab">
+                  <th>Contributor</th>
                   <th>Total</th>
-                  <th>No. of Payments</th>
+                  <th>Individuals</th>
+                  <th>PACs</th>
                 </tr>
-              </thead>
-              <tbody>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Democratic+Congressional+Campaign+Cmte">Democratic Congressional Campaign Cmte</a>
-                  </td>
-                  <td class="number">$270,000</td>
-                  <td class="number">11</td>
+                <tr class="odd detail-tab" *ngFor="let contributor of finance_result.contributors">
+                  <td>{{contributor.org_name}}</td>
+                  <td>${{contributor.total}}</td>
+                  <td>${{contributor.indivs}}</td>
+                  <td>${{contributor.pacs}}</td>
                 </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Fiorello+Consulting">Fiorello Consulting</a>
-                  </td>
-                  <td class="number">$66,000</td>
-                  <td class="number">22</td>
+              </table>
+            </div>
+            <div class="col-md-5" *ngIf="overallChartData != undefined">
+              <google-chart [data]="overallChartData"></google-chart>
+            </div>
+
+            <div class="col-md-12" *ngIf="finance_result != undefined"><h2 class="detail-text">Top Industry Contributors</h2></div>
+            <div class="col-md-7" *ngIf="finance_result != undefined">
+              <table class="table table-striped">
+                <tr class="detail-tab">
+                  <th>Industry</th>
+                  <th>Total</th>
+                  <th>Individuals</th>
+                  <th>PACs</th>
                 </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Live+Nation+Worldwide">Live Nation Worldwide</a>
-                  </td>
-                  <td class="number">$49,633</td>
-                  <td class="number">1</td>
+                <tr *ngFor="let industry of finance_result.industries" class="odd detail-tab">
+                  <td>{{industry.industry_name}}</td>
+                  <td>${{industry.total}}</td>
+                  <td>${{industry.indivs}}</td>
+                  <td>${{industry.pacs}}</td>
                 </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Green%2C+Kenneth">Green, Kenneth</a>
-                  </td>
-                  <td class="number">$49,621</td>
-                  <td class="number">6</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Winpisinger+%26+Assoc">Winpisinger &amp; Assoc</a>
-                  </td>
-                  <td class="number">$39,095</td>
-                  <td class="number">24</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Delta+Air+Lines">Delta Air Lines</a>
-                  </td>
-                  <td class="number">$29,658</td>
-                  <td class="number">52</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Collins%2C+Michael">Collins, Michael</a>
-                  </td>
-                  <td class="number">$27,932</td>
-                  <td class="number">6</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Tabernacle">Tabernacle</a>
-                  </td>
-                  <td class="number">$24,796</td>
-                  <td class="number">5</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Ngp+Van">Ngp Van</a>
-                  </td>
-                  <td class="number">$23,400</td>
-                  <td class="number">8</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Bold+American+Food">Bold American Food</a>
-                  </td>
-                  <td class="number">$23,137</td>
-                  <td class="number">1</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Oblander+Group">Oblander Group</a>
-                  </td>
-                  <td class="number">$21,410</td>
-                  <td class="number">2</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Radford%2C+Gerald">Radford, Gerald</a>
-                  </td>
-                  <td class="number">$14,000</td>
-                  <td class="number">7</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Bistro+Bis">Bistro Bis</a>
-                  </td>
-                  <td class="number">$13,685</td>
-                  <td class="number">10</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Mothership+Strategies">Mothership Strategies</a>
-                  </td>
-                  <td class="number">$13,200</td>
-                  <td class="number">4</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Studio+Named+Bermudez">Studio Named Bermudez</a>
-                  </td>
-                  <td class="number">$12,433</td>
-                  <td class="number">4</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Meridien+Hotel">Meridien Hotel</a>
-                  </td>
-                  <td class="number">$10,756</td>
-                  <td class="number">4</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=New+London+Communications">New London Communications</a>
-                  </td>
-                  <td class="number">$10,340</td>
-                  <td class="number">1</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Coleman+Franklin+Group">Coleman Franklin Group</a>
-                  </td>
-                  <td class="number">$7,500</td>
-                  <td class="number">1</td>
-                </tr>
-                <tr style="background-color: rgb(224, 230, 236);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Suntrust+Merchant+Services">Suntrust Merchant Services</a>
-                  </td>
-                  <td class="number">$7,201</td>
-                  <td class="number">66</td>
-                </tr>
-                <tr style="background-color: rgb(240, 243, 246);">
-                  <td>
-                    <a href="/expends/vendor.php?year=2016&amp;vendor=Faith+%26+Politics+Institute">Faith &amp; Politics Institute</a>
-                  </td>
-                  <td class="number">$7,063</td>
-                  <td class="number">2</td>
-                </tr>
-              </tbody>
-            </table>
+              </table>
+            </div>
+            <div class="col-md-5" *ngIf="industrialChartData != undefined">
+              <google-chart style="padding-left: 0px" [data]="industrialChartData"></google-chart>
+            </div>
+
+            <div class="col-md-12" *ngIf="finance_result != undefined"><h2 class="detail-text">Top PAC Contributors</h2></div>
+            <div class="col-md-7" *ngIf="finance_result != undefined">
+              <table class="table table-striped">
+                <tbody>
+                  <tr class="detail-tab">
+                    <th>Sector Name</th>
+                    <th>Total</th>
+                  </tr>
+                  <tr *ngFor="let sector of finance_result.sectors" class="odd detail-tab">
+                    <td>{{sector.sector_name}}</td>
+                    <td>${{sector.total}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-5" *ngIf="pacChartData != undefined">
+              <google-chart [data]="pacChartData"></google-chart>
+            </div>
           </div>
+
           <div role="tabpanel" class="tab-pane fade" id="news">
-            <div *ngIf="official.times_topics_url!=undefined && official.times_topics_url!='null'">
+            <div *ngIf="official.times_topics_url != undefined && official.times_topics_url!='null'">
               <!--a href="{{official.times_topics_url}}">Times</a-->
               <iframe [src]='byPassUrl()' height="1000" width="100%"></iframe>
             </div>
           </div>
+
+
           <div role="tabpanel" class="tab-pane fade" id="social">
-            <div *ngIf="official.facebook_account!=undefined">
-            <h5>Facebook</h5>
-            <p>{{official.name}}'s <a href="{{facebook_path}}/{{official?.facebook_account}}">Facebook Page</a></p>
-            <br>
+            <div *ngIf="official.facebook_account != undefined">
+              <a target="_blank" href="https://facebook.com/{{official?.facebook_account}}">
+                <img style="max-height: 4em" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/F_icon.svg/240px-F_icon.svg.png" alt="Facebook" >
+              </a>
+              <p>{{official.name}}'s
+                <a target="_blank" href="https://facebook.com/{{official?.facebook_account}}">Facebook Page</a>
+              </p>
+              <br>
             </div>
-            <div *ngIf="official.twitter_id!=undefined">
-            <h5>Twitter</h5>
-            <p>{{official.name}}'s <a href = "{{twitter_path}}/{{official?.twitter_id}}">Twitter Page</a></p>
-            <br>
+
+            <div *ngIf="official.twitter_id != undefined">
+              <a target="_blank" href="https://twitter.com/{{official?.twitter_id}}">
+                <img style="max-height: 3em" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Twitter_logo.svg/320px-Twitter_logo.svg.png" alt="Twitter" >
+              </a>
+              <p>{{official.name}}'s
+                <a target="_blank" href="https://twitter.com/{{official?.twitter_id}}">Twitter Page</a>
+              </p>
+              <br>
             </div>
-            <div *ngIf="official.youtube_id!=undefined">
-            <h5>Youtube</h5>
-            <p>{{official.name}}'s <a href="{{youtube_path}}/{{official?.youtube_id}}">Youtube Page</a></p>
+
+            <div *ngIf="official.youtube_id != undefined">
+              <a target="_blank" href="https://youtube.com/{{official?.youtube_id}}">
+                <img style="max-height: 4em" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/320px-Logo_of_YouTube_%282015-2017%29.svg.png" alt="Youtube" >
+              </a>
+              <p>{{official.name}}'s
+                <a target="_blank" href="https://youtube.com/{{official?.youtube_id}}">Youtube Page</a>
+              </p>
             </div>
+
+<!--             <div *ngIf="official.twitter_id != undefined">
+              <a class="twitter-timeline" data-height="1000" data-theme="light" href="https://twitter.com/{{official?.twitter_id}}?ref_src=twsrc%5Etfw">Tweets by {{official.name}}</a>
+            </div>
+ -->
           </div>
         </div>
       </div>
