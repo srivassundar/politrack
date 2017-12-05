@@ -13,7 +13,7 @@ import { Binary } from 'selenium-webdriver/firefox';
 @Component({
   selector: 'official-detail',
   templateUrl: './official-detail.component.html',
-  styleUrls: ['./official-detail.component.css']
+  styleUrls: ['./official-detail.component.css'],
 })
 
 export class OfficialDetailComponent implements OnInit {

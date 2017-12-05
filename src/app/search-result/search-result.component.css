@@ -92,7 +92,9 @@ h1 {
   background-color: #d8d8d8;
   border-radius: 10px;
   padding-bottom: 70px;
-  padding-left: 10px;
+  padding-left: 20px;
+  margin-top: 5px;
+  margin-left: 10px;
 }
 .filter-sorting-text {
   text-align: left;
@@ -101,4 +103,20 @@ h1 {
   margin: 0;
   padding: 10px;
   background-color: #f15f40;
+}
+.filter-sort-font {
+  font-size: 1.3em;
+}
+.smaller-font {
+  font-size: 1.5em;
+  margin: 10px;
+}
+.hover-effect {
+  cursor: pointer;
+}
+.hover-effect:hover {
+  color: #f15f40 !important;
+}
+.bigger-font {
+  font-size: 1.5em;
 }

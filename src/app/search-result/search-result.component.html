@@ -1,144 +1,322 @@
+
+<div class="body">
+  <div *ngIf="!search_result" class="loading-bro">
+    <h1>Loading</h1>
+    <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
+      <circle id="loading-inner" cx="75" cy="75" r="60"/>
+   </svg>
+  </div>
+</div>
+
+<div *ngIf="search_result">
 <h1 class="breadcrumb">Showing results for: {{search_keyword}}</h1>
 <br><br clear="all" />
 <div class="grid grid-pad">
   <div class="topGrid">
   <div class="col-md-3 text filter-sorting">
     <h3 class="filter-sorting-text">Sort: </h3>
-      <form action="">
-        <input type="radio" #sortRelevance name="sort" value="relevance" (change)="sortBy = (sortRelevance.value); sort()" checked> Relevance<br>
-        <input type="radio" #sortFirst name="sort" value="firstName" (change)="sortBy = (sortFirst.value); sort()"> First Name<br>
-        <input type="radio" #sortLast name="sort" value="lastName" (change)="sortBy = (sortLast.value); sort()"> Last Name<br>
+      <form class="filter-sort-font" action="">
+        <input id="rel" type="radio" #sortRelevance name="sort" value="relevance" (change)="sortBy = (sortRelevance.value); sort()" checked>
+        <label for="rel">Relevance</label>
+        <br>
+        <input id="fname" type="radio" #sortFirst name="sort" value="firstName" (change)="sortBy = (sortFirst.value); sort()">
+        <label for="fname">First Name</label>
+        <br>
+        <input id="lname" type="radio" #sortLast name="sort" value="lastName" (change)="sortBy = (sortLast.value); sort()">
+        <label for="lname">Last Name</label>
+        <br>
       </form>
 
-    <h3 class="filter-sorting-text"><b>Filter</b></h3>
+    <h3 class="filter-sorting-text">Filter:</h3>
     <button class="home-button" onclick="$('input:checkbox').removeAttr('checked')" (click)="clear_filter()" >Clear all filters</button>
-    <form action="">
+    <form class="filter-sort-font" action="">
       <h4 class="filter-sorting-text">Political Party: </h4>
       <div id="filter">
-        <input type="checkbox" #d name="democrat" value="democrat" (change)="democrat = d.checked; filter()"> Democrat<br>
-        <input type="checkbox" #r name="republican" value="republican" (change)="republican = r.checked; filter()"> Republican<br>
-        <input type="checkbox" #i name="independent" value="independent" (change)="independent = i.checked; filter()"> Independent<br>
+        <input id="dem" type="checkbox" #d name="democrat" value="democrat" (change)="democrat = d.checked; filter()">
+        <label for="dem">Democrat</label>
+        <br>
+        <input id="repu" type="checkbox" #r name="republican" value="republican" (change)="republican = r.checked; filter()">
+        <label for="repu">Republican</label>
+        <br>
+        <input id="indep" type="checkbox" #i name="independent" value="independent" (change)="independent = i.checked; filter()">
+        <label for="indep">Independent</label>
+        <br>
       </div>
       <h4 class="filter-sorting-text">Filter by state: </h4>
       <div id="filter">
         <div *ngIf="states.hasOwnProperty('AL')">
-          <input type="checkbox" name="al" value="al" (change)="filter_state('AL')"> Alabama<br></div>
+          <input id="al_id" type="checkbox" name="al" value="al" (change)="filter_state('AL')">
+          <label for="al_id">Alabama</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('AK')">
-          <input type="checkbox" name="ak" value="ak" (change)="filter_state('AK')"> Alaska<br></div>
+          <input id="ak_id" type="checkbox" name="ak" value="ak" (change)="filter_state('AK')">
+          <label for="ak_id">Alaska</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('AZ')">
-          <input type="checkbox" name="az" value="az" (change)="filter_state('AZ')"> Arizona<br></div>
+          <input id="az_id" type="checkbox" name="az" value="az" (change)="filter_state('AZ')">
+          <label for="az_id">Arizona</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('AR')">
-          <input type="checkbox" name="ar" value="ar" (change)="filter_state('AR')"> Arkansas<br></div>
+          <input id="ar_id" type="checkbox" name="ar" value="ar" (change)="filter_state('AR')">
+          <label for="ar_id">Arkansas</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('CA')">
-          <input type="checkbox" name="ca" value="ca" (change)="filter_state('CA')"> California<br></div>
+          <input id="ca_id" type="checkbox" name="ca" value="ca" (change)="filter_state('CA')">
+          <label for="ca_id">California</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('CO')">
-          <input type="checkbox" name="co" value="co" (change)="filter_state('CO')"> Colorado<br></div>
+          <input id="co_id" type="checkbox" name="co" value="co" (change)="filter_state('CO')">
+          <label for="co_id">Colorado</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('CT')">
-          <input type="checkbox" name="ct" value="ct" (change)="filter_state('CT')"> Connecticut<br></div>
+          <input id="ct_id" type="checkbox" name="ct" value="ct" (change)="filter_state('CT')">
+          <label for="ct_id">Connecticut</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('DE')">
-          <input type="checkbox" name="de" value="de" (change)="filter_state('DE')"> Delaware<br></div>
+          <input id="de_id" type="checkbox" name="de" value="de" (change)="filter_state('DE')">
+          <label for="de_id">Delaware</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('FL')">
-          <input type="checkbox" name="fl" value="fl" (change)="filter_state('FL')"> Florida<br></div>
+          <input id="fl_id" type="checkbox" name="fl" value="fl" (change)="filter_state('FL')">
+          <label for="fl_id">Florida</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('GA')">
-          <input type="checkbox" name="ga" value="ga" (change)="filter_state('GA')"> Georgia<br></div>
+          <input id="ga_id" type="checkbox" name="ga" value="ga" (change)="filter_state('GA')">
+          <label for="ga_id">Georgia</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('HI')">
-          <input type="checkbox" name="hi" value="hi" (change)="filter_state('HI')"> Hawaii<br></div>
+          <input id="hi_id" type="checkbox" name="hi" value="hi" (change)="filter_state('HI')">
+          <label for="hi_id">Hawaii</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('ID')">
-          <input type="checkbox" name="id" value="id" (change)="filter_state('ID')"> Idaho<br></div>
+          <input id="id_id" type="checkbox" name="id" value="id" (change)="filter_state('ID')">
+          <label for="id_id">Idaho</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('IL')">
-          <input type="checkbox" name="il" value="il" (change)="filter_state('IL')"> Illinois<br></div>
+          <input id="il_id" type="checkbox" name="il" value="il" (change)="filter_state('IL')">
+          <label for="il_id">Illinois</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('IN')">
-          <input type="checkbox" name="in" value="in" (change)="filter_state('IN')"> Indiana<br></div>
+          <input id="in_id" type="checkbox" name="in" value="in" (change)="filter_state('IN')">
+          <label for="in_id">Indiana</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('IA')">
-          <input type="checkbox" name="ia" value="ia" (change)="filter_state('IA')"> Iowa<br></div>
+          <input id="ia_id" type="checkbox" name="ia" value="ia" (change)="filter_state('IA')">
+          <label for="ia_id">Iowa</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('KS')">
-          <input type="checkbox" name="ks" value="ks" (change)="filter_state('KS')"> Kansas<br></div>
+          <input id="ks_id" type="checkbox" name="ks" value="ks" (change)="filter_state('KS')">
+          <label for="ks_id">Kansas</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('KY')">
-          <input type="checkbox" name="ky" value="ky" (change)="filter_state('KY')"> Kentucky<br></div>
+          <input id="ky_id" type="checkbox" name="ky" value="ky" (change)="filter_state('KY')">
+          <label for="ky_id">Kentucky</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('LA')">
-          <input type="checkbox" name="la" value="la" (change)="filter_state('LA')"> Louisiana<br></div>
+          <input id="la_id" type="checkbox" name="la" value="la" (change)="filter_state('LA')">
+          <label for="la_id">Louisiana</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('ME')">
-          <input type="checkbox" name="me" value="me" (change)="filter_state('ME')"> Maine<br></div>
+          <input id="me_id" type="checkbox" name="me" value="me" (change)="filter_state('ME')">
+          <label for="me_id">Maine</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('MD')">
-          <input type="checkbox" name="md" value="md" (change)="filter_state('MD')"> Maryland<br></div>
+          <input id="md_id" type="checkbox" name="md" value="md" (change)="filter_state('MD')">
+          <label for="md_id">Maryland</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('MA')">
-          <input type="checkbox" name="ma" value="ma" (change)="filter_state('MA')"> Massachusetts<br></div>
+          <input id="ma_id" type="checkbox" name="ma" value="ma" (change)="filter_state('MA')">
+          <label for="ma_id">Massachusetts</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('MI')">
-          <input type="checkbox" name="mi" value="mi" (change)="filter_state('MI')"> Michigan<br></div>
+          <input id="mi_id" type="checkbox" name="mi" value="mi" (change)="filter_state('MI')">
+          <label for="mi_id">Michigan</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('MN')">
-          <input type="checkbox" name="mn" value="mn" (change)="filter_state('MN')"> Minnesota<br></div>
+          <input id="mn_id" type="checkbox" name="mn" value="mn" (change)="filter_state('MN')">
+          <label for="mn_id">Minnesota</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('MS')">
-          <input type="checkbox" name="ms" value="ms" (change)="filter_state('MS')"> Mississippi<br></div>
+          <input id="ms_id" type="checkbox" name="ms" value="ms" (change)="filter_state('MS')">
+          <label for="ms_id">Mississippi</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('MO')">
-          <input type="checkbox" name="mo" value="mo" (change)="filter_state('MO')"> Missouri<br></div>
+          <input id="mo_id" type="checkbox" name="mo" value="mo" (change)="filter_state('MO')">
+          <label for="mo_id">Missouri</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('MT')">
-          <input type="checkbox" name="mt" value="mt" (change)="filter_state('MT')"> Montana<br></div>
+          <input id="mt_id" type="checkbox" name="mt" value="mt" (change)="filter_state('MT')">
+          <label for="mt_id">Montana</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('NE')">
-          <input type="checkbox" name="ne" value="ne" (change)="filter_state('NE')"> Nebraska<br></div>
+          <input id="ne_id" type="checkbox" name="ne" value="ne" (change)="filter_state('NE')">
+          <label for="ne_id">Nebraska</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('NV')">
-          <input type="checkbox" name="nv" value="nv" (change)="filter_state('NV')"> Nevada<br></div>
+          <input id="nv_id" type="checkbox" name="nv" value="nv" (change)="filter_state('NV')">
+          <label for="nv_id">Nevada</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('NH')">
-          <input type="checkbox" name="nh" value="nh" (change)="filter_state('NH')"> New Hampshire<br></div>
+          <input id="nh_id" type="checkbox" name="nh" value="nh" (change)="filter_state('NH')">
+          <label for="nh_id">New Hampshire</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('NJ')">
-          <input type="checkbox" name="nj" value="nj" (change)="filter_state('NJ')"> New Jersey<br></div>
+          <input id="nj_id" type="checkbox" name="nj" value="nj" (change)="filter_state('NJ')">
+          <label for="nj_id">New Jersey</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('NM')">
-          <input type="checkbox" name="nm" value="nm" (change)="filter_state('NM')"> New Mexico<br></div>
+          <input id="nm_id" type="checkbox" name="nm" value="nm" (change)="filter_state('NM')">
+          <label for="nm_id">New Mexico</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('NY')">
-          <input type="checkbox" name="ny" value="ny" (change)="filter_state('NY')"> New York<br></div>
+          <input id="ny_id" type="checkbox" name="ny" value="ny" (change)="filter_state('NY')">
+          <label for="ny_id">New York</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('NC')">
-          <input type="checkbox" name="nc" value="nc" (change)="filter_state('NC')"> North Carolina<br></div>
+          <input id="nc_id" type="checkbox" name="nc" value="nc" (change)="filter_state('NC')">
+          <label for="nc_id">North Carolina</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('ND')">
-          <input type="checkbox" name="nd" value="nd" (change)="filter_state('ND')"> North Dakota<br></div>
+          <input id="nd_id" type="checkbox" name="nd" value="nd" (change)="filter_state('ND')">
+          <label for="nd_id">North Dakota</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('OH')">
-          <input type="checkbox" name="oh" value="oh" (change)="filter_state('OH')"> Ohio<br></div>
+          <input id="oh_id" type="checkbox" name="oh" value="oh" (change)="filter_state('OH')">
+          <label for="oh_id">Ohio</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('OK')">
-          <input type="checkbox" name="ok" value="ok" (change)="filter_state('OK')"> Oklahoma<br></div>
+          <input id="ok_id" type="checkbox" name="ok" value="ok" (change)="filter_state('OK')">
+          <label for="ok_id">Oklahoma</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('OR')">
-          <input type="checkbox" name="or" value="or" (change)="filter_state('OR')"> Oregon<br></div>
+          <input id="or_id" type="checkbox" name="or" value="or" (change)="filter_state('OR')">
+          <label for="or_id">Oregon</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('PA')">
-          <input type="checkbox" name="pa" value="pa" (change)="filter_state('PA')"> Pennsylvania<br></div>
+          <input id="pa_id" type="checkbox" name="pa" value="pa" (change)="filter_state('PA')">
+          <label for="pa_id">Pennsylvania</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('RI')">
-          <input type="checkbox" name="ri" value="ri" (change)="filter_state('RI')"> Rhode Island<br></div>
+          <input id="ri_id" type="checkbox" name="ri" value="ri" (change)="filter_state('RI')">
+          <label for="ri_id">Rhode Island</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('SC')">
-          <input type="checkbox" name="sc" value="sc" (change)="filter_state('SC')"> South Carolina<br></div>
+          <input id="sc_id" type="checkbox" name="sc" value="sc" (change)="filter_state('SC')">
+          <label for="sc_id">South Carolina</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('SD')">
-          <input type="checkbox" name="sd" value="sd" (change)="filter_state('SD')"> South Dakota<br></div>
+          <input id="sd_id" type="checkbox" name="sd" value="sd" (change)="filter_state('SD')">
+          <label for="sd_id">South Dakota</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('TN')">
-          <input type="checkbox" name="tn" value="tn" (change)="filter_state('TN')"> Tennessee<br></div>
+          <input id="tn_id" type="checkbox" name="tn" value="tn" (change)="filter_state('TN')">
+          <label for="tn_id">Tennessee</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('TX')">
-          <input type="checkbox" name="tx" value="tx" (change)="filter_state('TX')"> Texas<br></div>
+          <input id="tx_id" type="checkbox" name="tx" value="tx" (change)="filter_state('TX')">
+          <label for="tx_id">Texas</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('UT')">
-          <input type="checkbox" name="ut" value="ut" (change)="filter_state('UT')"> Utah<br></div>
+          <input id="ut_id" type="checkbox" name="ut" value="ut" (change)="filter_state('UT')">
+          <label for="ut_id">Utah</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('VT')">
-          <input type="checkbox" name="vt" value="vt" (change)="filter_state('VT')"> Vermont<br></div>
+          <input id="vt_id" type="checkbox" name="vt" value="vt" (change)="filter_state('VT')">
+          <label for="vt_id">Vermont</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('VA')">
-          <input type="checkbox" name="va" value="va" (change)="filter_state('VA')"> Virginia<br></div>
+          <input id="va_id" type="checkbox" name="va" value="va" (change)="filter_state('VA')">
+          <label for="va_id">Virginia</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('WA')">
-          <input type="checkbox" name="wa" value="wa" (change)="filter_state('WA')"> Washington<br></div>
+          <input id="wa_id" type="checkbox" name="wa" value="wa" (change)="filter_state('WA')">
+          <label for="wa_id">Washington</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('WV')">
-          <input type="checkbox" name="wv" value="wv" (change)="filter_state('WV')"> West Virginia<br></div>
+          <input id="wv_id" type="checkbox" name="wv" value="wv" (change)="filter_state('WV')">
+          <label for="wv_id">West Virginia</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('WI')">
-          <input type="checkbox" name="wi" value="wi" (change)="filter_state('WI')"> Wisconsin<br></div>
+          <input id="wi_id" type="checkbox" name="wi" value="wi" (change)="filter_state('WI')">
+          <label for="wi_id">Wisconsin</label>
+          <br>
+        </div>
         <div *ngIf="states.hasOwnProperty('WY')">
-          <input type="checkbox" name="wy" value="wy" (change)="filter_state('WY')"> Wyoming<br></div>
+          <input id="wy_id" type="checkbox" name="wy" value="wy" (change)="filter_state('WY')">
+          <label for="wy_id">Wyoming</label>
+          <br>
+        </div>
       </div>
     </form>
   </div>
 
+
   </div>
   <div class="search-results-list">
-  <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-md-3 official-lists">
-    <div *ngIf="official.gender=='M'">
-    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
+    <div *ngFor="let official of search_result" [routerLink]="['/detail', official.name]" class="col-md-3 official-lists">
+      <div class="hover-effect">
+        <div *ngIf="official.gender=='M'">
+          <img class="hover-effect" src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_male.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
+        </div>
+        <div *ngIf="official.gender=='F'">
+          <img class="hover-effect" src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
+        </div>
+
+        <p class="smaller-font">{{official.name}}</p>
+        <h4>({{official.party}} - {{official.state}})</h4>
+        <p class="bigger-font">{{official.role}}</p>
+        <p style="text-align:center; font-family:'whitneyHTF-semibold';">{{official.date}}</p>
+      </div>
     </div>
-    <div *ngIf="official.gender=='F'">
-    <img src="{{official.img_url}}" onError="this.src='./assets/thumbnails/placeholder_female.png'" style=" display: block; margin-left: auto; margin-right: auto;width:161px; height:200px;">
-    </div>
-    <h2>{{official.name}}</h2>
-    <h4>({{official.party}} - {{official.state}})</h4>
-    <p>{{official.role}}</p><br>
-    <br>
-    <p style="text-align:center; font-family:'whitneyHTF-semibold';">{{official.date}}</p>
   </div>
-  </div>
+</div>
+
 </div>
