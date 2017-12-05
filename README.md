@@ -3,7 +3,7 @@
 PoliTrack is a web application that tracks elected representatives through a user-friendly visualization of data.
 
 - [Install Guide](#install-guide)
-- [Release Notes](#release-notes-version)
+- [Release Notes](#release-notes-politrack-version-10)
 
 ## Install Guide
 
